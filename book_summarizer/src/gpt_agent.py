@@ -9,8 +9,8 @@ class GPTAgent:
             "big": "gpt-3.5-turbo-16k"
         },
         4: {
-            "small": "gpt-4",
-            "big": "gpt-4-32k"
+            "small": "gpt-4-1106-preview",
+            "big": "gpt-4-1106-preview"
         }
     }
 
@@ -102,7 +102,7 @@ class GPTAgent:
 
 if __name__ == "__main__":
     # Configuration
-    model_version = 3
+    model_version = 4
     model_size = "small"
     system_msg = "You are a helpful assistant."
     temperature_setting = 1.0

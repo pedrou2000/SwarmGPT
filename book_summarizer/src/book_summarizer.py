@@ -66,20 +66,22 @@ class BookSummarizer:
         return final_summary
 
 
-if __name__ == "__main__":
-    # Initialize parameters and run the summarizer.
-    epub_file_path = "../books/eat_that_frog.epub"
-    agent_version = 3
-    agent_size = "small"
-    skip_titles = ['Cover', 'Title', 'Copyright', 'Dedication', 'Contents', 'Preface', 'Notes', 'Index', 'Learning Resources', 'About']
-    # system_message = "You are a professional book chapter summarizer. Extract and convey the core ideas of the chapter in a concise and structured manner, ideally within three paragraphs."
-    system_message = "You are GPT agent in a system trying to summarize complete books. Your goal is to produce a chapter summary which will then be integrated with the output of other agents who have summarized their own chapter. Extract and convey the core ideas of the chapter in a concise and structured manner, without introductions or conclusions, ideally within three paragraphs."
+def summarize_complete_book(summarizer, epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug, num_chapters):
+    agent = GPTAgent(**summarizer.agent_config)
 
-    temperature = 1.0
-    debug = False
-    num_chapters = 5
+    all_text = 'You are an expert summarizer. Summarize this book in 12 paragraphs giving me the most important and key ideas: \n\n\n'
+    for node in summarizer.epub.root_node.children:
+        all_text += node.content 
 
-    summarizer = BookSummarizer(epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug)
+    response = agent.simple_query(all_text)
+    print(response)
+
+    file_name = 'response_script.txt'
+    # Write the response to a text file
+    with open(file_name, 'w') as file:
+        file.write(response)
+
+def summarize_chapters_separately(summarizer, epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug, num_chapters):
     summaries = summarizer.summarize_chapters_parallel(num_chapters=num_chapters)  
     
     for chapter, summary in summaries.items():
@@ -98,3 +100,19 @@ if __name__ == "__main__":
     print("\nIntegrated Summary:")
     print("====================")
     print(final_summary)
+
+if __name__ == "__main__":
+    # Initialize parameters
+    epub_file_path = "../books/eat_that_frog.epub"
+    agent_version = 4
+    agent_size = "small"
+    skip_titles = ['Cover', 'Title', 'Copyright', 'Dedication', 'Contents', 'Preface', 'Notes', 'Index', 'Learning Resources', 'About']
+    system_message = "You are GPT agent in a system trying to summarize complete books. Your goal is to produce a chapter summary which will then be integrated with the output of other agents who have summarized their own chapter. Extract and convey the core ideas of the chapter in a concise and structured manner, without introductions or conclusions, ideally within three paragraphs."
+    temperature = 1.0
+    debug = False
+    num_chapters = 5
+    summarizer = BookSummarizer(epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug)
+
+    # Choose which function to run based on your need
+    summarize_complete_book(summarizer, epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug, num_chapters)
+    # summarize_chapters_separately(summarizer, epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug, num_chapters)
