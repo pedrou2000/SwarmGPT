@@ -104,7 +104,7 @@ def summarize_chapters_separately(summarizer, epub_file_path, agent_version, age
 if __name__ == "__main__":
     # Initialize parameters
     epub_file_path = "../books/eat_that_frog.epub"
-    agent_version = 4
+    agent_version = 3
     agent_size = "small"
     skip_titles = ['Cover', 'Title', 'Copyright', 'Dedication', 'Contents', 'Preface', 'Notes', 'Index', 'Learning Resources', 'About']
     system_message = "You are GPT agent in a system trying to summarize complete books. Your goal is to produce a chapter summary which will then be integrated with the output of other agents who have summarized their own chapter. Extract and convey the core ideas of the chapter in a concise and structured manner, without introductions or conclusions, ideally within three paragraphs."

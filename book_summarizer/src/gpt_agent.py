@@ -6,11 +6,11 @@ class GPTAgent:
     MODEL_MAP = {
         3: {
             "small": "gpt-3.5-turbo",
-            "big": "gpt-3.5-turbo-16k"
+            "big": "gpt-3.5-turbo"
         },
         4: {
-            "small": "gpt-4-1106-preview",
-            "big": "gpt-4-1106-preview"
+            "small": "gpt-4-turbo-preview",
+            "big": "gpt-4-turbo-preview"
         }
     }
 
@@ -102,7 +102,7 @@ class GPTAgent:
 
 if __name__ == "__main__":
     # Configuration
-    model_version = 4
+    model_version = 3
     model_size = "small"
     system_msg = "You are a helpful assistant."
     temperature_setting = 1.0
