@@ -1,14 +1,14 @@
 from epub_parser import EPUB
 from gpt_agent import GPTAgent
 from concurrent.futures import ThreadPoolExecutor
+import constants
 
 class BookSummarizer:
 
-    def __init__(self, epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug):
+    def __init__(self, epub_file_path, agent_version, skip_titles, system_message, temperature, debug):
         self.epub = EPUB(epub_file_path)
         self.agent_config = {
             'version': agent_version,
-            'size': agent_size,
             'debug': debug,
             'system_message': system_message,
             'temperature': temperature
@@ -21,6 +21,7 @@ class BookSummarizer:
     def _process_chapter(self, node):
         agent = GPTAgent(**self.agent_config)
         print('Processing:', node.title)
+        print('Length of content:', len(node.content))
         return node.title, agent.simple_query(node.content)
 
     def summarize_chapters_sequential(self, num_chapters=None):
@@ -66,7 +67,7 @@ class BookSummarizer:
         return final_summary
 
 
-def summarize_complete_book(summarizer, epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug, num_chapters):
+def summarize_complete_book(summarizer):
     agent = GPTAgent(**summarizer.agent_config)
 
     all_text = 'You are an expert summarizer. Summarize this book in 12 paragraphs giving me the most important and key ideas: \n\n\n'
@@ -81,7 +82,8 @@ def summarize_complete_book(summarizer, epub_file_path, agent_version, agent_siz
     with open(file_name, 'w') as file:
         file.write(response)
 
-def summarize_chapters_separately(summarizer, epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug, num_chapters):
+def summarize_chapters_separately(summarizer, num_chapters):
+    
     summaries = summarizer.summarize_chapters_parallel(num_chapters=num_chapters)  
     
     for chapter, summary in summaries.items():
@@ -90,29 +92,15 @@ def summarize_chapters_separately(summarizer, epub_file_path, agent_version, age
         print(summary)
         print("==========================")
     
-    # New code for Phase 2: Supervisor Integration
-    final_paragraphs = 9
-    supervisor_message = ("You have been given summaries of individual chapters. Your task is to integrate these "
-                          "into a cohesive summary of the entire book without redundancy, ensuring it's concise "
-                          "and captures the book's essence. The final summary be " + str(final_paragraphs) + " paragraphs long.")
-    
-    final_summary = summarizer.integrate_summaries(summaries, supervisor_message)
     print("\nIntegrated Summary:")
     print("====================")
+    
+    final_summary = summarizer.integrate_summaries(summaries, constants.PROMPT_SUPERVISOR)
     print(final_summary)
 
 if __name__ == "__main__":
-    # Initialize parameters
-    epub_file_path = "../books/eat_that_frog.epub"
-    agent_version = 3
-    agent_size = "small"
-    skip_titles = ['Cover', 'Title', 'Copyright', 'Dedication', 'Contents', 'Preface', 'Notes', 'Index', 'Learning Resources', 'About']
-    system_message = "You are GPT agent in a system trying to summarize complete books. Your goal is to produce a chapter summary which will then be integrated with the output of other agents who have summarized their own chapter. Extract and convey the core ideas of the chapter in a concise and structured manner, without introductions or conclusions, ideally within three paragraphs."
-    temperature = 1.0
-    debug = False
-    num_chapters = 5
-    summarizer = BookSummarizer(epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug)
+    summarizer = BookSummarizer(constants.EPUB_FILE_PATH, constants.MODEL_VERSION, constants.SKIP_TITLES, constants.PROMPT_CHAPTER_SUMMARIZER, 
+                                constants.TEMPERATURE, debug=constants.DEBUG)
 
-    # Choose which function to run based on your need
-    summarize_complete_book(summarizer, epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug, num_chapters)
-    # summarize_chapters_separately(summarizer, epub_file_path, agent_version, agent_size, skip_titles, system_message, temperature, debug, num_chapters)
+    # summarize_complete_book(summarizer)
+    summarize_chapters_separately(summarizer, constants.NUM_CHAPTERS_SUMMARIZED)

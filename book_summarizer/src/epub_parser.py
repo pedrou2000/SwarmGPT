@@ -2,11 +2,7 @@ import ebooklib
 from ebooklib import epub
 from bs4 import BeautifulSoup
 import os
-
-# Constants and Configurations
-BOOKS_DIR = "books"
-OUTPUT_DIR = "parsed_epubs"
-CONTENT_LENGTH = 1000
+import constants
 
 
 class Metadata:
@@ -125,14 +121,14 @@ def generate_markdown_toc(node, content_length=100, level=0):
     
     return markdown_content
 
-def generate_full_markdown(epub_obj, content_length=CONTENT_LENGTH):
+def generate_full_markdown(epub_obj, content_length=constants.MARKDOWN_OUTPUT_MAX_LEN):
     """Generates markdown content for an EPUB's metadata and TOC."""
     markdown_toc = f"# Metadata:\n\n- Title: {epub_obj.metadata.title}\n- Authors: {epub_obj.metadata.author}\n\n"
     markdown_toc += "# TOC Content:\n\n"
     markdown_toc += generate_markdown_toc(epub_obj.root_node, content_length=content_length)
     return markdown_toc
 
-def process_single_epub(epub_path, output_dir_path, content_length=CONTENT_LENGTH):
+def process_single_epub(epub_path, output_dir_path=constants.PARSED_DIR, content_length=constants.MARKDOWN_OUTPUT_MAX_LEN):
     """Processes a single EPUB file and saves the TOC as markdown."""
 
     # Create an EPUB object and parse the EPUB file
@@ -158,15 +154,12 @@ def process_single_epub(epub_path, output_dir_path, content_length=CONTENT_LENGT
 if __name__ == "__main__":
     
     # Determine the output directory
-    parent_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    books_dir_path = os.path.join(parent_dir, BOOKS_DIR)
-    output_dir_path = os.path.join(parent_dir, OUTPUT_DIR)
 
     # Iterate through all EPUB files in the books directory and process them
-    for epub_file in os.listdir(books_dir_path):
+    for epub_file in os.listdir(constants.BOOKS_DIR):
         if epub_file.endswith('.epub'):
-            epub_path = os.path.join(books_dir_path, epub_file)
-            process_single_epub(epub_path, output_dir_path)
+            epub_path = os.path.join(constants.BOOKS_DIR, epub_file)
+            process_single_epub(epub_path, constants.PARSED_DIR)
 
 
 
