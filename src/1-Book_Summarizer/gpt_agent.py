@@ -15,7 +15,7 @@ class GPTAgent:
         self.temperature = temperature
 
     def _load_client(self):
-        return OpenAI(api_key=utils.read_api_key())
+        return OpenAI(api_key=utils.get_openai_api_key())
 
     def _set_model(self, version):
         return constants.MODEL_MAP[version]
