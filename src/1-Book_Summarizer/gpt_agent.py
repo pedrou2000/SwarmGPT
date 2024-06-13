@@ -1,6 +1,5 @@
 import os, sys
 from openai import OpenAI
-from dotenv import load_dotenv
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import constants, utils
 
@@ -14,7 +13,6 @@ class GPTAgent:
         self.debug = debug
         self.system_message = system_message
         self.temperature = temperature
-
 
     def _load_client(self):
         return OpenAI(api_key=utils.read_api_key())
