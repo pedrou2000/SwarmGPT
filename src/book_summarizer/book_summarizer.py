@@ -1,6 +1,8 @@
 from epub_parser import EPUB
 from gpt_agent import GPTAgent
 from concurrent.futures import ThreadPoolExecutor
+import os, sys 
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import constants
 
 class BookSummarizer:
@@ -99,8 +101,13 @@ def summarize_chapters_separately(summarizer, num_chapters):
     print(final_summary)
 
 if __name__ == "__main__":
-    summarizer = BookSummarizer(constants.EPUB_FILE_PATH, constants.MODEL_VERSION, constants.SKIP_TITLES, constants.PROMPT_CHAPTER_SUMMARIZER, 
-                                constants.TEMPERATURE, debug=constants.DEBUG)
-
+    summarizer = BookSummarizer(
+        epub_file_path=constants.EPUB_FILE_PATH,
+        agent_version=constants.MODEL_VERSION,
+        skip_titles=constants.SKIP_TITLES,
+        system_message=constants.PROMPT_CHAPTER_SUMMARIZER,
+        temperature=constants.TEMPERATURE,
+        debug=constants.DEBUG
+    )
     # summarize_complete_book(summarizer)
     summarize_chapters_separately(summarizer, constants.NUM_CHAPTERS_SUMMARIZED)

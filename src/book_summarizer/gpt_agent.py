@@ -1,28 +1,23 @@
-import os
+import os, sys
 from openai import OpenAI
-import constants
+from dotenv import load_dotenv
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import constants, utils
 
 
 class GPTAgent:
 
-    def __init__(self, version=constants.DEFAULT_MODEL, api_key_file_path=constants.OPENAI_API_KEY_PATH, debug=False, 
+    def __init__(self, version=constants.DEFAULT_MODEL, debug=False, 
                  system_message=constants.DEFAULT_SYSTEM_MESSAGE, temperature=constants.DEFAULT_TEMPERATURE):
-        self.client = self._load_client(api_key_file_path)
+        self.client = self._load_client()
         self.model_name = self._set_model(version)
         self.debug = debug
         self.system_message = system_message
         self.temperature = temperature
 
-    def _read_api_key(self, api_key_file_path):
-        with open(os.path.expanduser(api_key_file_path), 'r') as file:
-            for line in file:
-                key, value = line.strip().split('=')
-                if key == "OPENAI_API_KEY":
-                    return value
-        raise ValueError("API key not found in the provided file.")
 
-    def _load_client(self, api_key_file_path):
-        return OpenAI(api_key=self._read_api_key(api_key_file_path))
+    def _load_client(self):
+        return OpenAI(api_key=utils.read_api_key())
 
     def _set_model(self, version):
         return constants.MODEL_MAP[version]

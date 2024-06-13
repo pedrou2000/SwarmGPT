@@ -1,7 +1,8 @@
 import ebooklib
 from ebooklib import epub
 from bs4 import BeautifulSoup
-import os
+import os, sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import constants
 
 
