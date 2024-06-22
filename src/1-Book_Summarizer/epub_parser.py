@@ -7,7 +7,7 @@ import constants
 from langchain_core.pydantic_v1 import BaseModel, Field
 
 
-class Metadata(BaseModel):
+class Metadata():
     title: str
     author: str
     identifier: str
@@ -21,7 +21,7 @@ class Metadata(BaseModel):
         self.language = language
         self.description = description
 
-class ContentNode(BaseModel):
+class ContentNode():
     title: str
     content: str
     children: list
@@ -35,7 +35,7 @@ class ContentNode(BaseModel):
         self.parent = None  
         self.content_item = content_item  # This is the raw content item associated with the node
 
-class EPUB(BaseModel):
+class EPUB():
     book: epub.EpubBook
     metadata: Metadata
     root_node: ContentNode
