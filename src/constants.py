@@ -4,8 +4,8 @@ import os
 MARKDOWN_OUTPUT_MAX_LEN = 1000
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT_DIR, "data")
-BOOKS_DIR = os.path.join(DATA_DIR, "books")
-PARSED_DIR = os.path.join(DATA_DIR, "parsed_epubs")
+BOOKS_DIR = os.path.join(DATA_DIR, "books/")
+PARSED_DIR = os.path.join(DATA_DIR, "parsed_epubs/")
 ENV_FILE_PATH = os.path.join(ROOT_DIR, ".env")
 
 # GPT Constants

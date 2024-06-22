@@ -1,0 +1,2 @@
+- Files *not* ending in `cleaned.json` contain all intermediate summaries.
+- Files ending in `cleaned.json` only contain the post-processed final summaries.

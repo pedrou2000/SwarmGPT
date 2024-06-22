@@ -4,9 +4,16 @@ from bs4 import BeautifulSoup
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import constants
+from langchain_core.pydantic_v1 import BaseModel, Field
 
 
-class Metadata:
+class Metadata(BaseModel):
+    title: str
+    author: str
+    identifier: str
+    language: str
+    description: str
+    
     def __init__(self, title, author, identifier, language, description):
         self.title = title
         self.author = author
@@ -14,7 +21,13 @@ class Metadata:
         self.language = language
         self.description = description
 
-class ContentNode:
+class ContentNode(BaseModel):
+    title: str
+    content: str
+    children: list
+    parent: 'ContentNode'
+    content_item: ebooklib.epub.EpubItem
+
     def __init__(self, title, content, content_item=None):
         self.title = title
         self.content = content
@@ -22,7 +35,11 @@ class ContentNode:
         self.parent = None  
         self.content_item = content_item  # This is the raw content item associated with the node
 
-class EPUB:
+class EPUB(BaseModel):
+    book: epub.EpubBook
+    metadata: Metadata
+    root_node: ContentNode
+
     def __init__(self, file_path):
         # Load the EPUB file
         self.book = epub.read_epub(file_path)
