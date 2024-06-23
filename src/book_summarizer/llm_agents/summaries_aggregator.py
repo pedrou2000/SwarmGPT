@@ -4,7 +4,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from typing import  Any
 
 import prompts 
-from Book_Summarizer.agents.simple_llm import SimpleLLMAgent
+from llm_agents.simple_llm import SimpleLLMAgent
 from data_classes.response import Response
 from data_classes.book_summarizer_state import BookSummarizerState
 
