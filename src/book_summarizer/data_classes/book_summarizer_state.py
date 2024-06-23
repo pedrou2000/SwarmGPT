@@ -5,8 +5,7 @@ from langchain_core.pydantic_v1 import BaseModel, Field
 import operator 
 from typing import Annotated, List, Optional
 
-from epub_parser import ContentNode
-from epub_parser import EPUB
+from book_summarizer.data_classes.epub import EPUB, ContentNode
 from data_classes.chapter_summary import ChapterSummary
 
 class BookSummarizerState(BaseModel):
@@ -20,6 +19,7 @@ class BookSummarizerState(BaseModel):
     num_chapters_to_summarize: int  # Number of chapters to summarize
     chapter_summaries: Annotated[List[ChapterSummary], operator.add] = []  # List of summaries of the chapters
     final_summary: str = ""  # Final summary of the book
+    summaries_dir: str  # Directory to save the summaries
 
     class Config:
         arbitrary_types_allowed = True  # Allow arbitrary types such as EPUB

@@ -5,6 +5,10 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import constants
 from langchain_core.pydantic_v1 import BaseModel, Field
+import warnings
+
+warnings.filterwarnings("ignore", message="In the future version we will turn default option ignore_ncx to True.")
+# warnings.filterwarnings("ignore", message="This search incorrectly ignores the root element, and will be fixed in a future version.")
 
 
 class Metadata():
@@ -42,7 +46,7 @@ class EPUB():
 
     def __init__(self, file_path):
         # Load the EPUB file
-        self.book = epub.read_epub(file_path)
+        self.book = epub.read_epub(file_path, options={'ignore_ncx': False})
         
         # Parse Metadata and Content
         self.metadata = self._parse_metadata()

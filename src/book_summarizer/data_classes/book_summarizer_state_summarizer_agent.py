@@ -3,7 +3,6 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from langchain_core.pydantic_v1 import BaseModel, Field
 
-from epub_parser import ContentNode
 from data_classes.book_summarizer_state import BookSummarizerState
 
 class BookSummarizerStateSummarizerAgent(BaseModel):

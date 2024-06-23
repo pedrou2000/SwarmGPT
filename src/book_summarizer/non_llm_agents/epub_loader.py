@@ -1,7 +1,7 @@
 import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from epub_parser import EPUB
+from book_summarizer.data_classes.epub import EPUB
 from data_classes.book_summarizer_state import BookSummarizerState
 
 class AgentEpubLoader():
