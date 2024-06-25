@@ -16,7 +16,7 @@ class BookSummarizerState(BaseModel):
     chapter_titles_all: List[str] = []  # List of all chapter titles
     chapter_titles_to_summarize: List[str] = []  # List of chapter titles to summarize
     chapters_to_summarize: List[ContentNode] = []  # List of the chapters to summarize
-    num_chapters_to_summarize: int  # Number of chapters to summarize
+    num_chapters_to_summarize: Optional[int] = None   # Number of chapters to summarize, None means all
     chapter_summaries: Annotated[List[ChapterSummary], operator.add] = []  # List of summaries of the chapters
     final_summary: str = ""  # Final summary of the book
     summaries_dir: str  # Directory to save the summaries

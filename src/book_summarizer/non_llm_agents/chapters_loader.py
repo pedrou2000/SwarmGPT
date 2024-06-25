@@ -10,14 +10,16 @@ class AgentChaptersLoader():
         book = state.book
         chapter_contents = []
         num_chapters_to_summarize = state.num_chapters_to_summarize
+        print("Num chapters to summarize: ", num_chapters_to_summarize) 
 
         num_chapters = 0
         for node in book.root_node.children:
-            if num_chapters < num_chapters_to_summarize:
+            if num_chapters_to_summarize is None or num_chapters < num_chapters_to_summarize:
                 if node.title in chapter_titles_to_summarize:
                     chapter_contents.append(node)
                     num_chapters += 1
             else:
                 break
         state.chapters_to_summarize = chapter_contents
+        print("Chapter contents: ", book.root_node)
         return state

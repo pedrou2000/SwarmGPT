@@ -21,5 +21,6 @@ class AgentRelevantChaptersSelector(SimpleLLMAgent):
         chapters = state.chapter_titles_all
         chapter_titles_to_summarize = self.agent.invoke({"chapter_list": chapters})
         state.chapter_titles_to_summarize = chapter_titles_to_summarize.chapter_list
+        state.num_chapters_to_summarize = len(chapter_titles_to_summarize.chapter_list)
         
         return state

@@ -140,7 +140,7 @@ class Scorer():
                     response = self.client.obtain_response(prompt, max_tokens=100, temperature=0)
                     valid, questions, types = self.validate_response(response)
                     while not valid:
-                        response = self.client.obtain_response(prompt, max_tokens=max_len, temperature=0)
+                        response = self.client.obtain_response(prompt, max_tokens=100, temperature=0)
                         valid, questions, types = self.validate_response(response)
                     annots[book][sentence] = {
                         'questions': questions,

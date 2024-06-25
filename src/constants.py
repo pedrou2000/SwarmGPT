@@ -17,7 +17,8 @@ DEFAULT_MODEL = 3
 
 # Epub Summarizer Constants
 BOOK_NAME = "eat_that_frog"
-NUM_CHAPTERS_TO_SUMMARIZE = 10
+# BOOK_NAME = "reminiscences-of-pioneer-days-in-st-paul"
+NUM_CHAPTERS_TO_SUMMARIZE = None
 VERBOSE = 0
 
 # Directories
@@ -25,6 +26,7 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 BOOKS_DIR = os.path.join(DATA_DIR, "books/")
 PARSED_BOOKS_DIR = os.path.join(DATA_DIR, "parsed_epubs/")
+FULL_CONTENT_PARSED_BOOKS_DIR = os.path.join(DATA_DIR, "full_content_parsed_epubs/")
 ENV_FILE_PATH = os.path.join(ROOT_DIR, ".env")
 RESULTS_DIR = os.path.join(ROOT_DIR, "results/")
 BOOK_SUMMARIES_DIR = os.path.join(RESULTS_DIR, "book_summaries/")

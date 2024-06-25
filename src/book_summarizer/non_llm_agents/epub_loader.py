@@ -8,6 +8,7 @@ class AgentEpubLoader():
     def __call__(self, state: BookSummarizerState) -> BookSummarizerState:
         print("State: ", state, "\n SAVING SUMMARY") if state.verbose == 1 else None
         book = EPUB(state.book_path)
+        # print(book.display_high_level_info())
         
         chapter_titles_all = []
         for node in book.root_node.children:
@@ -17,8 +18,5 @@ class AgentEpubLoader():
         state.chapter_titles_all = chapter_titles_all
 
         print("\n\n "+str(len(chapter_titles_all))+" chapters found in the book") 
-
-        if state.num_chapters_to_summarize is None:
-            state.num_chapters_to_summarize = len(chapter_titles_all)
 
         return state

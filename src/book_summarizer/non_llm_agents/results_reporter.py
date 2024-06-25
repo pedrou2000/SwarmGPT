@@ -10,7 +10,7 @@ class AgentResultsReporter():
         for i, response in enumerate(state.chapter_summaries):
             print("Chapter: ", response.chapter.title)
             print("Summary: ", response.chapter_summary)
-            print("\n\n")
+            print("\n")
         
         content = {state.book_name.replace(" ", "_"): state.final_summary}
         # Save the dictionary to a JSON file

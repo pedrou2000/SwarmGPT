@@ -1,3 +1,8 @@
+import os, sys
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+
 import ebooklib
 from ebooklib import epub
 from bs4 import BeautifulSoup
@@ -5,7 +10,7 @@ import os, sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import constants
 from langchain_core.pydantic_v1 import BaseModel, Field
-import warnings
+import warnings, pickle
 
 warnings.filterwarnings("ignore", message="In the future version we will turn default option ignore_ncx to True.")
 # warnings.filterwarnings("ignore", message="This search incorrectly ignores the root element, and will be fixed in a future version.")
@@ -103,6 +108,7 @@ class EPUB():
     def _extract_content_text(self, content_item):
         """Extracts text from the content item using BeautifulSoup."""
         content_soup = BeautifulSoup(content_item.content, 'html.parser')
+        
         return content_soup.get_text()
 
     def display_high_level_info(self):
@@ -150,7 +156,22 @@ def generate_full_markdown(epub_obj, content_length=constants.MARKDOWN_OUTPUT_MA
     markdown_toc += generate_markdown_toc(epub_obj.root_node, content_length=content_length)
     return markdown_toc
 
-def process_single_epub(epub_path, output_dir_path=constants.PARSED_BOOKS_DIR, content_length=constants.MARKDOWN_OUTPUT_MAX_LEN):
+def generate_markdown_with_complete_contents(node, level=0):
+    """ 
+    Recursively generate the full markdown representation of the content with indentation
+    to represent the hierarchy.
+    """
+    indent = '#' * (level + 1)  # For markdown headers
+    markdown_content = f"{indent} {node.title}\n\n{node.content}\n\n"
+    
+    for child in node.children:
+        markdown_content += generate_markdown_with_complete_contents(child, level=level + 1)
+    
+    return markdown_content
+
+
+def process_single_epub(epub_path, incomplete_toc_dir=constants.PARSED_BOOKS_DIR, full_content_dir=constants.FULL_CONTENT_PARSED_BOOKS_DIR,
+                        content_length=constants.MARKDOWN_OUTPUT_MAX_LEN, save_complete_contents=False):
     """Processes a single EPUB file and saves the TOC as markdown."""
 
     # Create an EPUB object and parse the EPUB file
@@ -164,7 +185,7 @@ def process_single_epub(epub_path, output_dir_path=constants.PARSED_BOOKS_DIR, c
 
     # Use the same base name as the EPUB for the output markdown file
     base_name = os.path.basename(epub_path)  # e.g., "sample.epub"
-    output_file_name = os.path.join(output_dir_path, base_name.replace('.epub', '.md'))
+    output_file_name = os.path.join(incomplete_toc_dir, base_name.replace('.epub', '.md'))
     
     try:
         with open(output_file_name, 'w', encoding='utf-8') as md_file:
@@ -173,15 +194,36 @@ def process_single_epub(epub_path, output_dir_path=constants.PARSED_BOOKS_DIR, c
     except Exception as e:
         print(f"Error writing to {output_file_name}. Reason: {e}")
 
+    if save_complete_contents:
+        markdown_content = generate_markdown_with_complete_contents(epub_obj.root_node)
+        output_file_name = os.path.join(full_content_dir, base_name.replace('.epub', '.pkl'))    
+        # Save it as a pickle file with a dictionary with key as the title and value as the content
+        content_dict = {constants.BOOK_NAME: markdown_content}
+        # Save it as a pickle file
+        try:
+            with open(output_file_name, 'wb') as pkl_file:
+                pickle.dump(content_dict, pkl_file)
+                print(f"Complete content has been saved to {output_file_name}!")
+        except Exception as e:
+            print(f"Error writing to {output_file_name}. Reason: {e}")
+
+        # try:
+        #     with open(output_file_name, 'w', encoding='utf-8') as md_file:
+        #         md_file.write(markdown_content)
+        #         print(f"TOC has been saved to {output_file_name}!")
+        # except Exception as e:
+        #     print(f"Error writing to {output_file_name}. Reason: {e}")
+
 if __name__ == "__main__":
     
     # Determine the output directory
 
     # Iterate through all EPUB files in the books directory and process them
-    for epub_file in os.listdir(constants.BOOKS_DIR):
-        if epub_file.endswith('.epub'):
-            epub_path = os.path.join(constants.BOOKS_DIR, epub_file)
-            process_single_epub(epub_path, constants.PARSED_BOOKS_DIR)
+    # for epub_file in os.listdir(constants.BOOKS_DIR):
+    #     if epub_file.endswith('.epub'):
+    #         epub_path = os.path.join(constants.BOOKS_DIR, epub_file)
+    #         process_single_epub(epub_path, constants.PARSED_BOOKS_DIR)
 
-
+    process_single_epub(constants.BOOK_PATH, incomplete_toc_dir=constants.PARSED_BOOKS_DIR, 
+                        full_content_dir=constants.FULL_CONTENT_PARSED_BOOKS_DIR, save_complete_contents=True)
 
