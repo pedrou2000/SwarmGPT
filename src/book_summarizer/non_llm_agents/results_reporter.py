@@ -12,12 +12,11 @@ class AgentResultsReporter():
             print("Summary: ", response.chapter_summary)
             print("\n\n")
         
-        # Save the final summary to a json file
-        file_name = state.summaries_dir + state.book_name.replace(" ", "_") + "--"+constants.MODEL_NAME+".json"
-            # The content should be a dictionary with the epub file name as the key and the final summary as the value
         content = {state.book_name.replace(" ", "_"): state.final_summary}
         # Save the dictionary to a JSON file
-        with open(file_name, 'w') as json_file:
+        os.makedirs(constants.FINAL_BOOK_SUMMARY_DIR, exist_ok=True)
+
+        with open(constants.FINAL_BOOK_SUMMARY_PATH, 'w') as json_file:
             json.dump(content, json_file, indent=4)
 
         print("\n\nFinal Summary: ", state.final_summary)

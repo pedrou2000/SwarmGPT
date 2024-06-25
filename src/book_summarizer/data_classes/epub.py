@@ -150,7 +150,7 @@ def generate_full_markdown(epub_obj, content_length=constants.MARKDOWN_OUTPUT_MA
     markdown_toc += generate_markdown_toc(epub_obj.root_node, content_length=content_length)
     return markdown_toc
 
-def process_single_epub(epub_path, output_dir_path=constants.PARSED_DIR, content_length=constants.MARKDOWN_OUTPUT_MAX_LEN):
+def process_single_epub(epub_path, output_dir_path=constants.PARSED_BOOKS_DIR, content_length=constants.MARKDOWN_OUTPUT_MAX_LEN):
     """Processes a single EPUB file and saves the TOC as markdown."""
 
     # Create an EPUB object and parse the EPUB file
@@ -181,7 +181,7 @@ if __name__ == "__main__":
     for epub_file in os.listdir(constants.BOOKS_DIR):
         if epub_file.endswith('.epub'):
             epub_path = os.path.join(constants.BOOKS_DIR, epub_file)
-            process_single_epub(epub_path, constants.PARSED_DIR)
+            process_single_epub(epub_path, constants.PARSED_BOOKS_DIR)
 
 
 

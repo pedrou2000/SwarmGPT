@@ -75,12 +75,20 @@ class OpenAIClient(BaseClient):
         self.client = OpenAI(api_key=self.key)
 
     def send_request(self, prompt, max_tokens, temperature):
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=temperature,
-            max_tokens=max_tokens
-        )
+        if self.model == "gpt-4o":
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=temperature,
+                max_tokens=max_tokens
+            )
+        else:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=temperature,
+                max_tokens=max_tokens
+            )
         return response.choices[0].message.content
 
 

@@ -11,7 +11,7 @@ from data_classes.chapter_summary import ChapterSummary
 class BookSummarizerState(BaseModel):
     book_name: Annotated[str, Field(description="Name of the book")]  # Name of the book
     verbose: int  # Verbosity level: 0 (silent), 1 (verbose)
-    book_dir: str  # Directory of the book
+    book_path: str  # Directory of the book
     book: Optional[EPUB] = None  # EPUB object
     chapter_titles_all: List[str] = []  # List of all chapter titles
     chapter_titles_to_summarize: List[str] = []  # List of chapter titles to summarize
@@ -23,4 +23,4 @@ class BookSummarizerState(BaseModel):
 
     class Config:
         arbitrary_types_allowed = True  # Allow arbitrary types such as EPUB
-
+    

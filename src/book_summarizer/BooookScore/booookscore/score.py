@@ -93,7 +93,7 @@ class Scorer():
         prompt = template.format(summary=summary, sentences=formatted_batch)
         for _ in range(num_retries):
             try:
-                response = self.client.obtain_response(prompt, model_name=model_name)
+                response = self.client.obtain_response(prompt, max_tokens=100, temperature=0)
                 answers = self.parse_response(response)
                 break
             except Exception:
@@ -125,7 +125,7 @@ class Scorer():
             annots = defaultdict(dict, annots)
             print(f"LOADED {len(annots)} annots FROM {self.annot_path}")
 
-        with open(template_path, 'r') as f:
+        with open(self.template_path, 'r') as f:
             template = f.read()
         
         for book, summary in tqdm(summaries.items(), total=len(summaries), desc="Iterating over summaries"):

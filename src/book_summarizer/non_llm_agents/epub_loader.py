@@ -7,7 +7,7 @@ from data_classes.book_summarizer_state import BookSummarizerState
 class AgentEpubLoader():
     def __call__(self, state: BookSummarizerState) -> BookSummarizerState:
         print("State: ", state, "\n SAVING SUMMARY") if state.verbose == 1 else None
-        book = EPUB(state.book_dir)
+        book = EPUB(state.book_path)
         
         chapter_titles_all = []
         for node in book.root_node.children:
