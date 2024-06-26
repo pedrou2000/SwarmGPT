@@ -134,7 +134,7 @@ class EPUB():
             self._display_toc_recursive(child, level + 1)
 
 
-def generate_markdown_toc(node, content_length=100, level=0):
+def generate_markdown_toc(node, content_length=1000, level=0):
     """ 
     Recursively generate a markdown representation of the content with indentation
     to represent the hierarchy.
@@ -206,13 +206,6 @@ def process_single_epub(epub_path, incomplete_toc_dir=constants.PARSED_BOOKS_DIR
                 print(f"Complete content has been saved to {output_file_name}!")
         except Exception as e:
             print(f"Error writing to {output_file_name}. Reason: {e}")
-
-        # try:
-        #     with open(output_file_name, 'w', encoding='utf-8') as md_file:
-        #         md_file.write(markdown_content)
-        #         print(f"TOC has been saved to {output_file_name}!")
-        # except Exception as e:
-        #     print(f"Error writing to {output_file_name}. Reason: {e}")
 
 if __name__ == "__main__":
     

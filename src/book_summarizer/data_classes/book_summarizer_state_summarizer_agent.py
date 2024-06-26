@@ -8,3 +8,6 @@ from data_classes.book_summarizer_state import BookSummarizerState
 class BookSummarizerStateSummarizerAgent(BaseModel):
     index_chapter_to_summarize: int # Index of the chapter to summarize
     book_summarizer_state: BookSummarizerState # State of the book summarizer
+
+    class Config:
+        arbitrary_types_allowed = True  # Allow arbitrary types such as EPUB

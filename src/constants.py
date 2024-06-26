@@ -18,8 +18,11 @@ DEFAULT_MODEL = 3
 # Epub Summarizer Constants
 BOOK_NAME = "eat_that_frog"
 # BOOK_NAME = "reminiscences-of-pioneer-days-in-st-paul"
+# BOOK_NAME = "siddhartha"
+# BOOK_NAME = "a_brief_history_of_time"
+# BOOK_NAME = "ai"
 NUM_CHAPTERS_TO_SUMMARIZE = None
-VERBOSE = 0
+VERBOSE = 1
 
 # Directories
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
