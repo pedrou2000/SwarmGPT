@@ -26,12 +26,18 @@ VERBOSE = 1
 
 # Directories
 ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ENV_FILE_PATH = os.path.join(ROOT_DIR, ".env")
 DATA_DIR = os.path.join(ROOT_DIR, "data")
+RESULTS_DIR = os.path.join(ROOT_DIR, "results/")
+BENCHMARKS_DIR = os.path.join(DATA_DIR, "benchmarks/")
+
+# Math Problem Solver Directories
+MATH_DATASET_DIR = os.path.join(BENCHMARKS_DIR, "MATH/test/")
+
+# Epub Summarizer Directories
 BOOKS_DIR = os.path.join(DATA_DIR, "books/")
 PARSED_BOOKS_DIR = os.path.join(DATA_DIR, "parsed_epubs/")
 FULL_CONTENT_PARSED_BOOKS_DIR = os.path.join(DATA_DIR, "full_content_parsed_epubs/")
-ENV_FILE_PATH = os.path.join(ROOT_DIR, ".env")
-RESULTS_DIR = os.path.join(ROOT_DIR, "results/")
 BOOK_SUMMARIES_DIR = os.path.join(RESULTS_DIR, "book_summaries/")
 BOOOOKSCORE_DIR = os.path.join(RESULTS_DIR, "booookscore/")
 BOOOOKSCORE_RESULTS_DIR = os.path.join(BOOOOKSCORE_DIR, MODEL_NAME + "/" + BOOK_NAME + "/")

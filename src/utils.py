@@ -8,7 +8,9 @@ def get_api_key(env_key_name, config_path=constants.ENV_FILE_PATH):
         raise FileNotFoundError(f"The configuration file {config_path} does not exist.")
     
     # Load the environment variables from config.env
-    load_dotenv(config_path)
+    result = load_dotenv(dotenv_path=config_path)
+    if not result:
+        raise ValueError("The configuration file could not be loaded.")
 
     # Access the environment variables
     api_key = os.getenv(env_key_name)

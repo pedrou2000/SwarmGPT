@@ -16,10 +16,6 @@ from non_llm_agents.results_reporter import AgentResultsReporter
 from non_llm_agents.chapter_router import AgentChapterRouter
 
 def get_multi_agent_summarizer_graph():
-    # Set API Keys 
-    os.environ["OPENAI_API_KEY"] = utils.get_openai_api_key()
-    os.environ["TAVILY_API_KEY"] = utils.get_tavily_api_key()
-
     graph = StateGraph(BookSummarizerState)
 
     graph.add_node("Epub Loader", AgentEpubLoader())
