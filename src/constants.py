@@ -29,7 +29,7 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENV_FILE_PATH = os.path.join(ROOT_DIR, ".env")
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 RESULTS_DIR = os.path.join(ROOT_DIR, "results/")
-BENCHMARKS_DIR = os.path.join(DATA_DIR, "benchmarks/")
+BENCHMARKS_DIR = os.path.join(DATA_DIR, "datasets/")
 
 # Math Problem Solver Directories
 MATH_DATASET_DIR = os.path.join(BENCHMARKS_DIR, "MATH/test/")
