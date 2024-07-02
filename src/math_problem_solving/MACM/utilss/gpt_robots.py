@@ -1,6 +1,14 @@
-import os
+import sys, os, json, random
+sys.path.append(os.getcwd())
+sys.path.append(os.path.dirname(os.getcwd()))
+sys.path.append(os.path.dirname(os.path.dirname(os.getcwd())))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.getcwd()))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.getcwd())))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.getcwd()))))))
+import utils 
+os.environ["OPENAI_API_KEY"] = utils.get_openai_api_key() # Enter your OpenAi Key
+
 from openai import OpenAI
-os.environ["OPENAI_API_KEY"] = "" # Enter your OpenAi Key
 client = OpenAI()
 
    

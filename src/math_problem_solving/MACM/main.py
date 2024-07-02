@@ -158,8 +158,6 @@ def evaluate_dataset(folder_path, times, n, limit=5):
                             
                                           
 if __name__ == "__main__":
-    # os.environ['OPENAI_API_KEY'] = ""
-
     n = 1 # verification times
     times = 5 # The upper limit of the mining times
     min_voters = 5 # min number of voters
