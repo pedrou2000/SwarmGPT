@@ -8,3 +8,8 @@ CHAIN_OF_THOUGHT_MATH_SOLVER = {
         Solve the following math problem: {problem}
     """,
 }
+
+from MACM.prompt.prompts import *
+MACM_MATH_SOLVER = {
+    "AgentConditionAnalyzer": Analysis_conditions_objective,
+}
