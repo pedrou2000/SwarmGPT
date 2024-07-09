@@ -12,4 +12,11 @@ CHAIN_OF_THOUGHT_MATH_SOLVER = {
 from MACM.prompt.prompts import *
 MACM_MATH_SOLVER = {
     "AgentConditionAnalyzer": Analysis_conditions_objective,
+    "AgentConditionGeneratorGenerate": Discover_new_conditions,
+    "AgentConditionGeneratorSummarize": Summarize_Answer,
+    "AgentConditionJudge": Judge_T_F,
+    "AgentConditionJudgeSummarize": T_or_F_prompt,
+    "AgentAnwerReadyJudge": Judge_if_got_Answer,
+    "AgentAnswerReadyJudgeSummarize": If_got_Answer_T_F,
+    
 }

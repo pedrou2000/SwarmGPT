@@ -63,7 +63,7 @@ def check_if_got_answer(conditions,statement,n):
             return False
     return True    
 
-def main(question, times, n, min_voters, max_voters):
+def main(question, times, n, min_voters, max_voters, verbose=False):
     """
     Input question and get the final answer from muti-Agent got
     Input:
@@ -81,6 +81,10 @@ def main(question, times, n, min_voters, max_voters):
             voter_count += 1
             print(f"\n# {voter_count} Thinker is analyzing the question...")
             conditions,objectives = Analysis_conditions(question)
+            if verbose:
+                print(f"\n# {voter_count} Conditions: {conditions}")
+                print(f"\n# {voter_count} Objectives: {objectives}")
+
             Initial_condition_numbers = len(conditions) # This line will be used for the $while$ mode
             
             # Think thoughts
@@ -88,6 +92,8 @@ def main(question, times, n, min_voters, max_voters):
             for time in range(times): # Try to reduce the LLM queries.
                 print(f"\n# {voter_count} Thinker is thinking new thoughts...")
                 unchecked_conditions = Think_thoughts(conditions,objectives)
+                if verbose:
+                    print(f"\n# {voter_count} Unchecked conditions: {unchecked_conditions}")
                 checked_conditions = []
                 for unchecked_condition in unchecked_conditions:
                     print(f"\n# {voter_count} Judge is checking conditions...")
@@ -97,15 +103,21 @@ def main(question, times, n, min_voters, max_voters):
                             unchecked_condition = unchecked_condition[start + len("we can get: "):]
                             unchecked_condition = unchecked_condition.split("Reason:")[0]
                         checked_conditions.append(unchecked_condition)
+                if verbose:
+                    print(f"\n# {voter_count} Checked conditions: {checked_conditions}")
                 conditions = conditions + checked_conditions
                 if_got_answer = check_if_got_answer(conditions,objectives,1)
                 if if_got_answer:
                     break
             print(f"\n# {voter_count} thinker is thinking steps...")
             steps = Think_Steps(conditions,objectives)
-            
+            if verbose:
+                print(f"\n# {voter_count} Steps: {steps}")
+
             print(f"\n# {voter_count} Executor is trying to calculate the answer...")
             final_answer = Execute_steps(conditions,objectives,steps)
+            if verbose:
+                print(f"\n# {voter_count} Answer: {final_answer}")
             
             # Achieve one potiential answer
             Answer = re.search(r'\\boxed\{(.*)(?=\})', final_answer)  

@@ -25,9 +25,9 @@ class AgentConditionAnalyzer(SimpleLLMAgent):
     def __call__(self, state: MACMState) -> Any:
         problem_statement = state.math_problem.problem_statement
         agent_response = self.agent.invoke({"Question":  problem_statement})
-        state.unverified_conditions = agent_response.conditions
+        state.verified_conditions = agent_response.conditions
         state.objectives = agent_response.objectives
-        print(f"Conditions: \n{state.unverified_conditions}")
+        print(f"Conditions: \n{state.verified_conditions}")
         print(f"Objectives: \n{state.objectives}")
         return state
     

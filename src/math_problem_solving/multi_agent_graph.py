@@ -7,15 +7,30 @@ from langgraph.graph import StateGraph, END
 
 from data_classes.MACMState import MACMState
 from llm_agents.AgentConditionAnalyzer import AgentConditionAnalyzer
-
+from llm_agents.AgentConditionGenerator import AgentConditionGenerator
+from llm_agents.AgentConditionJudge import AgentConditionJudge
+from llm_agents.AgentAnswerReadyJudge import AgentAnswerReadyJudge
 
 def get_multi_agent_summarizer_graph():
     graph = StateGraph(MACMState)
 
     graph.add_node("Condition Analizer", AgentConditionAnalyzer())
+    graph.add_node("Condition Generator", AgentConditionGenerator())
+    graph.add_node("Condition Judge", AgentConditionJudge())
+    # graph.add_node("Answer Ready", AgentAnswerReadyJudge())
 
     graph.set_entry_point("Condition Analizer")
-    graph.add_edge("Condition Analizer", END)
+    graph.add_edge("Condition Analizer", "Condition Generator")
+    graph.add_edge("Condition Generator", "Condition Judge")
+
+    graph.add_conditional_edges(
+        "Condition Judge",
+        AgentAnswerReadyJudge(),
+        {
+            "AnswerReady": END,
+            "AnswerNotReady": "Condition Generator"
+        }
+    )
 
     return graph
 
