@@ -17,14 +17,15 @@ class Judgement(BaseModel):
         return f"Judgement: {self.judgement}"
 
 class AgentConditionJudge(MultiTurnLLMAgent):
+    system_prompt: str = prompts.MACM_MATH_SOLVER["system_prompts"]["judge"]
     condition_judge_prompt: str = prompts.MACM_MATH_SOLVER["AgentConditionJudge"]
     condition_judge_summarization_prompt: str = prompts.MACM_MATH_SOLVER["AgentConditionJudgeSummarize"]
 
     def __init__(self):
-        system_prompt = "You are a helpful AI assistant"
-        super().__init__(system_prompt)
+        super().__init__(system_prompt=self.system_prompt)
 
     def __call__(self, state: MACMState) -> Any:
+        print("In AgentConditionJudge")
         prompt_args = {
             "Known_condtions": state.verified_conditions,
             "condition_from_thinker": state.unverified_conditions
@@ -35,6 +36,7 @@ class AgentConditionJudge(MultiTurnLLMAgent):
             if not state.verified_conditions:
                 state.unverified_conditions = []
             state.verified_conditions.extend(state.unverified_conditions)
+        state.unverified_conditions = []
         print(f"Condition Judge Judgement: {summarized_condition_judegement.judgement}")
 
         return state

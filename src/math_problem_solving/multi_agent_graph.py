@@ -10,6 +10,8 @@ from llm_agents.AgentConditionAnalyzer import AgentConditionAnalyzer
 from llm_agents.AgentConditionGenerator import AgentConditionGenerator
 from llm_agents.AgentConditionJudge import AgentConditionJudge
 from llm_agents.AgentAnswerReadyJudge import AgentAnswerReadyJudge
+from llm_agents.AgentNumericalStepsGeneration import AgentNumericalStepsGeneration
+from llm_agents.AgentStepsExecutor import AgentStepsExecutor
 
 def get_multi_agent_summarizer_graph():
     graph = StateGraph(MACMState)
@@ -17,7 +19,8 @@ def get_multi_agent_summarizer_graph():
     graph.add_node("Condition Analizer", AgentConditionAnalyzer())
     graph.add_node("Condition Generator", AgentConditionGenerator())
     graph.add_node("Condition Judge", AgentConditionJudge())
-    # graph.add_node("Answer Ready", AgentAnswerReadyJudge())
+    graph.add_node("Steps Generator", AgentNumericalStepsGeneration())
+    graph.add_node("Steps Executor", AgentStepsExecutor())
 
     graph.set_entry_point("Condition Analizer")
     graph.add_edge("Condition Analizer", "Condition Generator")
@@ -27,10 +30,12 @@ def get_multi_agent_summarizer_graph():
         "Condition Judge",
         AgentAnswerReadyJudge(),
         {
-            "AnswerReady": END,
+            "AnswerReady": "Steps Generator",
             "AnswerNotReady": "Condition Generator"
         }
     )
+    graph.add_edge("Steps Generator", "Steps Executor")
+    graph.add_edge("Steps Executor", END)
 
     return graph
 

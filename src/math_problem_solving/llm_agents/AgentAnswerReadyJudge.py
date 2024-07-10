@@ -17,14 +17,15 @@ class Judgement(BaseModel):
         return f"Judgement: {self.judgement}"
 
 class AgentAnswerReadyJudge(MultiTurnLLMAgent):
+    system_prompt: str = prompts.MACM_MATH_SOLVER["system_prompts"]["judge"]
     answer_ready_prompt: str = prompts.MACM_MATH_SOLVER["AgentAnwerReadyJudge"]
     anwer_ready_summarization_prompt: str = prompts.MACM_MATH_SOLVER["AgentAnswerReadyJudgeSummarize"]
 
     def __init__(self):
-        system_prompt = "You are a helpful AI assistant"
-        super().__init__(system_prompt)
+        super().__init__(system_prompt=self.system_prompt)
 
     def __call__(self, state: MACMState) -> Any:
+        print("In AgentAnswerReadyJudge")
         prompt_args = {
             "Known_condtions": state.verified_conditions,
             "Objective": state.objectives

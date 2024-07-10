@@ -7,51 +7,44 @@ from llm_agents.MultiTurnLLMAgent import MultiTurnLLMAgent
 import prompts
 from data_classes.MACMState import MACMState
 
-from langchain_core.pydantic_v1 import BaseModel
-from typing import Any, List
+from langchain_core.pydantic_v1 import BaseModel, Field
+from typing import Any, List, Annotated
+
+class SummarizedCondition(BaseModel):
+    preconditions: Annotated[List[str], Field(description="List of preconditions of the new derived condition")]
+    derived_condition: Annotated[str, Field(description="Newly derived condition from the preconditions")]
+    reasoning: Annotated[str, Field(description="Reasoning for the derived condition")]
+
+    def __str__(self) -> str:
+        return f"Based on the known conditions: {self.preconditions}, we can derive the following condition: {self.derived_condition}\n Resoning: {self.reasoning}"
+
 
 class AgentConditionGenerator(MultiTurnLLMAgent):
+    system_prompt: str = prompts.MACM_MATH_SOLVER["system_prompts"]["thinker"]
     condition_generation_prompt: str = prompts.MACM_MATH_SOLVER["AgentConditionGeneratorGenerate"]
     condition_summarization_prompt: str = prompts.MACM_MATH_SOLVER["AgentConditionGeneratorSummarize"]
+    condition_parser_prompt: str = prompts.MACM_MATH_SOLVER["AgentConditionGeneratorParseConditions"]
 
     def __init__(self):
-        system_prompt = "You are a helpful AI assistant"
-        super().__init__(system_prompt)
-
-    def test(self, message: str):
-        return self.user_prompt(message)
-    
-    def test_2(self):
-        prompt_template = "Solve the following math problem: {problem}"
-        prompt_args = {"problem": "Solve the following equation: 2x + 3 = 7"}
-        return self.user_prompt(prompt_template, prompt_args)
+        super().__init__(self.system_prompt)
 
 
     def __call__(self, state: MACMState) -> Any:
+        print("In AgentConditionGenerator")
+        self.reset_messages()
         prompt_args = {
             "Known_conditions": state.verified_conditions,
             "Objective": state.objectives
         }
         new_condition = self.user_prompt(self.condition_generation_prompt, prompt_args)
         summarized_condition = self.user_prompt(self.condition_summarization_prompt)
+        parsed_condition = self.user_prompt(self.condition_parser_prompt, response_class=SummarizedCondition)
+
         if not state.unverified_conditions:
             state.unverified_conditions = []
-        state.unverified_conditions.append(summarized_condition)
+        state.unverified_conditions.append(parsed_condition.derived_condition)
         # print(f"New condition: {new_condition}")
-        print(f"Summarized condition: {summarized_condition}")
+        print(f"Summarized condition: {parsed_condition}")
 
         return state
     
-
-if __name__ == "__main__":  
-    math_solver = AgentConditionGenerator()
-    print(math_solver.test_2())
-
-    state = MACMState(
-        math_problem="Solve the following equation: 2x + 3 = 7",
-        verified_conditions=[],
-        unverified_conditions=[],
-        objectives=["Solve the following equation: 2x + 3 = 7"]
-    )
-    print('---')
-    print(math_solver(state))

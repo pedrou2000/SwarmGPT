@@ -2,7 +2,7 @@ import sys, os
 sys.path.append(os.path.dirname(os.getcwd()))
 sys.path.append(os.path.dirname(os.path.dirname(os.getcwd())))
 
-from book_summarizer.llm_agents.simple_llm import SimpleLLMAgent
+from llm_agents.MultiTurnLLMAgent import MultiTurnLLMAgent
 import prompts
 from data_classes.MACMState import MACMState
 
@@ -15,16 +15,22 @@ class AgentConditionAnalyzerResponse(BaseModel):
 
 
 
-class AgentConditionAnalyzer(SimpleLLMAgent):
+class AgentConditionAnalyzer(MultiTurnLLMAgent):
+    system_prompt: str = prompts.MACM_MATH_SOLVER["system_prompts"]["thinker"]
+    condition_analyzer_prompt: str = prompts.MACM_MATH_SOLVER["AgentConditionAnalyzer"]
+
     def __init__(self):
-        system_prompt = "You are a helpful AI assistant"
-        user_prompt = prompts.MACM_MATH_SOLVER["AgentConditionAnalyzer"]
-        response_class = AgentConditionAnalyzerResponse
-        super().__init__(system_prompt, user_prompt, response_class)
+        super().__init__(system_prompt=self.system_prompt)
         
     def __call__(self, state: MACMState) -> Any:
-        problem_statement = state.math_problem.problem_statement
-        agent_response = self.agent.invoke({"Question":  problem_statement})
+        print("In AgentConditionAnalyzer")
+
+        self.reset_messages()
+        prompt_args = {
+            "Question": state.math_problem.problem_statement,
+        }
+        agent_response = self.user_prompt(self.condition_analyzer_prompt, prompt_args, response_class=AgentConditionAnalyzerResponse)
+
         state.verified_conditions = agent_response.conditions
         state.objectives = agent_response.objectives
         print(f"Conditions: \n{state.verified_conditions}")

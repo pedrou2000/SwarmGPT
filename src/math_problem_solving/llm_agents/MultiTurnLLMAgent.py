@@ -45,8 +45,9 @@ class MultiTurnLLMAgent(ABC):
             )
         
         if response_class is not None:
-            self.llm = ChatOpenAI(model=constants.MODEL_NAME).with_structured_output(response_class)
-            self.agent = self.prompt_template | self.llm
+            self.set_structured_output(response_class)
+        else:
+            self.remove_structured_output()
 
         response = self.agent.invoke({"messages": self.messages})
         if response_class is None:
@@ -55,6 +56,18 @@ class MultiTurnLLMAgent(ABC):
         else:
             self.messages.append(AIMessage(content=str(response)))
             return response
+    
+    def set_structured_output(self, response_class: Any):
+        self.llm = ChatOpenAI(model=constants.MODEL_NAME).with_structured_output(response_class)
+        self.agent = self.prompt_template | self.llm
+    
+    def remove_structured_output(self):
+        self.llm = ChatOpenAI(model=constants.MODEL_NAME)
+        self.agent = self.prompt_template | self.llm
+    
+    def reset_messages(self):
+        self.messages = []
+        self.remove_structured_output()
     
     def _set_api_key(self):
         if not os.getenv("OPENAI_API_KEY") or  not os.getenv("TAVILY_API_KEY"):
