@@ -12,6 +12,9 @@ CHAIN_OF_THOUGHT_MATH_SOLVER = {
 from MACM.prompt.prompts import *
 MACM_MATH_SOLVER = {
     "AgentConditionAnalyzer": Analysis_conditions_objective,
+    "AgentResponseParser": """
+        You are a parser. You are given some unstructured output from another LLM an your task is to structure it in the provided class format. 
+    """,
     "AgentConditionGeneratorGenerate": Discover_new_conditions,
     "AgentConditionGeneratorSummarize": Summarize_Answer,
     "AgentConditionJudge": Judge_T_F,

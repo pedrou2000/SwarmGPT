@@ -2,12 +2,12 @@ import os
 
 
 # GPT Constants
-MODEL_VERSION = 4
+MODEL_VERSION = 3
 MODEL_MAP = {
-    3: "gpt-3.5-turbo",
+    3: "gpt-4o-mini",
     # 4:  "gpt-4-1106-preview"
-    4: "gpt-4-turbo"
-    # 4: "gpt-4o"
+    # 4: "gpt-4-turbo"
+    4: "gpt-4o"
 }
 MODEL_NAME = MODEL_MAP[MODEL_VERSION]
 TEMPERATURE = 1

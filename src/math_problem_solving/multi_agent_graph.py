@@ -6,7 +6,7 @@ from IPython.display import Image, display
 from langgraph.graph import StateGraph, END
 
 from data_classes.MACMState import MACMState
-from llm_agents.AgentConditionAnalyzer import AgentConditionAnalyzer
+from math_problem_solving.llm_agents.AgentConditionAnalyzer import AgentConditionAnalyzer
 from llm_agents.AgentConditionGenerator import AgentConditionGenerator
 from llm_agents.AgentConditionJudge import AgentConditionJudge
 from llm_agents.AgentAnswerReadyJudge import AgentAnswerReadyJudge

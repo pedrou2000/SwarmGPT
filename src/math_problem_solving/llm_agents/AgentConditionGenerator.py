@@ -3,7 +3,7 @@ sys.path.append(os.getcwd())
 sys.path.append(os.path.dirname(os.getcwd()))
 sys.path.append(os.path.dirname(os.path.dirname(os.getcwd())))
 
-from llm_agents.MultiTurnLLMAgent import MultiTurnLLMAgent
+from generic_agents.CodeInterpreterAgent import CodeInterpreterAgent
 import prompts
 from data_classes.MACMState import MACMState
 
@@ -19,11 +19,11 @@ class SummarizedCondition(BaseModel):
         return f"Based on the known conditions: {self.preconditions}, we can derive the following condition: {self.derived_condition}\n Resoning: {self.reasoning}"
 
 
-class AgentConditionGenerator(MultiTurnLLMAgent):
+class AgentConditionGenerator(CodeInterpreterAgent):
     system_prompt: str = prompts.MACM_MATH_SOLVER["system_prompts"]["thinker"]
     condition_generation_prompt: str = prompts.MACM_MATH_SOLVER["AgentConditionGeneratorGenerate"]
     condition_summarization_prompt: str = prompts.MACM_MATH_SOLVER["AgentConditionGeneratorSummarize"]
-    condition_parser_prompt: str = prompts.MACM_MATH_SOLVER["AgentConditionGeneratorParseConditions"]
+    parser_prompt: str = prompts.MACM_MATH_SOLVER["AgentResponseParser"]
 
     def __init__(self):
         super().__init__(self.system_prompt)
@@ -31,14 +31,13 @@ class AgentConditionGenerator(MultiTurnLLMAgent):
 
     def __call__(self, state: MACMState) -> Any:
         print("In AgentConditionGenerator")
-        self.reset_messages()
         prompt_args = {
             "Known_conditions": state.verified_conditions,
             "Objective": state.objectives
         }
         new_condition = self.user_prompt(self.condition_generation_prompt, prompt_args)
         summarized_condition = self.user_prompt(self.condition_summarization_prompt)
-        parsed_condition = self.user_prompt(self.condition_parser_prompt, response_class=SummarizedCondition)
+        parsed_condition = self.structured_output(SummarizedCondition, self.parser_prompt, summarized_condition)
 
         if not state.unverified_conditions:
             state.unverified_conditions = []
