@@ -4,6 +4,7 @@ import os
 # GPT Constants
 MODEL_VERSION = 3
 MODEL_MAP = {
+    # 3: "gpt-3.5-turbo",
     3: "gpt-4o-mini",
     # 4:  "gpt-4-1106-preview"
     # 4: "gpt-4-turbo"
@@ -32,6 +33,10 @@ ENV_FILE_PATH = os.path.join(ROOT_DIR, ".env")
 DATA_DIR = os.path.join(ROOT_DIR, "data")
 RESULTS_DIR = os.path.join(ROOT_DIR, "results/")
 BENCHMARKS_DIR = os.path.join(DATA_DIR, "datasets/")
+
+# Code Generation Directories
+HUMAN_EVAL_DIR = RESULTS_DIR + "human_eval/" + MODEL_NAME + "/"
+HUMAN_EVAL_SINGLE_AGENT_DIR = HUMAN_EVAL_DIR + "single_agent/"
 
 # Math Problem Solver Directories
 MATH_DATASET_DIR = os.path.join(BENCHMARKS_DIR, "MATH/test/")

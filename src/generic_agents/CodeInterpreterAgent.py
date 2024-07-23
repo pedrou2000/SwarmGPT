@@ -1,4 +1,4 @@
-import os, sys
+import os, sys, time
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
@@ -35,23 +35,115 @@ class CodeInterpreterAgent():
         )
         self.thread = self.client.beta.threads.create()
     
-    def user_prompt(self, prompt_template: str, prompt_args: List[str] = []):
-        if len(prompt_args) == 0:
-            self.client.beta.threads.messages.create(thread_id=self.thread.id, role="user", content=prompt_template)
-        else:
-            self.client.beta.threads.messages.create(thread_id=self.thread.id, role="user", content=prompt_template.format(**prompt_args))
+    def get_number_messages(self):
+        messages = self.client.beta.threads.messages.list(thread_id=self.thread.id)
+        return len(messages.data)
+    
+    def get_last_message(self):
+        messages = self.client.beta.threads.messages.list(thread_id=self.thread.id)
+        return messages.data[0].content
+    
+    def delete_all_messages(self):
+        messages = self.client.beta.threads.messages.list(thread_id=self.thread.id)
+        for message in messages.data:
+            self.client.beta.threads.messages.delete(thread_id=self.thread.id, message_id=message.id)
         
-        response = self.run_agent()
+    def reset_thread(self):
+        self.thread = self.client.beta.threads.create()
+
+    def user_prompt(self, prompt_template: str, prompt_args: List[str] = []):
+        message = self._prompt_agent(prompt_template, prompt_args)        
+        response = self._run_agent()
+        return response.content[0].text.value    
+    
+    def test_human_eval_solutions(self, solution_file_path: str, test_code:str, method_name: str, test_file_save_path=None):
+        with open(solution_file_path, "r") as file:
+            solution_code = file.read()
+        test_program = solution_code + '\n\n' + test_code + '\n\n' + 'check(' + method_name + ')'
+        if test_file_save_path:
+            with open(test_file_save_path, "w") as file:
+                file.write(test_program)
+        
+        return self.run_code(test_program)
+
+    def run_code_from_file(self, file_path: str = "output.py"):
+        # Check if the file exists and is not empty
+        if not os.path.exists(file_path) or os.path.getsize(file_path) <= 0:
+            return False
+        
+        # Open the file and check if it has any content
+        with open(file_path, "r") as file:
+            file_content = file.read()
+            if not file_content:
+                return False
+        return self.run_code(file_content)
+
+    def run_code(self, code: str):
+        # Run the code in the file with the exec function and check if it raises any exceptions
+        try:
+            exec(code)
+        except AssertionError as ae:
+            print(f"AssertionError in check_code_execution: {ae}")
+            return False
+        except Exception as e:
+            print(f"Error in check_code_execution: {e}")
+            return False
+        
+        return True
+
+    def prompt_with_output_file(self, prompt_template: str, prompt_args: List[str] = [], file_path: str = "output.py"):
+        message = self._prompt_agent(prompt_template, prompt_args)        
+        response = self._run_agent(n_attempts=3)
+
+        n_attachments = len(response.attachments)
+
+        if n_attachments == 0:
+            print("No attachments found in prompt_with_output_file")
+            return None
+        elif n_attachments > 1:
+            print("More than one attachment found in prompt_with_output_file")
+            return None
+
+        attachment = response.attachments[0]    
+        file_id = attachment.file_id
+        n_bytes = self.download_file(file_id, file_path=file_path)
+        if n_bytes <= 0:
+            print("Error downloading file in prompt_with_output_file")
+            return None
 
         return response.content[0].text.value
 
-    def run_agent(self):        
+    def download_file(self, file_id: str, file_path: str = "test.py"):
+        file_data = self.client.files.content(file_id)
+        file_data_bytes = file_data.read()
+        with open(file_path, "wb") as file:
+            return file.write(file_data_bytes)     
+
+    def _prompt_agent(self, prompt_template: str, prompt_args: List[str] = []):
+        if len(prompt_args) == 0:
+            return self.client.beta.threads.messages.create(thread_id=self.thread.id, role="user", content=prompt_template)
+        else:
+            return self.client.beta.threads.messages.create(thread_id=self.thread.id, role="user", content=prompt_template.format(**prompt_args))
+    
+    def _run_agent(self, n_attempts=1):
+        for i in range(n_attempts):
+            response = self._single_run_agent()
+            if response is not None:
+                return response
+            else:
+                print(f"Attempt {i} failed")
+        print(f"Failed to run agent after {n_attempts} attempts")
+        return None
+
+    def _single_run_agent(self):        
         # Once the message is already stored, run the agent
         run = self.client.beta.threads.runs.create(thread_id=self.thread.id, assistant_id=self.agent.id)      
         while run.status in ["queued", "in_progress"]:
             keep_retrieving_run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=run.id)
 
             if keep_retrieving_run.status == "queued" or keep_retrieving_run.status == "in_progress":
+                # Sleep for 1 second
+                time.sleep(1)
                 pass
             
             elif keep_retrieving_run.status == "completed":
@@ -59,11 +151,13 @@ class CodeInterpreterAgent():
                 try:
                     return all_messages.data[0]
                 except Exception as e:
-                    print(f"Error: {e}")
+                    print(f"_run_agent Failed. Error: {e}")
                     return None
             else:
-                print(f"Run status: {keep_retrieving_run.status}")
+                print(f"_run_agent Failed. Run status: {keep_retrieving_run.status}")
                 return None
+        print('_run_agent Failed. Run status: {keep_retrieving_run.status}')
+        return None
     
     def _escape_curly_braces(self, text: str) -> str:
         """Escape curly braces in the given text."""

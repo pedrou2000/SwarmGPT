@@ -74,7 +74,7 @@ class MultiTurnLLMAgent(ABC):
             os.environ["OPENAI_API_KEY"] = utils.get_openai_api_key()
             os.environ["TAVILY_API_KEY"] = utils.get_tavily_api_key()
     
-    @abstractmethod
+    # @abstractmethod
     def __call__(self, *args, **kwargs) -> Any:
         pass
 
