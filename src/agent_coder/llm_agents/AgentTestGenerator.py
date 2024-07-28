@@ -30,7 +30,11 @@ class AgentTestGenerator(MultiTurnLLMAgent):
         tests = parse_python_code(agent_response)
         if tests is None:
             print("No tests found in the response")
+        
+        # print("Generated tests: \n", tests)
         state.generated_tests = tests
+
+        self.reset_messages()
         return state
     
 

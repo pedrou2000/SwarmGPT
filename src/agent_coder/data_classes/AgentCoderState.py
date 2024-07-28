@@ -18,6 +18,7 @@ class AgentCoderState():
     feedback: Annotated[str, Field(description="Feedback from the tests run on the generated code")]
     current_iterations: Annotated[int, Field(description="Current number of iterations in the refinement looop")]
     max_iterations: Annotated[int, Field(description="Maximum number of iterations in the refinement loop")]
+    passed_tests_threshold: Annotated[float, Field(description="Threshold for the proportion of tests that need to pass")]
 
     def __init__(
             self, 
@@ -28,6 +29,7 @@ class AgentCoderState():
             feedback: str = None,
             current_iterations: int = -1,
             max_iterations: int = -1,
+            passed_tests_threshold: float = -1, 
         ):
         if incomplete_method is not None:
             self.incomplete_method = incomplete_method
@@ -43,6 +45,8 @@ class AgentCoderState():
             self.current_iterations = current_iterations
         if max_iterations != -1:
             self.max_iterations = max_iterations
+        if passed_tests_threshold != -1:
+            self.passed_tests_threshold = passed_tests_threshold
     
     def __str__(self) -> str:
         return f"AgentCoder State with incomplete method: {self.incomplete_method}"

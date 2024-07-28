@@ -2,6 +2,8 @@ import sys, os
 sys.path.append(os.getcwd())
 sys.path.append(os.path.dirname(os.getcwd()))
 sys.path.append(os.path.dirname(os.path.dirname(os.getcwd())))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.getcwd()))))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.getcwd())))))
 
 from generic_agents.CodeInterpreterAgent import CodeInterpreterAgent
 import prompts
@@ -12,10 +14,9 @@ from langchain_core.pydantic_v1 import BaseModel
 from typing import Any, List
 
 class TestExecutorOutput(BaseModel):
-    tests_passed: bool
+    n_total_tests: int
+    n_passed_tests: int
     feedback: str
-
-
 
 class AgentTestExecutor(CodeInterpreterAgent):
     system_prompt: str = prompts.AGENT_CODER["AgentTestExecutor"]["system"]
@@ -23,10 +24,11 @@ class AgentTestExecutor(CodeInterpreterAgent):
     parser_system_prompt: str = prompts.AGENT_CODER["AgentTestExecutor"]["parser_system"]
 
     def __init__(self):
+        # Pass the system_prompt specific to AgentTestExecutor to the base class
         super().__init__(system_prompt=self.system_prompt)
         
     def __call__(self, state: AgentCoderState) -> Any:
-        print("In AgentTestExecutor")
+        print("In AgentTestExecutor, with thread id: ", self.thread)
 
         prompt_args = {
             "completed_method": state.completed_method,
@@ -38,7 +40,9 @@ class AgentTestExecutor(CodeInterpreterAgent):
         input_to_parse = state.completed_method + state.generated_tests + agent_response
         output = self.structured_output(response_class=TestExecutorOutput, system_prompt=self.parser_system_prompt, message=input_to_parse)
 
-        state.tests_passed = output.tests_passed
+        proportion_tests_passed = output.n_passed_tests / output.n_total_tests
+        state.tests_passed = True if proportion_tests_passed >= state.passed_tests_threshold else False
+
         state.feedback = output.feedback
 
         if not state.current_iterations:
@@ -46,16 +50,15 @@ class AgentTestExecutor(CodeInterpreterAgent):
         else:
             state.current_iterations += 1
         print(f"Current iterations: {state.current_iterations}")
-        print(f"Tests passed: {state.tests_passed}\nFeedback: \n{state.feedback}")
+        print(f"Tests passed: {state.tests_passed}. Proportion tests passed: {proportion_tests_passed}\nFeedback: \n{state.feedback}")
 
-
-
-
+        self.delete_all_messages()
         return state
     
 
 if __name__ == "__main__":  
     test_executor = AgentTestExecutor()
     state = AgentCoderState(completed_method='def sum_x_y():\n    return x + y\n', generated_tests='assert sum_x_y(1, 2) == 3')
+    macm_state = test_executor(state)
     macm_state = test_executor(state)
     

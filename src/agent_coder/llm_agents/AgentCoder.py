@@ -31,6 +31,7 @@ class AgentCoder(MultiTurnLLMAgent):
         if code is None:
             print("No tests found in the response")
         state.completed_method = code
+        self.reset_messages()
         return state
     
 

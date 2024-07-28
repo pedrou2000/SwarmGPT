@@ -1,0 +1,49 @@
+
+def order_by_points(nums):
+    """
+    Write a function which sorts the given list of integers
+    in ascending order according to the sum of their digits.
+    Note: if there are several items with similar sum of their digits,
+    order them based on their index in original list.
+
+    For example:
+    >>> order_by_points([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+    >>> order_by_points([]) == []
+    """
+
+
+def digit_sum(n):
+    """Helper function to calculate the sum of digits of n."""
+    return sum(int(digit) for digit in str(abs(n)))
+
+def order_by_points(nums):
+    """Sort the list of integers by the sum of their digits, with ties broken by their value."""
+    # Create a list of tuples (num) for sorting
+    indexed_nums = list(enumerate(nums))
+    
+    # Sort by sum of digits, then by the value of the number
+    sorted_nums = sorted(indexed_nums, key=lambda x: (digit_sum(x[1]), x[1]))
+    
+    # Extract the sorted values from the tuples
+    return [num for index, num in sorted_nums]
+
+# Example usage:
+print(order_by_points([1, 11, -1, -11, -12]))  # Output: [-1, -11, 1, -12, 11]
+print(order_by_points([]))  # Output: []
+print(order_by_points([5, 15, 6, -6, -5, -15]))  # Example test case with mixed signs
+
+def check(candidate):
+
+    # Check some simple cases
+    assert candidate([1, 11, -1, -11, -12]) == [-1, -11, 1, -12, 11]
+    assert candidate([1234,423,463,145,2,423,423,53,6,37,3457,3,56,0,46]) == [0, 2, 3, 6, 53, 423, 423, 423, 1234, 145, 37, 46, 56, 463, 3457]
+    assert candidate([]) == []
+    assert candidate([1, -11, -32, 43, 54, -98, 2, -3]) == [-3, -32, -98, -11, 1, 2, 43, 54]
+    assert candidate([1,2,3,4,5,6,7,8,9,10,11]) == [1, 10, 2, 11, 3, 4, 5, 6, 7, 8, 9]
+    assert candidate([0,6,6,-76,-21,23,4]) == [-76, -21, 0, 4, 23, 6, 6]
+
+    # Check some edge cases that are easy to work out by hand.
+    assert True, "This prints if this assert fails 2 (also good for debugging!)"
+
+
+check(order_by_points)

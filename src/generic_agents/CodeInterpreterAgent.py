@@ -15,14 +15,27 @@ from langchain_core.pydantic_v1 import BaseModel
 class MathProblemSolution(BaseModel):
     final_solution: str
 
-class CodeInterpreterAgent():
+class CodeInterpreterAgent:
     """ Agent that uses the Assistant API to interact with the user using the code interpreter tool. """
+    _instance = None
+    _initialized = False  # Class-level attribute to track initialization
+    
     system_prompt: str # System prompt for the agent
     agent: Any # Final agent which is a combination of the prompt and the LLM Chain
     client: OpenAI # OpenAI client
-    thread: Any # OpenAI thread which mantains the conversation with the asssistants agent
+    thread: Any # OpenAI thread which maintains the conversation with the assistant's agent
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(CodeInterpreterAgent, cls).__new__(cls)
+        return cls._instance
 
     def __init__(self, system_prompt: str, agent_name: str = constants.MODEL_NAME + "_CodeInterpreterAgent"):
+        if not self._initialized:
+            self._initialize(system_prompt, agent_name)
+            self.__class__.__initialized = True  # Mark as initialized
+
+    def _initialize(self, system_prompt: str, agent_name: str):
         self._set_api_key()
         self.client = OpenAI()
         self.system_prompt = system_prompt
@@ -34,6 +47,8 @@ class CodeInterpreterAgent():
             model=constants.MODEL_NAME,
         )
         self.thread = self.client.beta.threads.create()
+        self._initialized = True
+        print("\n\n\nInitializing CodeInterpreterAgent with thread id: ", self.thread, "\n\n\n")
     
     def get_number_messages(self):
         messages = self.client.beta.threads.messages.list(thread_id=self.thread.id)

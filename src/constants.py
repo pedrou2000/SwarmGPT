@@ -37,6 +37,7 @@ BENCHMARKS_DIR = os.path.join(DATA_DIR, "datasets/")
 # Code Generation Directories
 HUMAN_EVAL_DIR = RESULTS_DIR + "human_eval/" + MODEL_NAME + "/"
 HUMAN_EVAL_SINGLE_AGENT_DIR = HUMAN_EVAL_DIR + "single_agent/"
+HUMAN_EVAL_AGENT_CODER_DIR = HUMAN_EVAL_DIR + "agent_coder/"
 
 # Math Problem Solver Directories
 MATH_DATASET_DIR = os.path.join(BENCHMARKS_DIR, "MATH/test/")

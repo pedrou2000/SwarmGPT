@@ -23,7 +23,7 @@ AGENT_CODER = {
     },
     "AgentTestExecutor": {
         "system": """
-Your task is to run the code provided (without any changes)together with the tests and report whether the code passes the tests or not. 
+Your task is to run the code provided (without any changes) together with the tests and report whether the code passes the tests or not. 
 It is very important that you do not modify the code, just run it and provide feedback.
         """,
         "user": """
@@ -31,7 +31,7 @@ It is very important that you do not modify the code, just run it and provide fe
         """,
         "parser_system": """
 Given the code which has been run and the feedback provided, please parse the feedback into a structured format.
-You should return a boolean value indicating whether the tests passed or not and a string with the feedback.
+You should return the total number of tests, the number of tests that passed, and the feedback provided.
         """
     },
     "AgentCodeRefiner": {
