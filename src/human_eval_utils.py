@@ -73,6 +73,14 @@ def save_results(results: dict, save_path: str = None):
             json.dump(results, file, indent=4)
 
 
+def get_erratic_problems(file_path):
+    # Load the JSON data from the file
+    with open(file_path + 'results.json', 'r') as file:
+        data = json.load(file)
+    
+    # Return the list of erratic problems
+    return data.get("erratic_problems", [])
+
 
 if __name__ == "__main__":
     code = """

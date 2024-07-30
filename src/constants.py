@@ -2,7 +2,7 @@ import os
 
 
 # GPT Constants
-MODEL_VERSION = 3
+MODEL_VERSION = 4
 MODEL_MAP = {
     # 3: "gpt-3.5-turbo",
     3: "gpt-4o-mini",
@@ -38,6 +38,7 @@ BENCHMARKS_DIR = os.path.join(DATA_DIR, "datasets/")
 HUMAN_EVAL_DIR = RESULTS_DIR + "human_eval/" + MODEL_NAME + "/"
 HUMAN_EVAL_SINGLE_AGENT_DIR = HUMAN_EVAL_DIR + "single_agent/"
 HUMAN_EVAL_AGENT_CODER_DIR = HUMAN_EVAL_DIR + "agent_coder/"
+HUMAN_EVAL_AGENT_CODER_PLUS_DIR = HUMAN_EVAL_DIR + "agent_coder_plus/"
 
 # Math Problem Solver Directories
 MATH_DATASET_DIR = os.path.join(BENCHMARKS_DIR, "MATH/test/")

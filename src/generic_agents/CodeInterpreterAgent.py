@@ -25,15 +25,14 @@ class CodeInterpreterAgent:
     client: OpenAI # OpenAI client
     thread: Any # OpenAI thread which maintains the conversation with the assistant's agent
 
-    def __new__(cls, *args, **kwargs):
-        if cls._instance is None:
-            cls._instance = super(CodeInterpreterAgent, cls).__new__(cls)
-        return cls._instance
+    # def __new__(cls, *args, **kwargs):
+    #     if cls._instance is None:
+    #         cls._instance = super(CodeInterpreterAgent, cls).__new__(cls)
+    #     return cls._instance
 
     def __init__(self, system_prompt: str, agent_name: str = constants.MODEL_NAME + "_CodeInterpreterAgent"):
-        if not self._initialized:
-            self._initialize(system_prompt, agent_name)
-            self.__class__.__initialized = True  # Mark as initialized
+        self._initialize(system_prompt, agent_name)
+        self.__class__.__initialized = True  # Mark as initialized
 
     def _initialize(self, system_prompt: str, agent_name: str):
         self._set_api_key()

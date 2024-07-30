@@ -6,6 +6,27 @@
         "AssertionError": 18,
         "IncorrectInput": 0
     },
+    "erratic_problems": [
+        32,
+        38,
+        41,
+        64,
+        65,
+        77,
+        79,
+        83,
+        91,
+        96,
+        101,
+        115,
+        125,
+        127,
+        129,
+        132,
+        145,
+        146,
+        163
+    ],
     "tests_results": {
         "0": [
             true,
