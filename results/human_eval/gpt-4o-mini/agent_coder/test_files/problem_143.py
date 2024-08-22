@@ -22,7 +22,6 @@ def words_in_sentence(sentence):
 
 
 def is_prime(n):
-    """ Check if a number is prime """
     if n <= 1:
         return False
     for i in range(2, int(n**0.5) + 1):
@@ -31,15 +30,14 @@ def is_prime(n):
     return True
 
 def words_in_sentence(sentence):
-    """ Return words whose lengths are prime numbers """
     words = sentence.split()
-    result = []
-    
+    prime_words = []
+
     for word in words:
         if is_prime(len(word)):
-            result.append(word)
+            prime_words.append(word)
     
-    return ' '.join(result)
+    return ' '.join(prime_words)
 
 def check(candidate):
 

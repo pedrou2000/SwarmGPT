@@ -24,21 +24,39 @@ def find_zero(xs: list):
 
 
 import math
-from scipy.optimize import fsolve
 
 def poly(xs: list, x: float):
-    """ Evaluates polynomial with coefficients xs at point x. """
-    return sum(coeff * math.pow(x, i) for i, coeff in enumerate(xs))
+    """Evaluates polynomial with coefficients xs at point x."""
+    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
 
-def find_zero(xs: list, initial_guess: float = 0):
-    """ Finds a root of the polynomial defined by the coefficients xs. """
-    # Define a function that we want to find the root for
-    def polynomial_function(x):
-        return poly(xs, x)
-    
-    # Use fsolve to find the root, starting from the provided initial guess
-    root = fsolve(polynomial_function, initial_guess)
-    return root[0]  # fsolve returns an array, return the first element
+def poly_derivative(xs: list, x: float):
+    """Evaluates the derivative of the polynomial at point x."""
+    return sum([i * coeff * math.pow(x, i - 1) for i, coeff in enumerate(xs) if i > 0])
+
+def find_zero(xs: list):
+    """Find x such that poly(x) = 0."""
+    # Starting point for the root-finding algorithm
+    x = 0.0
+    tolerance = 1e-7
+    max_iterations = 1000
+    for _ in range(max_iterations):
+        f_x = poly(xs, x)
+        f_prime_x = poly_derivative(xs, x)
+        
+        if abs(f_x) < tolerance:  # If we are close enough to zero
+            return x
+        
+        if f_prime_x == 0:  # Avoid division by zero
+            break
+        
+        x_new = x - f_x / f_prime_x  # Newton-Raphson update
+        if abs(x_new - x) < tolerance:  # Stop if the change is negligible
+            return x_new
+        
+        x = x_new  # Move to the next approximation
+
+    # If we did not find a root within the maximum iterations, return None or raise an error
+    return None
 
 
 

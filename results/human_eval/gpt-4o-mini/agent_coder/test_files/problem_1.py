@@ -27,18 +27,16 @@ def separate_paren_groups(paren_string: str) -> List[str]:
     current_depth = 0
 
     for c in paren_string:
-        if c == ' ':
-            continue  # Ignore spaces
-        elif c == '(':
+        if c == '(':
             current_depth += 1
             current_string.append(c)
         elif c == ')':
             current_depth -= 1
             current_string.append(c)
 
-            if current_depth == 0:  # A complete group has been formed
+            if current_depth == 0:
                 result.append(''.join(current_string))
-                current_string.clear()  # Clear for the next group
+                current_string.clear()
 
     return result
 

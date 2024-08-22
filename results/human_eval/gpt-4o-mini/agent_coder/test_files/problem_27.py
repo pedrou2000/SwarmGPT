@@ -8,18 +8,11 @@ def flip_case(string: str) -> str:
 
 
 def flip_case(string: str) -> str:
-    result = []
-    for char in string:
-        if char.islower():
-            result.append(char.upper())
-        elif char.isupper():
-            result.append(char.lower())
-        else:
-            result.append(char)
-    return ''.join(result)
-
-# Example usage
-print(flip_case('Hello'))  # Expected output: 'hELLO'
+    """ For a given string, flip lowercase characters to uppercase and uppercase to lowercase.
+    >>> flip_case('Hello')
+    'hELLO'
+    """
+    return string.swapcase()
 
 
 

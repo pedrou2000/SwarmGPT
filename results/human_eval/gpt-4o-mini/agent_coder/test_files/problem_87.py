@@ -25,13 +25,16 @@ from typing import List, Tuple
 
 def get_row(lst: List[List[int]], x: int) -> List[Tuple[int, int]]:
     coordinates = []
-
-    for row_index in range(len(lst)):
-        for col_index in range(len(lst[row_index])):
-            if lst[row_index][col_index] == x:
+    
+    # Loop through each row and its index
+    for row_index, row in enumerate(lst):
+        # Loop through each element in the row and its index
+        for col_index, value in enumerate(row):
+            # If the value matches x, store the coordinates
+            if value == x:
                 coordinates.append((row_index, col_index))
-
-    # Sort by row (ascending) then by column (descending)
+    
+    # Sort the coordinates first by row (asc) then by column (desc)
     coordinates.sort(key=lambda coord: (coord[0], -coord[1]))
     
     return coordinates

@@ -18,15 +18,17 @@ def digits(n):
     digits(235) == 15
     """
     product = 1
-    has_odd = False
+    found_odd = False
 
     for char in str(n):
         digit = int(char)
-        if digit % 2 == 1:  # Check if the digit is odd
+        if digit % 2 != 0:  # Check if the digit is odd
             product *= digit
-            has_odd = True
+            found_odd = True
 
-    return product if has_odd else 0
+    if not found_odd:
+        return 0
+    return product
 
 def check(candidate):
 

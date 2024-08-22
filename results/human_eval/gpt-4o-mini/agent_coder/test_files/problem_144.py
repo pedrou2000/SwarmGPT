@@ -13,17 +13,17 @@ def simplify(x, n):
     """
 
 
-def simplify(x, n):
-    # Parse the fractions
-    numerator_x, denominator_x = map(int, x.split('/'))
-    numerator_n, denominator_n = map(int, n.split('/'))
+def simplify(x: str, n: str) -> bool:
+    # Split the fractions into numerators and denominators
+    x_numerator, x_denominator = map(int, x.split('/'))
+    n_numerator, n_denominator = map(int, n.split('/'))
     
-    # Calculate new numerator and denominator
-    new_numerator = numerator_x * numerator_n
-    new_denominator = denominator_x * denominator_n
+    # Calculate the product's numerator and denominator
+    result_numerator = x_numerator * n_numerator
+    result_denominator = x_denominator * n_denominator
     
     # Check if the result is a whole number
-    return new_numerator % new_denominator == 0
+    return result_numerator % result_denominator == 0
 
 def check(candidate):
 

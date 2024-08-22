@@ -15,19 +15,13 @@ def encrypt(s):
 def encrypt(s):
     result = []
     
-    for char in s:
-        if 'a' <= char <= 'z':  # Check if char is a lowercase letter
+    for c in s:
+        if 'a' <= c <= 'z':  # Check if the character is a lowercase letter
             # Shift the character by 4 positions
-            new_char = chr((ord(char) - ord('a') + 4) % 26 + ord('a'))
-            result.append(new_char)
+            shifted_char = chr((ord(c) - ord('a') + 4) % 26 + ord('a'))
+            result.append(shifted_char)
     
     return ''.join(result)
-
-# Test cases
-print(encrypt('hi'))          # should return 'lm'
-print(encrypt('asdfghjkl'))   # should return 'ewhjklnop'
-print(encrypt('gf'))          # should return 'kj'
-print(encrypt('et'))          # should return 'ix'
 
 def check(candidate):
 

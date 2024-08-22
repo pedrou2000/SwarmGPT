@@ -12,10 +12,14 @@ def right_angle_triangle(a, b, c):
 
 
 def right_angle_triangle(a, b, c):
-    sides = [a, b, c]
-    sides.sort()  # Sort the sides
-    x, y, z = sides  # Unpack the sorted sides
-    return x**2 + y**2 == z**2  # Check the Pythagorean theorem
+    longest = max(a, b, c)
+    
+    if longest == a:
+        return (b**2 + c**2) == a**2
+    elif longest == b:
+        return (a**2 + c**2) == b**2
+    else:
+        return (a**2 + b**2) == c**2
 
 def check(candidate):
 

@@ -34,7 +34,7 @@ def remove_vowels(text):
     >>> remove_vowels('zbcd')
     'zbcd'
     """
-    vowels = {'a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'}
+    vowels = 'aeiouAEIOU'
     result = []
 
     for char in text:

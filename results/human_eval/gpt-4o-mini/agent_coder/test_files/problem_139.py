@@ -13,24 +13,19 @@ def special_factorial(n):
     """
 
 
-def factorial(k):
-    """Calculate the factorial of k."""
-    if k == 0 or k == 1:
+def factorial(x):
+    if x == 0 or x == 1:
         return 1
     result = 1
-    for i in range(2, k + 1):
+    for i in range(2, x + 1):
         result *= i
     return result
 
 def special_factorial(n):
-    """Calculate the Brazilian factorial of n."""
     result = 1
     for i in range(n, 0, -1):
         result *= factorial(i)
     return result
-
-# Example Test
-print(special_factorial(4))  # Output should be 288
 
 def check(candidate):
 

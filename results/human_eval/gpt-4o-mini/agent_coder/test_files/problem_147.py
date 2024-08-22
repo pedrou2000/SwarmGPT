@@ -18,30 +18,24 @@ def get_max_triples(n):
 from math import comb
 
 def get_max_triples(n):
-    a = [i * i - i + 1 for i in range(1, n + 1)]
+    # Step 1: Generate the array a
+    a = [(i * i - i + 1) for i in range(1, n + 1)]
     
-    count_0 = count_1 = count_2 = 0
-
-    for value in a:
-        if value % 3 == 0:
-            count_0 += 1
-        elif value % 3 == 1:
-            count_1 += 1
-        else:
-            count_2 += 1
+    # Step 2: Count elements in each modulo group
+    count = [0, 0, 0]
+    
+    for number in a:
+        count[number % 3] += 1
 
     result = 0
-    
-    # Calculate combinations
-    if count_0 >= 3:
-        result += comb(count_0, 3)
-    if count_1 >= 3:
-        result += comb(count_1, 3)
-    if count_2 >= 3:
-        result += comb(count_2, 3)
-    
-    # Count one from each category
-    result += count_0 * count_1 * count_2
+
+    # Step 3: Count triples from the same group
+    for i in range(3):
+        if count[i] >= 3:
+            result += comb(count[i], 3)  # n choose 3
+
+    # Step 4: Count one from each group
+    result += count[0] * count[1] * count[2]
 
     return result
 

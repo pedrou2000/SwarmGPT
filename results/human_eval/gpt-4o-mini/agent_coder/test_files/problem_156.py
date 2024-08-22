@@ -13,17 +13,8 @@ def int_to_mini_roman(number):
 
 
 def int_to_mini_roman(number):
-    """
-    Given a positive integer, obtain its roman numeral equivalent as a string,
-    and return it in lowercase.
-    Restrictions: 1 <= num <= 1000
-
-    Examples:
-    >>> int_to_mini_roman(19) == 'xix'
-    >>> int_to_mini_roman(152) == 'clii'
-    >>> int_to_mini_roman(426) == 'cdxxvi'
-    """
-    roman_numerals = [
+    """ Convert a positive integer to its Roman numeral equivalent in lowercase. """
+    roman_mapping = [
         (1000, 'm'),
         (900, 'cm'),
         (500, 'd'),
@@ -36,22 +27,22 @@ def int_to_mini_roman(number):
         (9, 'ix'),
         (5, 'v'),
         (4, 'iv'),
-        (1, 'i')
+        (1, 'i'),
     ]
     
     result = ''
     
-    for value, symbol in roman_numerals:
+    for value, symbol in roman_mapping:
         while number >= value:
             result += symbol
             number -= value
-            
+    
     return result
 
-# Testing the function with prompt examples
-print(int_to_mini_roman(19))   # Expected output: 'xix'
-print(int_to_mini_roman(152))  # Expected output: 'clii'
-print(int_to_mini_roman(426))  # Expected output: 'cdxxvi'
+# Example usage
+print(int_to_mini_roman(19))   # Output: 'xix'
+print(int_to_mini_roman(152))  # Output: 'clii'
+print(int_to_mini_roman(426))  # Output: 'cdxxvi'
 
 def check(candidate):
 

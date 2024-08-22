@@ -32,7 +32,7 @@ class CodeInterpreterAgent:
 
     def __init__(self, system_prompt: str, agent_name: str = constants.MODEL_NAME + "_CodeInterpreterAgent"):
         self._initialize(system_prompt, agent_name)
-        self.__class__.__initialized = True  # Mark as initialized
+        # self.__class__.__initialized = True  # Mark as initialized
 
     def _initialize(self, system_prompt: str, agent_name: str):
         self._set_api_key()
@@ -46,8 +46,8 @@ class CodeInterpreterAgent:
             model=constants.MODEL_NAME,
         )
         self.thread = self.client.beta.threads.create()
-        self._initialized = True
-        print("\n\n\nInitializing CodeInterpreterAgent with thread id: ", self.thread, "\n\n\n")
+        # self._initialized = True
+        # print("\n\n\nInitializing CodeInterpreterAgent with thread id: ", self.thread, "\n\n\n")
     
     def get_number_messages(self):
         messages = self.client.beta.threads.messages.list(thread_id=self.thread.id)
@@ -133,13 +133,23 @@ class CodeInterpreterAgent:
         with open(file_path, "wb") as file:
             return file.write(file_data_bytes)     
 
-    def _prompt_agent(self, prompt_template: str, prompt_args: List[str] = []):
-        if len(prompt_args) == 0:
-            return self.client.beta.threads.messages.create(thread_id=self.thread.id, role="user", content=prompt_template)
-        else:
-            return self.client.beta.threads.messages.create(thread_id=self.thread.id, role="user", content=prompt_template.format(**prompt_args))
-    
-    def _run_agent(self, n_attempts=1):
+    def _prompt_agent(self, prompt_template: str, prompt_args: List[str] = [], n_attempts=3):
+        ret = None
+        attempt = 1
+        while ret is None and attempt <= n_attempts:
+            try:
+                if len(prompt_args) == 0:
+                    ret = self.client.beta.threads.messages.create(thread_id=self.thread.id, role="user", content=prompt_template)
+                else:
+                    ret = self.client.beta.threads.messages.create(thread_id=self.thread.id, role="user", content=prompt_template.format(**prompt_args))
+            except Exception as e:
+                print(f"Error in _prompt_agent: {e}")
+                ret = None
+                attempt += 1
+                time.sleep(1)
+        return ret
+        
+    def _run_agent(self, n_attempts=3):
         for i in range(n_attempts):
             response = self._single_run_agent()
             if response is not None:
@@ -149,9 +159,19 @@ class CodeInterpreterAgent:
         print(f"Failed to run agent after {n_attempts} attempts")
         return None
 
-    def _single_run_agent(self):        
+    def _single_run_agent(self, n_attempts=3):        
         # Once the message is already stored, run the agent
-        run = self.client.beta.threads.runs.create(thread_id=self.thread.id, assistant_id=self.agent.id)      
+        run = None
+        attempt = 1
+        while run is None and attempt <= n_attempts:
+            try:
+                run = self.client.beta.threads.runs.create(thread_id=self.thread.id, assistant_id=self.agent.id)      
+            except Exception as e:
+                print(f"Error in _prompt_agent: {e}")
+                ret = None
+                attempt += 1
+                time.sleep(1)
+
         while run.status in ["queued", "in_progress"]:
             keep_retrieving_run = self.client.beta.threads.runs.retrieve(thread_id=self.thread.id, run_id=run.id)
 

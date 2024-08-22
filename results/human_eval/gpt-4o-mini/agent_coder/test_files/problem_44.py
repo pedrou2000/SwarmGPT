@@ -24,18 +24,17 @@ def change_base(x: int, base: int) -> str:
     >>> change_base(7, 2)
     '111'
     """
-    digits = []
-    
     if x == 0:
         return '0'
     
+    result = []
     while x > 0:
         remainder = x % base
-        digits.append(str(remainder))
+        result.append(str(remainder))
         x = x // base
     
-    digits.reverse()  # Reverse to get the correct order
-    return ''.join(digits)  # Join the list into a string
+    result.reverse()
+    return ''.join(result)
 
 
 

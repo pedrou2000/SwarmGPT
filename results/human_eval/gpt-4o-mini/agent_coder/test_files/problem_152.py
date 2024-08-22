@@ -19,13 +19,18 @@ def compare(game,guess):
 from typing import List
 
 def compare(game: List[int], guess: List[int]) -> List[int]:
-    results = []
+    """ Compare the actual scores of games with the guesses and return the differences.
+    >>> compare([1,2,3,4,5,1],[1,2,3,4,2,-2])
+    [0, 0, 0, 0, 3, 3]
+    >>> compare([0,5,0,0,0,4],[4,1,1,0,0,-2])
+    [4, 4, 1, 0, 0, 6]
+    """
+    result = []
     for i in range(len(game)):
-        if guess[i] == game[i]:
-            results.append(0)
-        else:
-            results.append(abs(guess[i] - game[i]))
-    return results
+        difference = abs(game[i] - guess[i])
+        result.append(difference)
+    
+    return result
 
 def check(candidate):
 

@@ -14,22 +14,31 @@ def compare_one(a, b):
 
 
 def compare_one(a, b):
-    def convert(value):
+    def normalize(value):
         if isinstance(value, str):
-            return float(value.replace(',', '.'))
-        return float(value)
-    
-    # Convert a and b to their float representations
-    a_converted = convert(a)
-    b_converted = convert(b)
-    
-    # Compare the converted values
-    if a_converted == b_converted:
+            # Replace ',' with '.' for decimal point
+            value = value.replace(',', '.')
+            try:
+                return float(value)
+            except ValueError:
+                return value  # if conversion fails, return the string itself
+        return value  # if it's not a string, return it as is
+
+    normalized_a = normalize(a)
+    normalized_b = normalize(b)
+
+    if normalized_a == normalized_b:
         return None
-    elif a_converted > b_converted:
+    elif normalized_a > normalized_b:
         return a
     else:
         return b
+
+# Example test cases
+print(compare_one(1, 2.5))        # ➞ 2.5
+print(compare_one(1, "2,3"))      # ➞ "2,3"
+print(compare_one("5,1", "6"))    # ➞ "6"
+print(compare_one("1", 1))         # ➞ None
 
 def check(candidate):
 

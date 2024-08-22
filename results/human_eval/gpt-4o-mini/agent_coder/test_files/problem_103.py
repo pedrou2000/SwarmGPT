@@ -23,22 +23,20 @@ def rounded_avg(n, m):
     rounded_avg(10, 20) => "0b1111"
     rounded_avg(20, 33) => "0b11010"
     """
-    
     if n > m:
         return -1
     
-    total_sum = sum(range(n, m + 1))
-    count = m - n + 1
+    total_sum = 0
+    count = 0
+    
+    for i in range(n, m + 1):
+        total_sum += i
+        count += 1
+    
     average = total_sum / count
     rounded_average = round(average)
     
     return bin(rounded_average)
-
-# Example test cases
-print(rounded_avg(1, 5))  # Output: "0b11"
-print(rounded_avg(7, 5))  # Output: -1
-print(rounded_avg(10, 20))  # Output: "0b1111"
-print(rounded_avg(20, 33))  # Output: "0b11010"
 
 def check(candidate):
 

@@ -15,21 +15,21 @@ def is_nested(string):
 
 
 def is_nested(string):
-    stack = []
-    
+    open_count = 0
+    nested_found = False
+
     for char in string:
         if char == '[':
-            stack.append(char)
+            open_count += 1
+            if open_count > 1:
+                nested_found = True
         elif char == ']':
-            if stack:
-                stack.pop()
-                # If stack is not empty after popping, we've found a nested bracket
-                if stack:
-                    return True
-            else:
-                return False  # Unmatched closing bracket
-    
-    return False  # No nested brackets found
+            open_count -= 1
+            if open_count < 0:  # More closing brackets than opening ones
+                return False
+
+    # We need balanced brackets and at least one nested structure
+    return open_count == 0 and nested_found
 
 def check(candidate):
 

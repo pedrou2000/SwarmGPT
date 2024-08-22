@@ -21,26 +21,23 @@ def parse_nested_parens(paren_string: str) -> List[int]:
     >>> parse_nested_parens('(()()) ((())) () ((())()())')
     [2, 3, 1, 3]
     """
-    
-    result = []
     groups = paren_string.split()  # Split the input string by spaces
-    
+    result = []  # Initialize result list
+
     for group in groups:
         current_depth = 0
         max_depth = 0
         
         for char in group:
             if char == '(':
-                current_depth += 1  # Increase depth for every '('
+                current_depth += 1  # Increase depth for '('
+                max_depth = max(max_depth, current_depth)  # Update max depth
             elif char == ')':
-                current_depth -= 1  # Decrease depth for every ')'
-            
-            if current_depth > max_depth:
-                max_depth = current_depth  # Update max depth if current exceeds
-        
-        result.append(max_depth)  # Append the maximum depth of the current group
+                current_depth -= 1  # Decrease depth for ')'
+
+        result.append(max_depth)  # Append the max depth for the current group
     
-    return result
+    return result  # Return the list of maximum depths
 
 
 

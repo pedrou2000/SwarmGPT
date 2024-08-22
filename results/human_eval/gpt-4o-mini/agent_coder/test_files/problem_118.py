@@ -18,22 +18,22 @@ def get_closest_vowel(word):
 
 def get_closest_vowel(word):
     vowels = set('aeiouAEIOU')
-    last_consonant = None
-    last_vowel = None
-    
-    for i in range(len(word) - 1, -1, -1):
-        char = word[i]
-        if char in vowels:
-            last_vowel = char
-            if last_consonant is not None:
-                return last_vowel
-        else:
-            if last_vowel is not None:
-                last_consonant = char
-                if i > 0 and word[i - 1] not in vowels:
-                    return last_vowel
+    last_char = ''
+    vowel_found = ''
 
-    return ""
+    for char in reversed(word):
+        if char in vowels:
+            if last_char and last_char not in vowels:
+                if not vowel_found:
+                    vowel_found = char
+        elif char.isalpha():  # Considering only letters, ignore others
+            last_char = char
+        
+        # If we already found a valid vowel surrounded by consonants, we can stop
+        if last_char and vowel_found:
+            break
+
+    return vowel_found
 
 def check(candidate):
 

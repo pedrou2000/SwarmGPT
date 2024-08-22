@@ -13,33 +13,28 @@ def sort_third(l: list):
 
 def sort_third(l: list):
     """This function takes a list l and returns a list l' such that
-    l' is identical to l in the indices that are not divisible by three, while its values at the indices that are divisible by three are equal
-    to the values of the corresponding indices of l, but sorted.
+    l' is identical to l in the indicies that are not divisible by three, while its values at the indicies that are divisible by three are equal
+    to the values of the corresponding indicies of l, but sorted.
     >>> sort_third([1, 2, 3])
     [1, 2, 3]
     >>> sort_third([5, 6, 3, 4, 8, 9, 2])
     [2, 6, 3, 4, 8, 9, 5]
     """
-    sorted_values = []
-    result = [0] * len(l)
-
-    # Collect values at indices divisible by 3
-    for index in range(len(l)):
-        if index % 3 == 0:
-            sorted_values.append(l[index])
-
-    # Sort the collected values
+    # Step 1: Extract values at indices that are divisible by 3
+    sorted_values = [l[i] for i in range(len(l)) if i % 3 == 0]
+    
+    # Step 2: Sort the extracted values
     sorted_values.sort()
-
-    # Place sorted values back into the result list
-    sorted_index = 0
-    for index in range(len(l)):
-        if index % 3 == 0:
-            result[index] = sorted_values[sorted_index]
-            sorted_index += 1
-        else:
-            result[index] = l[index]
-
+    
+    # Step 3: Reconstruct the result list
+    result = l[:]  # make a copy of the original list
+    index_for_sorted = 0
+    
+    for i in range(len(l)):
+        if i % 3 == 0:
+            result[i] = sorted_values[index_for_sorted]
+            index_for_sorted += 1
+            
     return result
 
 

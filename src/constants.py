@@ -42,6 +42,7 @@ HUMAN_EVAL_AGENT_CODER_PLUS_DIR = HUMAN_EVAL_DIR + "agent_coder_plus/"
 
 # Math Problem Solver Directories
 MATH_DATASET_DIR = os.path.join(BENCHMARKS_DIR, "MATH/test/")
+MATH_EVAL_DIR = RESULTS_DIR + "math/" + MODEL_NAME + "/"
 
 # Epub Summarizer Directories
 BOOKS_DIR = os.path.join(DATA_DIR, "books/")

@@ -24,12 +24,11 @@ def even_odd_palindrome(n):
     """
 
 
-def is_palindrome(num):
-    """Check if a number is a palindrome."""
-    return str(num) == str(num)[::-1]
-
 def even_odd_palindrome(n):
-    """Count even and odd palindromes up to n."""
+    def is_palindrome(num):
+        str_num = str(num)
+        return str_num == str_num[::-1]  # Check if the string is the same forwards and backwards
+
     even_count = 0
     odd_count = 0
 
@@ -43,8 +42,8 @@ def even_odd_palindrome(n):
     return (even_count, odd_count)
 
 # Example usage:
-# print(even_odd_palindrome(3))  # Output: (1, 2)
-# print(even_odd_palindrome(12)) # Output: (4, 6)
+print(even_odd_palindrome(3))  # Output: (1, 2)
+print(even_odd_palindrome(12)) # Output: (4, 6)
 
 def check(candidate):
 

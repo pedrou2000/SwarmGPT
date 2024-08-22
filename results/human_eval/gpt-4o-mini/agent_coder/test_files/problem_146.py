@@ -17,13 +17,12 @@ def specialFilter(nums):
     specialFilter([15, -73, 14, -15]) => 1 
     specialFilter([33, -2, -3, 45, 21, 109]) => 2
     """
-    
-    odd_digits = {'1', '3', '5', '7', '9'}
     count = 0
+    odd_digits = {'1', '3', '5', '7', '9'}
     
-    for number in nums:
-        if number > 10:
-            str_num = str(number)
+    for num in nums:
+        if num > 10:
+            str_num = str(num)
             first_digit = str_num[0]
             last_digit = str_num[-1]
             if first_digit in odd_digits and last_digit in odd_digits:

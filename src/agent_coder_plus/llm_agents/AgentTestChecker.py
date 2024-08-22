@@ -14,7 +14,8 @@ from langchain_core.pydantic_v1 import BaseModel
 from typing import Any, List, Annotated
 
 class TestCheckerOutput(BaseModel):
-    tests_correct: Annotated[bool, "Whether the tests are correct or not"]
+    n_total_tests: Annotated[int, "Total number of tests"]
+    n_passed_tests: Annotated[int, "Number of tests that passed"]
     feedback: Annotated[str, "Feedback on how to fix the tests"]
     # refine_else_restart: Annotated[bool, "Whether to refine the tests or else restart the process"]
 
@@ -38,8 +39,12 @@ class AgentTestChecker(MultiTurnLLMAgent):
         self.reset_messages()
 
         state.feedback = output.feedback
-        state.tests_passed = output.tests_correct
-        # state.refine_else_restart = output.refine_else_restart
+
+        if output.n_total_tests == 0:
+            print("\n\n\n\n\n\n\n\n\n\n\n\n\n zero tests executed \n {state.generated_tests} \n\n\n\n\n\n\n\n\n\n\n")
+        proportion_tests_passed = output.n_passed_tests / output.n_total_tests
+        state.tests_passed = True if proportion_tests_passed >= state.passed_tests_threshold else False
+         # state.refine_else_restart = output.refine_else_restart
 
         if not state.current_iterations:
             state.current_iterations = 1

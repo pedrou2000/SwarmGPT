@@ -19,16 +19,20 @@ def choose_num(x, y):
     choose_num(12, 15) = 14
     choose_num(13, 12) = -1
     """
-    # Determine the minimum and maximum of the two numbers
-    min_num = min(x, y)
-    max_num = max(x, y)
+    
+    low = min(x, y)
+    high = max(x, y)
 
-    # Iterate from max_num down to min_num
-    for num in range(max_num, min_num - 1, -1):
-        if num % 2 == 0:  # Check if the number is even
-            return num  # Return the first even number found
+    # Check from high to low for the largest even number
+    for num in range(high, low - 1, -1):
+        if num % 2 == 0:
+            return num
+    
+    return -1
 
-    return -1  # Return -1 if no even number is found
+# Test cases
+print(choose_num(12, 15))  # Expected: 14
+print(choose_num(13, 12))  # Expected: -1
 
 def check(candidate):
 

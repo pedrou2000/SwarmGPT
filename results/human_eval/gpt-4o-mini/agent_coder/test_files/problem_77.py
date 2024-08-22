@@ -15,10 +15,23 @@ def iscube(a):
 
 
 def iscube(a):
-    if a == 0:  # Handle the special case for zero
+    '''
+    Write a function that takes an integer a and returns True 
+    if this integer is a cube of some integer number.
+    Note: you may assume the input is always valid.
+    Examples:
+    iscube(1) ==> True
+    iscube(2) ==> False
+    iscube(-1) ==> True
+    iscube(64) ==> True
+    iscube(0) ==> True
+    iscube(180) ==> False
+    '''
+    if a == 0:
         return True
-    cube_root = round(a ** (1/3))  # Calculate the cube root and round it
-    return cube_root ** 3 == a  # Check if the cube of the rounded root equals a
+    
+    n = round(a ** (1 / 3))
+    return n ** 3 == a
 
 def check(candidate):
 

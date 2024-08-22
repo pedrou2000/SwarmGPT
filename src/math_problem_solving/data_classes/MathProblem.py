@@ -64,5 +64,10 @@ class MathProblem():
         is_correct = is_equiv(boxed_answer, self.answer)
         if verbose:
             print(f"Level: {self.level} | Response: {boxed_answer} | Answer: {self.answer} | Is Correct: {is_correct}")
-        return is_correct
+        return is_correct, boxed_answer, self.answer
+    
+    def get_id(self) -> str:
+        return f"{self.type}_{self.problem_number}"
+    
+    
 

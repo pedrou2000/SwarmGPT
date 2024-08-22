@@ -13,32 +13,30 @@ def check_dict_case(dict):
     """
 
 
-def check_dict_case(input_dict):
-    """
+def check_dict_case(dictionary):
+    """ 
     Given a dictionary, return True if all keys are strings in lower 
     case or all keys are strings in upper case, else return False.
     The function should return False is the given dictionary is empty.
     """
-    if not input_dict:  # Check for empty dictionary
+    if not dictionary:  # Check if the dictionary is empty
         return False
 
-    seen_lowercase = False
-    seen_uppercase = False
+    is_lowercase = True
+    is_uppercase = True
 
-    for key in input_dict.keys():
-        if not isinstance(key, str):  # Check if the key is a string
+    for key in dictionary:
+        if not isinstance(key, str):  # Check if key is a string
             return False
-        
         if key.islower():
-            seen_lowercase = True
+            is_uppercase = False
         elif key.isupper():
-            seen_uppercase = True
+            is_lowercase = False
+        else:
+            is_lowercase = False
+            is_uppercase = False
 
-        # If we have seen both lowercase and uppercase, return False
-        if seen_lowercase and seen_uppercase:
-            return False
-
-    return seen_lowercase or seen_uppercase  # Return True if all keys are one case
+    return is_lowercase or is_uppercase
 
 def check(candidate):
 

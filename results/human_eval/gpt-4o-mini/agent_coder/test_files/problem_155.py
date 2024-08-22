@@ -9,20 +9,23 @@ def even_odd_count(num):
 
 
 def even_odd_count(num):
-    # Convert to absolute value to handle negative numbers
-    num = abs(num)
-    
-    # Convert number to string to iterate through digits
-    num_str = str(num)
-    
+    """Given an integer. return a tuple that has the number of even and odd digits respectively.
+
+     Example:
+        even_odd_count(-12) ==> (1, 1)
+        even_odd_count(123) ==> (1, 2)
+    """
+    # Convert the number to string and remove the sign if negative
+    num_str = str(abs(num))
     even_count = 0
     odd_count = 0
     
+    # Iterate through each digit in the string representation
     for char in num_str:
         digit = int(char)  # Convert character back to integer
-        if digit % 2 == 0:
+        if digit % 2 == 0:  # Check if even
             even_count += 1
-        else:
+        else:  # Odd case
             odd_count += 1
             
     return (even_count, odd_count)

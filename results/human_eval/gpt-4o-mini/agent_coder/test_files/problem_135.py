@@ -21,13 +21,13 @@ def can_arrange(arr):
     can_arrange([1,2,4,3,5]) = 3
     can_arrange([1,2,3]) = -1
     """
-    last_index = -1  # Initialize last_index to -1
+    last_index = -1
 
-    for i in range(1, len(arr)):
-        if arr[i] < arr[i - 1]:  # Check if current element is less than previous
-            last_index = i  # Update last_index
+    for index in range(1, len(arr)):
+        if arr[index] < arr[index - 1]:
+            last_index = index
 
-    return last_index  # Return the last found index or -1
+    return last_index
 
 def check(candidate):
 

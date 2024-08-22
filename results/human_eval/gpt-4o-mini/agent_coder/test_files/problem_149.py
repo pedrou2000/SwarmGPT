@@ -19,23 +19,16 @@ def sorted_list_sum(lst):
 from typing import List
 
 def sorted_list_sum(lst: List[str]) -> List[str]:
-    """ 
-    Remove strings with odd lengths from the list and return sorted 
-    list of remaining strings by length and alphabetically.
+    """Filter out strings with odd lengths and return a sorted list of the remaining strings."""
     
-    >>> sorted_list_sum(["aa", "a", "aaa"])
-    ['aa']
-    >>> sorted_list_sum(["ab", "a", "aaa", "cd"])
-    ['ab', 'cd']
-    """
     # Step 1: Filter out strings with odd lengths
-    filtered_lst = [s for s in lst if len(s) % 2 == 0]
+    filtered_list = [s for s in lst if len(s) % 2 == 0]
     
-    # Step 2: Sort the filtered list first by length, then alphabetically
-    filtered_lst.sort(key=lambda x: (len(x), x))
+    # Step 2: Sort the filtered list by length and alphabetically
+    sorted_list = sorted(filtered_list, key=lambda x: (len(x), x))
     
     # Step 3: Return the sorted list
-    return filtered_lst
+    return sorted_list
 
 def check(candidate):
 

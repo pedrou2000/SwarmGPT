@@ -16,13 +16,12 @@ def fibfib(n: int):
     """
 
 
-def fibfib(n: int):
-    """The FibFib number sequence is a sequence similar to the Fibbonacci sequence that's defined as follows:
+def fibfib(n: int) -> int:
+    """The FibFib number sequence is a sequence similar to the Fibonacci sequence that's defined as follows:
     fibfib(0) == 0
     fibfib(1) == 0
     fibfib(2) == 1
     fibfib(n) == fibfib(n-1) + fibfib(n-2) + fibfib(n-3).
-    Please write a function to efficiently compute the n-th element of the fibfib number sequence.
     >>> fibfib(1)
     0
     >>> fibfib(5)
@@ -30,23 +29,25 @@ def fibfib(n: int):
     >>> fibfib(8)
     24
     """
-    memo = {}
-    
-    def helper(n):
-        if n in memo:
-            return memo[n]
-        if n == 0:
-            return 0
-        if n == 1:
-            return 0
-        if n == 2:
-            return 1
-        
-        result = helper(n - 1) + helper(n - 2) + helper(n - 3)
-        memo[n] = result
-        return result
-    
-    return helper(n)
+    # Base cases
+    if n == 0:
+        return 0
+    elif n == 1:
+        return 0
+    elif n == 2:
+        return 1
+
+    # Dynamic programming array to store results
+    fibfib_values = [0] * (n + 1)
+    fibfib_values[0] = 0
+    fibfib_values[1] = 0
+    fibfib_values[2] = 1
+
+    # Fill the array using the recurrence relation
+    for i in range(3, n + 1):
+        fibfib_values[i] = fibfib_values[i - 1] + fibfib_values[i - 2] + fibfib_values[i - 3]
+
+    return fibfib_values[n]
 
 
 

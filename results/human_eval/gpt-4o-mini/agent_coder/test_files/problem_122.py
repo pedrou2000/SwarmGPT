@@ -15,20 +15,24 @@ def add_elements(arr, k):
     """
 
 
-def add_elements(arr, k):
-    """
-    Given a non-empty array of integers arr and an integer k, return
-    the sum of the elements with at most two digits from the first k elements of arr.
+from typing import List
 
-    Example:
+def add_elements(arr: List[int], k: int) -> int:
+    """ Given a non-empty array of integers arr and an integer k, return
+    the sum of the elements with at most two digits from the first k elements of arr. """
 
-        Input: arr = [111,21,3,4000,5,6,7,8,9], k = 4
-        Output: 24 # sum of 21 + 3
-    """
+    # Step 1: Get the first k elements
+    first_k_elements = arr[:k]
+    
+    # Step 2: Initialize sum
     total_sum = 0
-    for i in range(k):
-        if abs(arr[i]) < 100:  # Check if the element has at most two digits
-            total_sum += arr[i]  # Add the element to the sum
+    
+    # Step 3: Filter and sum elements with at most two digits
+    for element in first_k_elements:
+        if abs(element) < 100:  # Check if the absolute value is less than 100
+            total_sum += element  # Add to total sum if condition is met
+    
+    # Step 4: Return the result
     return total_sum
 
 def check(candidate):

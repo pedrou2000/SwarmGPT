@@ -20,34 +20,20 @@ def bf(planet1, planet2):
 def bf(planet1, planet2):
     planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
     
-    # Validate the input planets
     if planet1 not in planets or planet2 not in planets:
         return ()
     
-    # Get the indexes of the planets
     index1 = planets.index(planet1)
     index2 = planets.index(planet2)
     
-    # Determine the range of planets between the two planets
-    start_index = min(index1, index2) + 1
-    end_index = max(index1, index2)
+    # Ensure that index1 is less than index2
+    if index1 > index2:
+        index1, index2 = index2, index1
     
-    # Get the planets in between
-    between_planets = planets[start_index:end_index]
+    # Extract the planets between the two provided planets
+    between_planets = planets[index1 + 1:index2]
     
-    # Return as a tuple
-    return tuple(between_planets) if between_planets else ()
-
-# Test cases for validation
-print(bf("Jupiter", "Neptune"))  # Expected: ()
-print(bf("Earth", "Mercury"))    # Expected: ("Venus",)
-print(bf("Mercury", "Uranus"))   # Expected: ("Venus", "Earth", "Mars", "Jupiter", "Saturn")
-print(bf("Mars", "Saturn"))       # Expected: ("Jupiter",)
-print(bf("Venus", "Earth"))        # Expected: ()
-print(bf("Neptune", "Mercury"))   # Expected: ()
-print(bf("Pluto", "Earth"))       # Expected: ()
-print(bf("Mars", "Pluto"))        # Expected: ()
-print(bf("Jupiter", "Mars"))      # Expected: ("Earth",)
+    return tuple(between_planets)
 
 def check(candidate):
 

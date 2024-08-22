@@ -29,17 +29,22 @@ def maximum(arr, k):
 from typing import List
 
 def maximum(arr: List[int], k: int) -> List[int]:
+    """ Given an array arr of integers and a positive integer k, return a sorted list 
+    of length k with the maximum k numbers in arr.
+    """
+    if k == 0:
+        return []
+    
     # Step 1: Sort the array in descending order
-    arr.sort(reverse=True)
+    sorted_arr = sorted(arr, reverse=True)
     
-    # Step 2: Select the first k elements
-    top_k_elements = arr[:k]
+    # Step 2: Take the first k elements
+    max_k_elements = sorted_arr[:k]
     
-    # Step 3: Sort those k elements in ascending order
-    top_k_elements.sort()
+    # Step 3: Sort the result in ascending order
+    result = sorted(max_k_elements)
     
-    # Step 4: Return the sorted list of maximum k elements
-    return top_k_elements
+    return result
 
 def check(candidate):
 

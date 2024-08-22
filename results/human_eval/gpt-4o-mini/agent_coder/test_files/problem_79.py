@@ -14,18 +14,16 @@ def decimal_to_binary(decimal):
 
 
 def decimal_to_binary(decimal):
-    """Convert a decimal number to binary format with 'db' prefix and suffix.
+    """Convert a decimal number to binary format with 'db' markers.
     
-    >>> decimal_to_binary(15)   # returns "db1111db"
-    >>> decimal_to_binary(32)   # returns "db100000db"
+    Examples:
+    decimal_to_binary(15)   # returns "db1111db"
+    decimal_to_binary(32)   # returns "db100000db"
     """
-    # Convert decimal to binary and remove the '0b' prefix
-    binary_str = bin(decimal)[2:]
-    
-    # Format the output with 'db' at the beginning and end
-    formatted_str = 'db' + binary_str + 'db'
-    
-    return formatted_str
+
+    binary_string = bin(decimal)[2:]  # Get binary representation without '0b'
+    formatted_string = "db" + binary_string + "db"  # Add 'db' markers
+    return formatted_string
 
 def check(candidate):
 

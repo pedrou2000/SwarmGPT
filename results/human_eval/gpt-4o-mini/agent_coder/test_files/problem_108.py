@@ -13,21 +13,16 @@ def count_nums(arr):
 
 def count_nums(arr):
     def sum_of_digits(n):
-        return sum(int(d) for d in str(abs(n)))
-
+        # Get the absolute value of n for digit extraction
+        n = abs(n)
+        # Calculate sum of digits
+        return sum(int(digit) for digit in str(n))
+    
     count = 0
-    for number in arr:
-        # Calculate the sum of digits
-        digit_sum = sum_of_digits(number)
-
-        # Adjust for negative first signed digit
-        if number < 0:
-            digit_sum -= 2 * int(str(abs(number))[0])  # Subtract twice the first digit
-
-        # Check if sum of digits is greater than 0
-        if digit_sum > 0:
+    for num in arr:
+        if sum_of_digits(num) > 0:  # Count only if the sum of digits is positive
             count += 1
-
+            
     return count
 
 def check(candidate):

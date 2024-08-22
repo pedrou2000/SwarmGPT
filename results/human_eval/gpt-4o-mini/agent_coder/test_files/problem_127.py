@@ -33,18 +33,26 @@ def intersection(interval1, interval2):
     start1, end1 = interval1
     start2, end2 = interval2
     
-    intersection_start = max(start1, start2)
-    intersection_end = min(end1, end2)
+    # Calculate the start and end of the intersection
+    start_intersection = max(start1, start2)
+    end_intersection = min(end1, end2)
     
-    if intersection_start > intersection_end:
-        return "NO"
+    # Check if there's no intersection
+    if start_intersection > end_intersection:
+        return "NO"  # No intersection
+
+    # Calculate the length of the intersection
+    length = end_intersection - start_intersection + 1  # +1 to include both endpoints
     
-    length = intersection_end - intersection_start
-    
+    # Check if the length of the intersection is prime
     if is_prime(length):
         return "YES"
     else:
         return "NO"
+
+# Example test cases for validation (You may need to replace or add real test cases)
+print(intersection((1, 5), (3, 7)))  # Example case
+print(intersection((1, 2), (2, 3)))  # Example case
 
 def check(candidate):
 

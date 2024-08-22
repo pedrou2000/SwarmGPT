@@ -15,20 +15,31 @@ def strange_sort_list(lst):
 from typing import List
 
 def strange_sort_list(lst: List[int]) -> List[int]:
-    """ Given list of integers, return list in strange order. """
-    if not lst:  # Check for empty list
+    """ 
+    Given list of integers, return list in strange order.
+    Strange sorting, is when you start with the minimum value,
+    then maximum of the remaining integers, then minimum and so on.
+    """
+    if not lst:
         return []
-    
-    lst.sort()  # Sort the input list
-    result = []  # Initialize the result list
-    start, end = 0, len(lst) - 1  # Initialize pointers
 
-    while start <= end:
-        result.append(lst[start])  # Append the minimum
-        start += 1
-        if start <= end:
-            result.append(lst[end])  # Append the maximum
-            end -= 1
+    # Step 1: Sort the list
+    lst.sort()
+    
+    result = []
+    min_index = 0
+    max_index = len(lst) - 1
+
+    # Step 2-4: Alternate picking of min and max
+    while min_index <= max_index:
+        if min_index == max_index:
+            result.append(lst[min_index])  # Add the last middle element if odd length
+        else:
+            result.append(lst[min_index])  # Add the minimum
+            result.append(lst[max_index])  # Add the maximum
+        
+        min_index += 1
+        max_index -= 1
 
     return result
 

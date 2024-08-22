@@ -28,40 +28,19 @@ def move_one_ball(arr):
     """
 
 
-from typing import List
-
-def move_one_ball(arr: List[int]) -> bool:
-    """We have an array 'arr' of N integers arr[1], arr[2], ..., arr[N].The
-    numbers in the array will be randomly ordered. Your task is to determine if
-    it is possible to get an array sorted in non-decreasing order by performing 
-    the following operation on the given array:
-        You are allowed to perform right shift operation any number of times.
-    
-    One right shift operation means shifting all elements of the array by one
-    position in the right direction. The last element of the array will be moved to
-    the starting position in the array i.e. 0th index. 
-
-    If it is possible to obtain the sorted array by performing the above operation
-    then return True else return False.
-    If the given array is empty then return True.
-
-    Note: The given list is guaranteed to have unique elements.
-    """
-
-    if not arr:
+def move_one_ball(arr):
+    """ Check if the array can be sorted by right shifting any number of times. """
+    if not arr:  # If the array is empty
         return True
     
-    N = len(arr)
+    disruptions = 0
+    n = len(arr)
     
-    for i in range(N):
-        # Create the rotated array
-        rotated = arr[i:] + arr[:i]
-        
-        # Check if the rotated array is sorted
-        if all(rotated[j] <= rotated[j + 1] for j in range(N - 1)):
-            return True
+    for i in range(n):
+        if arr[i] > arr[(i + 1) % n]:  # Check current and next element (with wrap around)
+            disruptions += 1
             
-    return False
+    return disruptions <= 1
 
 def check(candidate):
 

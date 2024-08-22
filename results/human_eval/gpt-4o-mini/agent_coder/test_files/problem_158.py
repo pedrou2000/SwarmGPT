@@ -18,7 +18,7 @@ def find_max(words: List[str]) -> str:
     max_unique_count = 0
 
     for word in words:
-        unique_chars = set(word)  # Get unique characters
+        unique_chars = set(word)
         unique_count = len(unique_chars)
 
         if unique_count > max_unique_count:

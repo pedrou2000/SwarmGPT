@@ -10,9 +10,7 @@ def f(n):
     """
 
 
-from typing import List
-
-def f(n: int) -> List[int]:
+def f(n):
     """ Implement the function f that takes n as a parameter,
     and returns a list of size n, such that the value of the element at index i is the factorial of i if i is even
     or the sum of numbers from 1 to i otherwise.
@@ -20,18 +18,19 @@ def f(n: int) -> List[int]:
     Example:
     f(5) == [1, 2, 6, 24, 15]
     """
-    
     result = []
     
     for i in range(1, n + 1):
-        if i % 2 == 0:  # even
+        if i % 2 == 0:
+            # Calculate factorial of i
             factorial = 1
             for j in range(1, i + 1):
                 factorial *= j
             result.append(factorial)
-        else:  # odd
-            sum_of_first_i = sum(range(1, i + 1))
-            result.append(sum_of_first_i)
+        else:
+            # Calculate sum of numbers from 1 to i
+            sum_of_numbers = i * (i + 1) // 2
+            result.append(sum_of_numbers)
     
     return result
 

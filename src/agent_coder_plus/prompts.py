@@ -18,7 +18,7 @@ AGENT_CODER_PLUS = {
     "AgentTestChecker": {
         "system": """
 Your task is to evaluate the correctness of the tests provided and provide feedback on how to fix the tests if any of them are incorrect.
-Also determine if the tests should be refined or start from scratch.
+Report the total number of tests executed and the number of tests that passed.
 """,
         "user": """
 ## Description of the method to test :\n{method_description}\n ## Tests to check: \n{generated_tests}\n\n ## Feedback in structured format: \n

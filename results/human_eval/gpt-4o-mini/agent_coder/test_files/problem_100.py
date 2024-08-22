@@ -21,13 +21,11 @@ def make_a_pile(n):
     
     for i in range(n):
         levels.append(current_stones)
-        
-        # Update the number of stones for the next level
-        if current_stones % 2 == 1:  # current_stones is odd
-            current_stones += 2
-        else:  # current_stones is even
-            current_stones += 2
-            
+        if current_stones % 2 == 0:
+            current_stones += 2  # next even number
+        else:
+            current_stones += 2  # next odd number
+    
     return levels
 
 def check(candidate):

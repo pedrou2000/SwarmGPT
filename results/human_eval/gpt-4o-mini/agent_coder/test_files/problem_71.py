@@ -15,7 +15,7 @@ def triangle_area(a, b, c):
 import math
 
 def triangle_area(a, b, c):
-    # Check for a valid triangle using the triangle inequality theorem
+    # Check if the sides form a valid triangle
     if (a + b > c) and (a + c > b) and (b + c > a):
         # Calculate the semi-perimeter
         s = (a + b + c) / 2
@@ -24,7 +24,7 @@ def triangle_area(a, b, c):
         # Return the area rounded to 2 decimal points
         return round(area, 2)
     else:
-        # Return -1 if the triangle is invalid
+        # Return -1 if it's not a valid triangle
         return -1
 
 def check(candidate):

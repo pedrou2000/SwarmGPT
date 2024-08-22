@@ -16,39 +16,29 @@ def encode(message):
 
 
 def encode(message):
-    encoded_chars = []
+    result = []
+    vowels = 'aeiouAEIOU'
     
     for char in message:
-        if char.lower() in 'aeiou':
-            # Replace vowel with the letter 2 places ahead
-            if char == 'a':
-                encoded_chars.append('c')
-            elif char == 'e':
-                encoded_chars.append('g')
-            elif char == 'i':
-                encoded_chars.append('k')
-            elif char == 'o':
-                encoded_chars.append('q')
-            elif char == 'u':
-                encoded_chars.append('w')
-            elif char == 'A':
-                encoded_chars.append('C')
-            elif char == 'E':
-                encoded_chars.append('G')
-            elif char == 'I':
-                encoded_chars.append('K')
-            elif char == 'O':
-                encoded_chars.append('Q')
-            elif char == 'U':
-                encoded_chars.append('W')
-        elif char.isalpha():
-            # Swap case
-            encoded_chars.append(char.swapcase())
+        if char in vowels:
+            # Calculate the letter that is two places ahead
+            if char.islower():
+                new_char = chr((ord(char) - ord('a') + 2) % 26 + ord('a'))
+            else:
+                new_char = chr((ord(char) - ord('A') + 2) % 26 + ord('A'))
+            result.append(new_char)
         else:
-            # Keep non-letter characters as is
-            encoded_chars.append(char)
+            # Swap case
+            if char.islower():
+                result.append(char.upper())
+            else:
+                result.append(char.lower())
     
-    return ''.join(encoded_chars)
+    return ''.join(result)
+
+# Let's test the function with the provided examples
+print(encode('test'))  # Should output 'TGST'
+print(encode('This is a message'))  # Should output 'tHKS KS C MGSSCGG'
 
 def check(candidate):
 

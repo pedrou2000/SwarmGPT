@@ -14,15 +14,17 @@ def fruit_distribution(s,n):
     """
 
 
-def fruit_distribution(s: str, n: int) -> int:
-    # Split the input string into parts
-    parts = s.split()
+import re
+
+def fruit_distribution(s, n):
+    """ Calculate the number of mango fruits in the basket. """
+    # Extract numbers from the string using regular expressions
+    numbers = list(map(int, re.findall(r'\d+', s)))
+    if len(numbers) != 2:
+        raise ValueError("Input string must contain exactly two numbers (for apples and oranges).")
     
-    # Extract the number of apples
-    number_of_apples = int(parts[0])  # The first part is the number of apples
-    
-    # Extract the number of oranges
-    number_of_oranges = int(parts[3])  # The fourth part is the number of oranges
+    number_of_apples = numbers[0]
+    number_of_oranges = numbers[1]
     
     # Calculate the number of mangoes
     number_of_mangoes = n - (number_of_apples + number_of_oranges)

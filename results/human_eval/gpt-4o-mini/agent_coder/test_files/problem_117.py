@@ -14,28 +14,33 @@ def select_words(s, n):
     """
 
 
-def select_words(s: str, n: int) -> list:
-    """Returns a list of all words from string s that contain exactly n consonants."""
+def select_words(s, n):
+    """Given a string s and a natural number n, returns a list of all words from string s
+    that contain exactly n consonants.
+    """
+    result = []
     
     if not s:  # Check if the string is empty
-        return []
+        return result
     
-    words = s.split()  # Split the string into words
-    result = []  # List to hold the resulting words
+    # Split the string into words
+    words = s.split()
     
-    # Define a function to count consonants in a word
-    def count_consonants(word: str) -> int:
-        consonants = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMPQRSTVWXYZ"
-        # Clean the word to only count alphabetic characters
-        cleaned_word = ''.join(filter(str.isalpha, word))
-        return sum(1 for char in cleaned_word if char in consonants)
+    # Define a set of vowels for quick lookup
+    vowels = set("aeiouAEIOU")
     
-    # Iterate over each word and count its consonants
     for word in words:
-        if count_consonants(word) == n:  # Check if the count equals n
-            result.append(word)  # Add the word to the result if it matches
+        count = 0
+        # Count consonants in the word
+        for char in word:
+            if char.isalpha() and char not in vowels:  # Check if it's a consonant
+                count += 1
+        
+        # Check if the count of consonants matches n
+        if count == n:
+            result.append(word)
     
-    return result  # Return the resulting list of words
+    return result
 
 def check(candidate):
 

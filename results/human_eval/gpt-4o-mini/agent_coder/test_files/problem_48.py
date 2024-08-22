@@ -15,8 +15,7 @@ def is_palindrome(text: str):
 
 
 def is_palindrome(text: str) -> bool:
-    """
-    Checks if given string is a palindrome
+    """ Checks if given string is a palindrome
     >>> is_palindrome('')
     True
     >>> is_palindrome('aba')
@@ -26,7 +25,13 @@ def is_palindrome(text: str) -> bool:
     >>> is_palindrome('zbcd')
     False
     """
-    return text == text[::-1]
+    # Check if the text is empty
+    if text == "":
+        return True
+
+    # Reverse the text and compare with original
+    reversed_text = text[::-1]
+    return reversed_text == text
 
 
 

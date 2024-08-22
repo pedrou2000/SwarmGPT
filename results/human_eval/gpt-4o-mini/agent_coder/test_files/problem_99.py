@@ -20,26 +20,24 @@ def closest_integer(value):
 
 
 def closest_integer(value):
-    # Convert the string to a float
+    import math
+    
+    # Convert the input string to a float
     num = float(value)
     
-    # Check if the number is exactly halfway between two integers
+    # Determine the closest integer
     if num > 0:
-        if num % 1 == 0.5:
-            return int(num) + 1  # Round up for positive numbers
+        if num - math.floor(num) < 0.5:
+            return math.floor(num)
         else:
-            return round(num)
-    else:  # num is negative
-        if num % 1 == -0.5:
-            return int(num) - 1  # Round down for negative numbers
+            return math.ceil(num)
+    elif num < 0:
+        if num - math.ceil(num) > -0.5:
+            return math.ceil(num)
         else:
-            return round(num)
-
-# Testing the function with the provided examples
-print(closest_integer("10"))    # Output: 10
-print(closest_integer("15.3"))  # Output: 15
-print(closest_integer("14.5"))  # Output: 15
-print(closest_integer("-14.5")) # Output: -15
+            return math.floor(num)
+    else:
+        return 0  # If the value is exactly 0, return 0
 
 def check(candidate):
 

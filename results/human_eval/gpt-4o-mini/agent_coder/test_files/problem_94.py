@@ -16,12 +16,12 @@ def skjkasdkd(lst):
 
 from typing import List
 
-def is_prime(n: int) -> bool:
-    """ Check if a number is prime. """
-    if n <= 1:
+def is_prime(num: int) -> bool:
+    """Check if a number is prime."""
+    if num < 2:
         return False
-    for i in range(2, int(n**0.5) + 1):
-        if n % i == 0:
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
             return False
     return True
 
@@ -35,12 +35,12 @@ def skjkasdkd(lst: List[int]) -> int:
                 largest_prime = num
     
     if largest_prime is None:
-        return 0  # or other handling as needed
+        return 0  # No prime found
     
-    # Sum the digits of the largest prime
-    digit_sum = sum(int(digit) for digit in str(largest_prime))
+    # Calculate the sum of the digits of the largest prime
+    sum_of_digits = sum(int(digit) for digit in str(largest_prime))
     
-    return digit_sum
+    return sum_of_digits
 
 def check(candidate):
 

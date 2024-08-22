@@ -66,6 +66,12 @@ def _fix_sqrt(string):
         new_string += new_substr
     return new_string
 
+import re 
+
+def _remove_trailing_zero(string):
+    # Regex to find numbers ending with .0 and replace them with the integer part
+    return re.sub(r'(\d+)\.0\b', r'\1', string)
+
 def _strip_string(string):
     # linebreaks  
     string = string.replace("\n", "")
@@ -132,6 +138,10 @@ def _strip_string(string):
 
     # NOTE: X/Y changed to \frac{X}{Y} in dataset, but in simple cases fix in case the model output is X/Y
     string = _fix_a_slash_b(string)
+
+
+    # Remove trailing .0 from numeric values
+    string = _remove_trailing_zero(string)
 
     return string
 

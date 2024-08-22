@@ -38,19 +38,19 @@ def pluck(arr):
 from typing import List
 
 def pluck(arr: List[int]) -> List[int]:
-    smallest_even = float('inf')
-    smallest_index = -1
+    min_value = float('inf')  # Start with a large number
+    min_index = -1  # Start with an invalid index
 
     for index, value in enumerate(arr):
         if value % 2 == 0:  # Check if the number is even
-            if value < smallest_even:  # Check if it's smaller than the smallest found so far
-                smallest_even = value
-                smallest_index = index
+            if value < min_value:  # Check for minimum even value
+                min_value = value
+                min_index = index
 
-    if smallest_index == -1:  # No even number found
+    if min_index == -1:  # No even number found
         return []
-    else:
-        return [smallest_even, smallest_index]  # Return the smallest even value and its index
+    
+    return [min_value, min_index]  # Return the smallest even value and its index
 
 def check(candidate):
 

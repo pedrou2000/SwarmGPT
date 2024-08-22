@@ -27,11 +27,11 @@ def digitSum(s):
         digitSum("woArBld") => 131
         digitSum("aAaaaXa") => 153
     """
-    total_sum = 0
-    for char in s:
-        if char.isupper():
-            total_sum += ord(char)
-    return total_sum
+    total_sum = 0  # Initialize the sum variable
+    for char in s:  # Iterate through each character in the string
+        if char.isupper():  # Check if the character is uppercase
+            total_sum += ord(char)  # Add the ASCII value to the total sum
+    return total_sum  # Return the computed sum
 
 def check(candidate):
 

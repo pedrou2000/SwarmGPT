@@ -12,25 +12,25 @@ def search(lst):
     '''
 
 
-from collections import Counter
-from typing import List
-
-def search(lst: List[int]) -> int:
-    # Count the frequency of each number in the list
-    frequency = Counter(lst)
+def search(lst):
+    # Step 1: Count frequencies
+    frequency = {}
     
+    for number in lst:
+        if number in frequency:
+            frequency[number] += 1
+        else:
+            frequency[number] = 1
+
+    # Step 2: Check conditions and find the greatest integer
     max_value = -1
     
-    # Iterate through the frequency dictionary
-    for number, count in frequency.items():
-        # Check the conditions
-        if number > 0 and count >= number:
-            # Update max_value if the conditions are met
-            if number > max_value:
-                max_value = number
+    for num, freq in frequency.items():
+        if freq >= num:
+            max_value = max(max_value, num)
 
-    # Return -1 if max_value wasn't updated, which means no valid number was found
-    return max_value if max_value != -1 else -1
+    # Step 3: Return the result
+    return max_value
 
 def check(candidate):
 

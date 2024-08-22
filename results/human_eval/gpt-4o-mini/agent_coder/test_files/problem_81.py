@@ -29,8 +29,7 @@ def numerical_letter_grade(grades):
 from typing import List
 
 def numerical_letter_grade(grades: List[float]) -> List[str]:
-    """Convert a list of GPAs to letter grades based on predefined thresholds."""
-    
+    """Convert a list of GPAs to their corresponding letter grades based on a grading scale."""
     letter_grades = []
     
     for gpa in grades:

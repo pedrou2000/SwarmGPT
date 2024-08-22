@@ -29,13 +29,20 @@ def solve(N):
     Output:
          a string of binary number
     """
-    # Step 1: Convert N to string and iterate through each digit
-    sum_of_digits = sum(int(digit) for digit in str(N))  # Step 2: Sum the digits
-    
-    # Step 3: Convert the sum to binary
-    binary_sum = bin(sum_of_digits)[2:]  # Step 4: Remove '0b' prefix
-    
-    return binary_sum  # Step 5: Return the binary representation
+    # Step 1: Convert N to a string to iterate through its digits
+    str_N = str(N)
+    sum_of_digits = 0
+
+    # Step 2: Iterate through each character in str_N
+    for digit in str_N:
+        # Convert character to integer and add to sum_of_digits
+        sum_of_digits += int(digit)
+
+    # Step 3: Convert sum_of_digits to binary
+    binary_sum = bin(sum_of_digits)[2:]  # bin() returns a string prefixed with '0b'
+
+    # Step 4: Return binary_sum
+    return binary_sum
 
 def check(candidate):
 

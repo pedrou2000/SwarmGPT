@@ -12,26 +12,28 @@ def fix_spaces(text):
     """
 
 
-import re
-
 def fix_spaces(text):
-    # Replace sequences of 3 or more spaces with a single hyphen
-    modified_text = re.sub(r' {3,}', '-', text)
+    result = []
+    space_count = 0
     
-    # Replace single spaces with underscores
-    modified_text = modified_text.replace(" ", "_")
+    for char in text:
+        if char == ' ':
+            space_count += 1
+        else:
+            if space_count > 2:
+                result.append('-')
+            elif space_count > 0:
+                result.append('_')
+            space_count = 0
+            result.append(char)
     
-    return modified_text
-
-# Testing the function with the provided examples
-print(fix_spaces("Example"))        # "Example"
-print(fix_spaces("Example 1"))      # "Example_1"
-print(fix_spaces(" Example 2"))     # "_Example_2"
-print(fix_spaces(" Example   3"))   # "_Example-3"
-print(fix_spaces("This is   a test"))  # "This_is-a_test"
-print(fix_spaces("No   spaces"))    # "No-spaces"
-print(fix_spaces("Multiple    spaces here"))  # "Multiple-spaces_here"
-print(fix_spaces("Leading      and trailing     spaces   "))  # "_Leading-and_trailing-spaces_"
+    # Handle any spaces at the end of the string
+    if space_count > 2:
+        result.append('-')
+    elif space_count > 0:
+        result.append('_')
+    
+    return ''.join(result)
 
 def check(candidate):
 

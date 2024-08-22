@@ -17,7 +17,6 @@ def prime_fib(n: int):
 
 
 def is_prime(num: int) -> bool:
-    """Check if a number is prime."""
     if num <= 1:
         return False
     for i in range(2, int(num**0.5) + 1):
@@ -26,18 +25,17 @@ def is_prime(num: int) -> bool:
     return True
 
 def prime_fib(n: int) -> int:
-    """Return the n-th Fibonacci number that is also prime."""
     fib1, fib2 = 0, 1
-    prime_fibs = []
-
-    while len(prime_fibs) < n:
-        fib_next = fib1 + fib2
-        fib1, fib2 = fib2, fib_next
-        
-        if is_prime(fib_next):
-            prime_fibs.append(fib_next)
+    count = 0
     
-    return prime_fibs[-1]
+    while True:
+        next_fib = fib1 + fib2
+        fib1, fib2 = fib2, next_fib
+        
+        if is_prime(next_fib):
+            count += 1
+            if count == n:
+                return next_fib
 
 
 

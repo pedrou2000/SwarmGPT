@@ -19,7 +19,7 @@ def count_distinct_characters(string: str) -> int:
     # Normalize the string to lower case
     normalized_string = string.lower()
     
-    # Use a set to track distinct characters
+    # Use a set to find distinct characters
     distinct_characters = set(normalized_string)
     
     # Return the count of distinct characters

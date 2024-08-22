@@ -15,26 +15,27 @@ def count_up_to(n):
 from typing import List
 import math
 
-def count_up_to(n: int) -> List[int]:
-    """Return a list of the first n integers that are prime numbers and less than n."""
-    if n <= 1:
-        return []
-    
-    primes = []
-    for i in range(2, n):
-        if is_prime(i):
-            primes.append(i)
-    
-    return primes
-
 def is_prime(num: int) -> bool:
-    """Check if a number is prime."""
+    """ Check if a number is prime. """
     if num <= 1:
         return False
-    for j in range(2, int(math.sqrt(num)) + 1):
-        if num % j == 0:
+    for i in range(2, int(math.sqrt(num)) + 1):
+        if num % i == 0:
             return False
     return True
+
+def count_up_to(n: int) -> List[int]:
+    """ Returns a list of prime numbers less than n. """
+    if n < 2:
+        return []
+    
+    result = []
+    
+    for number in range(2, n):
+        if is_prime(number):
+            result.append(number)
+    
+    return result
 
 def check(candidate):
 

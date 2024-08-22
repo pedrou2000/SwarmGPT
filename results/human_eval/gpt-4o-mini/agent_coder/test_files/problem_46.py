@@ -24,24 +24,34 @@ def fib4(n: int) -> int:
     fib4(2) -> 2
     fib4(3) -> 0
     fib4(n) -> fib4(n-1) + fib4(n-2) + fib4(n-3) + fib4(n-4).
+    Please write a function to efficiently compute the n-th element of the fib4 number sequence. 
+    >>> fib4(5)
+    4
+    >>> fib4(6)
+    8
+    >>> fib4(7)
+    14
     """
     
     if n == 0:
         return 0
-    elif n == 1:
+    if n == 1:
         return 0
-    elif n == 2:
+    if n == 2:
         return 2
-    elif n == 3:
+    if n == 3:
         return 0
-    
-    fib = [0] * (n + 1)  # Create a list to store computed values
-    fib[0], fib[1], fib[2], fib[3] = 0, 0, 2, 0  # Base cases
+
+    # Create an array to store the last four values
+    fib = [0, 0, 2, 0]
     
     for i in range(4, n + 1):
-        fib[i] = fib[i - 1] + fib[i - 2] + fib[i - 3] + fib[i - 4]
+        # Calculate the next value based on the previous four values
+        next_value = fib[0] + fib[1] + fib[2] + fib[3]
+        # Shift the values in the array
+        fib[i % 4] = next_value
     
-    return fib[n]
+    return fib[n % 4]
 
 
 

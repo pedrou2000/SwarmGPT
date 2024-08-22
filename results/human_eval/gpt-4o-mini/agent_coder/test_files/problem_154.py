@@ -12,22 +12,17 @@ def cycpattern_check(a , b):
 
 
 def cycpattern_check(a, b):
-    """Check if the second word or any of its rotations is a substring in the first word."""
-    # Handle edge case where b is empty
-    if not b:
-        return True
+    """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word."""
     
-    # Concatenate b with itself
-    concatenated_b = b + b
-    len_b = len(b)
+    # Check if the length of b is greater than a, if so return False
+    if len(b) > len(a):
+        return False
     
-    # Check all rotations of b
-    for i in range(len_b):
-        rotation = concatenated_b[i:i + len_b]  # Get the rotation
-        if rotation in a:  # Check if this rotation is in a
-            return True
-            
-    return False
+    # Concatenate b with itself to generate all rotations
+    concatenated = b + b
+    
+    # Check if a contains b as a substring in the concatenated string
+    return a in concatenated
 
 def check(candidate):
 

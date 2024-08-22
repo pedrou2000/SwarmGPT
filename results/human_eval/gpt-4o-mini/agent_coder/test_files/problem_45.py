@@ -12,7 +12,8 @@ def triangle_area(a, h):
     >>> triangle_area(5, 3)
     7.5
     """
-    return 0.5 * a * h
+    area = 0.5 * a * h
+    return area
 
 
 

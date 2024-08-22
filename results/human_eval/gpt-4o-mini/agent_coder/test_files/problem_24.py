@@ -12,10 +12,10 @@ def largest_divisor(n: int) -> int:
     >>> largest_divisor(15)
     5
     """
-    for d in range(n - 1, 0, -1):
-        if n % d == 0:
-            return d
-    return 0  # In case n is 1, there are no divisors less than n
+    for i in range(n - 1, 0, -1):
+        if n % i == 0:
+            return i
+    return None  # This line should never be reached for n > 1
 
 
 

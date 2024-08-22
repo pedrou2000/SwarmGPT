@@ -20,7 +20,7 @@ def hex_key(num):
 
 
 def hex_key(num):
-    """Count the number of prime hexadecimal digits in the given hex string."""
+    """ Count the number of prime hexadecimal digits in the input string. """
     prime_hex_digits = {'2', '3', '5', '7', 'B', 'D'}
     count = 0
     

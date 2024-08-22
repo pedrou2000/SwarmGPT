@@ -13,13 +13,19 @@ def how_many_times(string: str, substring: str) -> int:
 
 def how_many_times(string: str, substring: str) -> int:
     count = 0
-    length_of_string = len(string)
-    length_of_substring = len(substring)
+    string_length = len(string)
+    substring_length = len(substring)
+
+    # Edge case: If substring is empty, return 0
+    if substring_length == 0:
+        return 0
     
-    for index in range(length_of_string - length_of_substring + 1):
-        if string[index:index + length_of_substring] == substring:
-            count += 1
-            
+    # Loop through the string
+    for i in range(string_length - substring_length + 1):
+        # Check if the substring matches
+        if string[i:i + substring_length] == substring:
+            count += 1  # Increment count if a match is found
+
     return count
 
 

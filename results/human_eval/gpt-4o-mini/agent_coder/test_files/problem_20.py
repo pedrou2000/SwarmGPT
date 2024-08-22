@@ -21,22 +21,15 @@ def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
     >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])
     (2.0, 2.0)
     """
-    
-    if len(numbers) < 2:
-        raise ValueError("The list must contain at least two elements.")
-    
-    # Sort the numbers first
-    sorted_numbers = sorted(numbers)
-    
+    numbers.sort()
     min_diff = float('inf')
     closest_pair = ()
-
-    # Find the closest elements
-    for i in range(len(sorted_numbers) - 1):
-        diff = sorted_numbers[i + 1] - sorted_numbers[i]
-        if diff < min_diff:
-            min_diff = diff
-            closest_pair = (sorted_numbers[i], sorted_numbers[i + 1])
+    
+    for i in range(len(numbers) - 1):
+        current_diff = numbers[i + 1] - numbers[i]
+        if current_diff < min_diff:
+            min_diff = current_diff
+            closest_pair = (numbers[i], numbers[i + 1])
     
     return closest_pair
 

@@ -19,18 +19,19 @@ def sort_array(array):
 from typing import List
 
 def sort_array(array: List[int]) -> List[int]:
-    """ Given an array of non-negative integers, return a copy of the given array after sorting,
-    you will sort the given array in ascending order if the sum( first index value, last index value) is odd,
-    or sort it in descending order if the sum( first index value, last index value) is even.
-    """
+    """ Given an array of non-negative integers, sort it based on the sum of its first and last element. """
     if not array:  # Check if the array is empty
         return []
-    
-    first_last_sum = array[0] + array[-1]  # Calculate the sum of first and last elements
-    
-    if first_last_sum % 2 == 1:  # If sum is odd
+    if len(array) == 1:  # Check if the array has only one element
+        return array
+
+    first_element = array[0]
+    last_element = array[-1]
+    total_sum = first_element + last_element
+
+    if total_sum % 2 == 1:  # If the sum is odd
         return sorted(array)  # Sort in ascending order
-    else:  # If sum is even
+    else:  # If the sum is even
         return sorted(array, reverse=True)  # Sort in descending order
 
 def check(candidate):

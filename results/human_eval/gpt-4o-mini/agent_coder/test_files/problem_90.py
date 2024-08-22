@@ -12,20 +12,25 @@ def next_smallest(lst):
     """
 
 
-from typing import List, Optional
-
-def next_smallest(lst: List[int]) -> Optional[int]:
-    """Return the second smallest element from the list, or None if it does not exist."""
-    if not lst:  # Check if the list is empty
+def next_smallest(lst):
+    """ 
+    Return the second smallest element of the list or None if there is no such element.
+    
+    >>> next_smallest([1, 2, 3, 4, 5]) == 2
+    >>> next_smallest([5, 1, 4, 3, 2]) == 2
+    >>> next_smallest([]) == None
+    >>> next_smallest([1, 1]) == None
+    """
+    if not lst:
         return None
 
     unique_elements = set(lst)  # Remove duplicates
-    sorted_unique_elements = sorted(unique_elements)  # Sort the unique elements
-    
-    if len(sorted_unique_elements) < 2:  # Check if we have at least two unique elements
+    sorted_elements = sorted(unique_elements)  # Sort the unique elements
+
+    if len(sorted_elements) < 2:
         return None
-    
-    return sorted_unique_elements[1]  # Return the second smallest element
+
+    return sorted_elements[1]  # Return the second smallest element
 
 def check(candidate):
 

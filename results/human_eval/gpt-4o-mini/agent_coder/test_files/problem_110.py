@@ -14,16 +14,22 @@ def exchange(lst1, lst2):
     """
 
 
-from typing import List
-
-def exchange(lst1: List[int], lst2: List[int]) -> str:
-    odd_count_lst1 = sum(1 for x in lst1 if x % 2 != 0)
-    even_count_lst2 = sum(1 for x in lst2 if x % 2 == 0)
-
-    if even_count_lst2 >= odd_count_lst1:
+def exchange(lst1, lst2):
+    # Count odd numbers in lst1
+    count_odd_lst1 = sum(1 for x in lst1 if x % 2 != 0)
+    
+    # Check if there is at least one even number in lst2
+    has_even_in_lst2 = any(x % 2 == 0 for x in lst2)
+    
+    # If there are no odd numbers in lst1, it is already all even
+    if count_odd_lst1 == 0:
         return "YES"
-    else:
-        return "NO"
+    
+    # If there are odd numbers in lst1 and at least one even in lst2
+    if has_even_in_lst2:
+        return "YES"
+    
+    return "NO"
 
 def check(candidate):
 

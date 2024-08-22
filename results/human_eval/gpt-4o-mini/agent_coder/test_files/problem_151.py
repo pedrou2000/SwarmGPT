@@ -13,18 +13,14 @@ def double_the_difference(lst):
     '''
 
 
-def double_the_difference(lst):
-    if not lst:  # Check if the list is empty
-        return 0
-    
-    sum_of_squares = 0  # Initialize the sum of squares
-    
+from typing import List
+
+def double_the_difference(lst: List[int]) -> int:
+    total_sum = 0
     for number in lst:
-        if isinstance(number, int) and number >= 0:  # Check if number is an integer and non-negative
-            if number % 2 == 1:  # Check if the number is odd
-                sum_of_squares += number * number  # Add the square of the number to the sum
-    
-    return sum_of_squares  # Return the final sum of squares
+        if isinstance(number, int) and number >= 0 and number % 2 != 0:
+            total_sum += number ** 2
+    return total_sum
 
 def check(candidate):
 

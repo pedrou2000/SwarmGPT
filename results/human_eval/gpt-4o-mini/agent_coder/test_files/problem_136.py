@@ -13,17 +13,19 @@ def largest_smallest_integers(lst):
     '''
 
 
-def largest_smallest_integers(lst):
+from typing import List, Tuple, Optional
+
+def largest_smallest_integers(lst: List[int]) -> Tuple[Optional[int], Optional[int]]:
     largest_negative = None
     smallest_positive = None
 
-    for num in lst:
-        if num < 0:
-            if largest_negative is None or num > largest_negative:
-                largest_negative = num
-        elif num > 0:
-            if smallest_positive is None or num < smallest_positive:
-                smallest_positive = num
+    for number in lst:
+        if number < 0:  # Check for negative numbers
+            if largest_negative is None or number > largest_negative:
+                largest_negative = number
+        elif number > 0:  # Check for positive numbers
+            if smallest_positive is None or number < smallest_positive:
+                smallest_positive = number
 
     return (largest_negative, smallest_positive)
 

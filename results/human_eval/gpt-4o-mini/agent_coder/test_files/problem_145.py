@@ -12,25 +12,19 @@ def order_by_points(nums):
     """
 
 
-def digit_sum(n):
-    """Helper function to calculate the sum of digits of n."""
-    return sum(int(digit) for digit in str(abs(n)))
+from typing import List
 
-def order_by_points(nums):
-    """Sort the list of integers by the sum of their digits, with ties broken by their value."""
-    # Create a list of tuples (num) for sorting
-    indexed_nums = list(enumerate(nums))
-    
-    # Sort by sum of digits, then by the value of the number
-    sorted_nums = sorted(indexed_nums, key=lambda x: (digit_sum(x[1]), x[1]))
-    
-    # Extract the sorted values from the tuples
-    return [num for index, num in sorted_nums]
+def sum_of_digits(num: int) -> int:
+    """Helper function to calculate the sum of digits of a number."""
+    return sum(int(digit) for digit in str(abs(num)))  # Use abs to handle negative numbers
+
+def order_by_points(nums: List[int]) -> List[int]:
+    """Sort the list of integers based on the sum of their digits."""
+    return sorted(nums, key=lambda x: (sum_of_digits(x), nums.index(x)))
 
 # Example usage:
 print(order_by_points([1, 11, -1, -11, -12]))  # Output: [-1, -11, 1, -12, 11]
 print(order_by_points([]))  # Output: []
-print(order_by_points([5, 15, 6, -6, -5, -15]))  # Example test case with mixed signs
 
 def check(candidate):
 

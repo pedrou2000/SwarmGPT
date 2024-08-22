@@ -29,13 +29,15 @@ def vowels_count(s):
     >>> vowels_count("ACEDY")
     3
     """
-    vowels = set('aeiouAEIOU')  # Include uppercase vowels as well
+    # Define the set of vowels
+    vowel_set = {'a', 'e', 'i', 'o', 'u'}
     count = 0
-    
-    for i in range(len(s)):
-        if s[i] in vowels:
+    length = len(s)
+
+    for i, char in enumerate(s.lower()):  # Convert to lowercase to handle case insensitivity
+        if char in vowel_set:
             count += 1
-        elif s[i].lower() == 'y' and i == len(s) - 1:
+        elif char == 'y' and i == length - 1:  # Check if 'y' is at the end of the string
             count += 1
 
     return count

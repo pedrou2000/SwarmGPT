@@ -21,9 +21,12 @@ def words_string(s):
     """
     # Replace commas with spaces
     s = s.replace(',', ' ')
-    # Split the string with whitespace and filter out empty strings
-    words = [word for word in s.split() if word]
-    return words
+    # Split the string by spaces and filter out any empty strings
+    return s.split()
+
+# Example test cases
+print(words_string("Hi, my name is John"))  # Output: ["Hi", "my", "name", "is", "John"]
+print(words_string("One, two, three, four, five, six"))  # Output: ["One", "two", "three", "four", "five", "six"]
 
 def check(candidate):
 

@@ -12,10 +12,12 @@ def solution(lst):
 
 def solution(lst):
     total_sum = 0
-    for index in range(len(lst)):
-        if index % 2 == 0:  # Check if index is even
-            if lst[index] % 2 != 0:  # Check if the element is odd
-                total_sum += lst[index]
+    
+    for i in range(len(lst)):
+        if i % 2 == 0:  # i is an even index
+            if lst[i] % 2 != 0:  # lst[i] is odd
+                total_sum += lst[i]
+    
     return total_sum
 
 def check(candidate):

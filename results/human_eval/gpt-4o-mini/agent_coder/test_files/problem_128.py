@@ -17,39 +17,34 @@ from typing import List, Optional
 
 def prod_signs(arr: List[int]) -> Optional[int]:
     """ 
-    Calculate the product of signs and the sum of magnitudes of integers in the array.
+    You are given an array arr of integers and you need to return
+    sum of magnitudes of integers multiplied by product of all signs
+    of each number in the array, represented by 1, -1 or 0.
+    Note: return None for empty arr.
+
+    Example:
     >>> prod_signs([1, 2, 2, -4]) == -9
     >>> prod_signs([0, 1]) == 0
     >>> prod_signs([]) == None
-    >>> prod_signs([-1, -2, -3]) == 6
     """
-    if not arr:  # Check for empty array
+    if not arr:
         return None
-    
-    sign_product = 1
-    sum_magnitudes = 0
-    
+
+    product_of_signs = 1
+    sum_of_magnitudes = 0
+
     for number in arr:
         if number > 0:
-            sum_magnitudes += number
+            product_of_signs *= 1
         elif number < 0:
-            sum_magnitudes += -number
-            sign_product *= -1
+            product_of_signs *= -1
         else:
-            # If there's a zero, the product of signs is zero regardless of other numbers
-            return 0
-    
-    # If there are no non-zero numbers, return 0
-    if sum_magnitudes == 0:
-        return 0
-    
-    return sum_magnitudes * sign_product
+            product_of_signs = 0
+            break  # no need to continue if we have a zero
 
-# Example Test Cases
-print(prod_signs([1, 2, 2, -4]))  # Should return -9
-print(prod_signs([0, 1]))          # Should return 0
-print(prod_signs([]))              # Should return None
-print(prod_signs([-1, -2, -3]))    # Should return 6
+        sum_of_magnitudes += abs(number)
+
+    return sum_of_magnitudes * product_of_signs
 
 def check(candidate):
 

@@ -21,22 +21,23 @@ def anti_shuffle(s):
     are replaced by a new word where all the characters arranged in
     ascending order based on ascii value.
     Note: You should keep the order of words and blank spaces in the sentence.
-    
-    For example:
-    anti_shuffle('Hi') returns 'Hi'
-    anti_shuffle('hello') returns 'ehllo'
-    anti_shuffle('Hello World!!!') returns 'Hello !!!Wdlor'
     """
-    # Split the string into words
-    words = s.split(' ')
-    
-    # Sort each word while preserving spaces
-    sorted_words = [''.join(sorted(word)) for word in words]
-    
-    # Join the sorted words back into a single string
-    result = ' '.join(sorted_words)
-    
-    return result
+    words = s.split(' ')  # Split the string by spaces to keep track of words and spaces
+    sorted_words = []      # List to hold the sorted words
+
+    for word in words:
+        if word:  # If the word is not empty
+            sorted_words.append(''.join(sorted(word)))  # Sort and join the characters
+        else:
+            sorted_words.append('')  # Maintain empty string for spaces
+
+    # Join the sorted words with a space
+    return ' '.join(sorted_words)
+
+# Test cases
+print(anti_shuffle('Hi'))  # returns 'Hi'
+print(anti_shuffle('hello'))  # returns 'ehllo'
+print(anti_shuffle('Hello World!!!'))  # returns 'Hello !!!Wdlor'
 
 def check(candidate):
 

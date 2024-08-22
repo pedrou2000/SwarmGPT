@@ -18,26 +18,36 @@ def tri(n):
     """
 
 
-from typing import List
-
-def tri(n: int) -> List[int]:
-    """ Return a list of the first n + 1 numbers of the Tribonacci sequence. """
+def tri(n):
+    """ Generate the first n + 1 numbers of the Tribonacci sequence. """
     if n < 0:
         return []
     
+    tribonacci_sequence = []
+    
     # Base cases for the Tribonacci sequence
-    tribonacci_sequence = [0, 1, 1]  # Starting with 0, 1, and 1 for n >= 2
-    
-    # Generate the Tribonacci sequence up to n
+    if n >= 0:
+        tribonacci_sequence.append(1)  # tri(0)
+    if n >= 1:
+        tribonacci_sequence.append(1)  # tri(1)
+    if n >= 2:
+        tribonacci_sequence.append(2)  # tri(2)
+
     for i in range(3, n + 1):
-        next_value = tribonacci_sequence[i - 1] + tribonacci_sequence[i - 2] + tribonacci_sequence[i - 3]
+        # Each term is the sum of the three preceding terms
+        next_value = (tribonacci_sequence[i - 1] + 
+                      tribonacci_sequence[i - 2] + 
+                      tribonacci_sequence[i - 3])
         tribonacci_sequence.append(next_value)
-    
-    # Return the required part of the sequence
+
     return tribonacci_sequence[:n + 1]
 
-# Example case
-print(tri(3))  # Output should be [0, 1, 1, 2]
+# Test the function with examples
+print(tri(3))  # Output: [1, 1, 2, 4]
+print(tri(4))  # Output: [1, 1, 2, 4, 7]
+print(tri(5))  # Output: [1, 1, 2, 4, 7, 13]
+print(tri(6))  # Output: [1, 1, 2, 4, 7, 13, 24]
+print(tri(10)) # Output: [1, 1, 2, 4, 7, 13, 24, 44, 81, 149, 274]
 
 def check(candidate):
 

@@ -19,15 +19,15 @@ def intersperse(numbers: List[int], delimiter: int) -> List[int]:
     >>> intersperse([1, 2, 3], 4)
     [1, 4, 2, 4, 3]
     """
-    if not numbers:
+    if not numbers:  # Check if the list is empty
         return []
     
     result = []
     for i in range(len(numbers)):
-        result.append(numbers[i])
-        if i < len(numbers) - 1:  # Don't add delimiter after the last element
-            result.append(delimiter)
-    
+        result.append(numbers[i])  # Add the current number
+        if i < len(numbers) - 1:   # If it's not the last number
+            result.append(delimiter)  # Add the delimiter
+
     return result
 
 

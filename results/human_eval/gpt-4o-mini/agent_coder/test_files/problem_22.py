@@ -21,8 +21,8 @@ def filter_integers(values: List[Any]) -> List[int]:
     """
     result = []
     for value in values:
-        if isinstance(value, int):  # Check if the value is of type int
-            result.append(value)     # Append integer to the result list
+        if isinstance(value, int):  # Check if the value is an integer
+            result.append(value)
     return result
 
 

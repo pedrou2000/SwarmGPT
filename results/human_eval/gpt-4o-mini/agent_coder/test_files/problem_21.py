@@ -17,16 +17,19 @@ def rescale_to_unit(numbers: List[float]) -> List[float]:
     >>> rescale_to_unit([1.0, 2.0, 3.0, 4.0, 5.0])
     [0.0, 0.25, 0.5, 0.75, 1.0]
     """
+    min_value = min(numbers)
+    max_value = max(numbers)
     
-    min_val = min(numbers)
-    max_val = max(numbers)
+    # Avoid division by zero if all numbers are the same
+    if max_value == min_value:
+        return [0.0] * len(numbers)
     
-    rescaled = []
-    for x in numbers:
-        rescaled_value = (x - min_val) / (max_val - min_val)
-        rescaled.append(rescaled_value)
+    result = []
+    for number in numbers:
+        rescaled_value = (number - min_value) / (max_value - min_value)
+        result.append(rescaled_value)
     
-    return rescaled
+    return result
 
 
 

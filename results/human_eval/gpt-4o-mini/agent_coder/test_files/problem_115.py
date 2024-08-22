@@ -37,22 +37,20 @@ def max_fill(grid, capacity):
 
 
 from typing import List
+import math
 
 def max_fill(grid: List[List[int]], capacity: int) -> int:
-    total_units = 0
+    total_water_units = 0
     
-    # Count total units of water in the grid
+    # Count total number of '1's in the grid
     for row in grid:
-        total_units += sum(row)  # sum(row) gives the count of 1s in the row
+        total_water_units += sum(row)
     
-    # Calculate the number of times we need to lower the buckets
-    full_buckets = total_units // capacity
-    remaining_water = total_units % capacity
+    # Calculate the number of lowerings needed
+    # Use math.ceil to ensure we round up
+    lowerings = math.ceil(total_water_units / capacity)
     
-    # If there's any remaining water, we need one additional lowering
-    total_lowerings = full_buckets + (1 if remaining_water > 0 else 0)
-    
-    return total_lowerings
+    return lowerings
 
 def check(candidate):
 

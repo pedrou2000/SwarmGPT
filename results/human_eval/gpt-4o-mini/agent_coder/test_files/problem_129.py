@@ -35,27 +35,28 @@ from typing import List
 
 def minPath(grid: List[List[int]], k: int) -> List[int]:
     N = len(grid)
-    min_path = [float('inf')] * k  # Initialize min_path with a large value
-    directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]  # Up, down, right, left
+    min_path = None
 
-    def backtrack(x: int, y: int, current_path: List[int], length: int):
+    def dfs(x, y, path):
         nonlocal min_path
-        if length == k:
-            if current_path < min_path:  # Compare lexicographically
-                min_path = current_path.copy()
+        if len(path) == k:
+            if min_path is None or path < min_path:
+                min_path = path[:]
             return
         
+        # Directions for moving up, down, left, right
+        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
         for dx, dy in directions:
             new_x, new_y = x + dx, y + dy
-            if 0 <= new_x < N and 0 <= new_y < N:  # Check bounds
-                current_path.append(grid[new_x][new_y])
-                backtrack(new_x, new_y, current_path, length + 1)
-                current_path.pop()  # Backtrack
+            if 0 <= new_x < N and 0 <= new_y < N:
+                path.append(grid[new_x][new_y])
+                dfs(new_x, new_y, path)
+                path.pop()  # backtrack
 
     for i in range(N):
         for j in range(N):
-            backtrack(i, j, [grid[i][j]], 1)  # Start from each cell
-
+            dfs(i, j, [grid[i][j]])
+    
     return min_path
 
 def check(candidate):

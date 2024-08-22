@@ -17,30 +17,22 @@ def match_parens(lst):
 
 
 def match_parens(lst):
-    def count_parentheses(s):
-        open_count = s.count('(')
-        close_count = s.count(')')
-        return open_count, close_count
-
-    def can_form_good_string(s):
-        balance = 0
-        for char in s:
-            if char == '(':
-                balance += 1
-            else:
-                balance -= 1
-            if balance < 0:
-                return False
-        return balance == 0
-
-    open1, close1 = count_parentheses(lst[0])
-    open2, close2 = count_parentheses(lst[1])
-
-    # Check if total opens and closes are equal and if either concatenation is balanced
-    if (open1 + open2 == close1 + close2) and (can_form_good_string(lst[0] + lst[1]) or can_form_good_string(lst[1] + lst[0])):
-        return 'Yes'
-    else:
-        return 'No'
+    count_open_1 = lst[0].count('(')
+    count_close_1 = lst[0].count(')')
+    count_open_2 = lst[1].count('(')
+    count_close_2 = lst[1].count(')')
+    
+    # Check first combination: lst[0] + lst[1]
+    if (count_open_1 + count_open_2 == count_close_1 + count_close_2):
+        if count_open_1 <= count_close_2:
+            return 'Yes'
+    
+    # Check second combination: lst[1] + lst[0]
+    if (count_open_2 + count_open_1 == count_close_2 + count_close_1):
+        if count_open_2 <= count_close_1:
+            return 'Yes'
+    
+    return 'No'
 
 def check(candidate):
 
