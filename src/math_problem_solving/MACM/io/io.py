@@ -63,6 +63,11 @@ def generate_Answer(prompts, model="gpt-4-1106-preview", temperature=0.7, n=1):
             break
 
 def evaluate_dataset(folder_path, limit=50):
+    # Check the folder path exists
+    if not os.path.exists(folder_path):
+        print(f"Folder path {folder_path} does not exist")
+        return
+
     for root, dirs, files in os.walk(folder_path):
         # Extract the subfolder name
         if root != folder_path:
@@ -113,5 +118,5 @@ def evaluate_dataset(folder_path, limit=50):
                 
 
 if __name__ == "__main__":
-    folder_path = "/MATH/test"
+    folder_path = "../../data/datasets/MATH/test"
     evaluate_dataset(folder_path)

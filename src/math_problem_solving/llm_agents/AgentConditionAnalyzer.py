@@ -35,8 +35,8 @@ class AgentConditionAnalyzer(CodeInterpreterAgent):
 
         state.verified_conditions = structured_response.conditions
         state.objectives = structured_response.objectives
-        print(f"{len(state.verified_conditions)} Conditions: \n{state.verified_conditions}")
-        print(f"{len(state.objectives)} Objectives: \n{state.objectives}")
+        # print(f"{len(state.verified_conditions)} Conditions: \n{state.verified_conditions}")
+        # print(f"{len(state.objectives)} Objectives: \n{state.objectives}")
         return state
     
 

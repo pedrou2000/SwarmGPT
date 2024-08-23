@@ -7,24 +7,26 @@ from generic_agents.MultiTurnLLMAgent import MultiTurnLLMAgent
 import prompts
 from typing import Any
 
+from data_classes.MACMState import MACMState
 
-class ChainOfThoughtMathSolver(MultiTurnLLMAgent):
+
+class AgentIndividualMathSolver(MultiTurnLLMAgent):
     system_prompt: str = prompts.CHAIN_OF_THOUGHT_MATH_SOLVER["system_prompt"]
     chain_of_thought_prompt: str = prompts.CHAIN_OF_THOUGHT_MATH_SOLVER["user_prompt"]
 
     def __init__(self):
         super().__init__(self.system_prompt)
         
-    def __call__(self, math_problem) -> Any:
+    def __call__(self, state: MACMState) -> Any:
         print("In ChainOfThoughtMathSolver")
         prompt_args = {
-            "problem": math_problem.problem_statement,
+            "problem": state.math_problem.problem_statement,
         }
         agent_response = self.user_prompt(self.chain_of_thought_prompt, prompt_args)
-        return agent_response
-    
+        state.final_answer = agent_response
+        return state
 
 if __name__ == "__main__":  
-    math_solver = ChainOfThoughtMathSolver()
+    math_solver = AgentIndividualMathSolver()
     problem_statement = "Solve the following equation: 2x + 3 = 7"
     print(math_solver(problem_statement))

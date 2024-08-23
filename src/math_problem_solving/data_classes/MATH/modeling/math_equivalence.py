@@ -72,6 +72,11 @@ def _remove_trailing_zero(string):
     # Regex to find numbers ending with .0 and replace them with the integer part
     return re.sub(r'(\d+)\.0\b', r'\1', string)
 
+def _normalize_braces(string):
+    # Remove unnecessary outer braces for numbers like {{11}} to {11}
+    string = re.sub(r'\{\{(\d+)\}\}', r'{\1}', string)
+    return string
+
 def _strip_string(string):
     # linebreaks  
     string = string.replace("\n", "")
@@ -142,6 +147,9 @@ def _strip_string(string):
 
     # Remove trailing .0 from numeric values
     string = _remove_trailing_zero(string)
+
+    # Normalize braces around numbers
+    string = _normalize_braces(string)
 
     return string
 

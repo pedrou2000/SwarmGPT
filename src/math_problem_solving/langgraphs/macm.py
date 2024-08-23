@@ -13,7 +13,7 @@ from llm_agents.AgentAnswerReadyJudge import AgentAnswerReadyJudge
 from llm_agents.AgentNumericalStepsGeneration import AgentNumericalStepsGeneration
 from llm_agents.AgentStepsExecutor import AgentStepsExecutor
 
-def get_multi_agent_summarizer_graph():
+def get_macm_graph():
     graph = StateGraph(MACMState)
 
     graph.add_node("Condition Analizer", AgentConditionAnalyzer())
@@ -31,6 +31,7 @@ def get_multi_agent_summarizer_graph():
         AgentAnswerReadyJudge(),
         {
             "AnswerReady": "Steps Generator",
+            "MaxIterationsReached": "Steps Generator",
             "AnswerNotReady": "Condition Generator"
         }
     )
@@ -40,6 +41,6 @@ def get_multi_agent_summarizer_graph():
     return graph
 
 if __name__ == "__main__":
-    graph = get_multi_agent_summarizer_graph()
+    graph = get_macm_graph()
     app = graph.compile()
     display(Image(app.get_graph(xray=True).draw_mermaid_png()))

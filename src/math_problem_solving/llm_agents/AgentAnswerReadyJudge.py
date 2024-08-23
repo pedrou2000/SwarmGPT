@@ -27,18 +27,21 @@ class AgentAnswerReadyJudge(CodeInterpreterAgent):
 
     def __call__(self, state: MACMState) -> Any:
         print("In AgentAnswerReadyJudge")
+
         prompt_args = {
             "Known_condtions": state.verified_conditions,
             "Objective": state.objectives
         }
         answer_ready_judgement = self.user_prompt(self.answer_ready_prompt, prompt_args)
-        print("Answer Ready Judgement: ", answer_ready_judgement)
+        # print("Answer Ready Judgement: ", answer_ready_judgement)
         summarized_answer_ready_judgement = self.user_prompt(self.anwer_ready_summarization_prompt)
         summarized_answer_ready_judgement = self.structured_output(Judgement, self.parser_prompt, summarized_answer_ready_judgement)
-        print(f"Answer Ready Judgement: {summarized_answer_ready_judgement.judgement}")
+        # print(f"Answer Ready Judgement: {summarized_answer_ready_judgement.judgement}")
 
         if summarized_answer_ready_judgement.judgement:
             response = "AnswerReady"
+        elif state.current_iterations == state.max_iterations:
+            response = "MaxIterationsReached"
         else:
             response = "AnswerNotReady"
 

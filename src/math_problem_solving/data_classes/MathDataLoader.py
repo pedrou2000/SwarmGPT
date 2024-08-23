@@ -130,17 +130,19 @@ class MathDataLoader():
         is_correct, agent_answer, real_answer = math_problem.is_correct_answer(response)
         return math_problem, is_correct, agent_answer, real_answer
 
-    def test_math_parallel(self, agent: callable, math_problems: list):
+    def test_math_parallel(self, agent: callable, math_problems: list, max_workers: int = 8):
+        problem_types = set([problem.type for problem in math_problems])
         results = {
             "score": 0, 
             "test_counts": {"Correct": 0, "Error": 0}, 
-            "erratic_problems": [],
-            "tests_results": {}
+            "test_counts_by_type": {problem_type: {"Correct": 0, "Error": 0} for problem_type in problem_types},
+            "erratic_problems": {problem_type: [] for problem_type in problem_types},
+            "tests_results": {problem_type: {} for problem_type in problem_types}
         }
 
         n_correct = 0
 
-        with concurrent.futures.ThreadPoolExecutor() as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             future_to_task = {executor.submit(self.test_math_task, agent, math_problem): math_problem for math_problem in math_problems}
 
             for future in concurrent.futures.as_completed(future_to_task):
@@ -153,10 +155,12 @@ class MathDataLoader():
                 if is_correct:
                     n_correct += 1
                     results["test_counts"]["Correct"] += 1
+                    results["test_counts_by_type"][math_problem.type]["Correct"] += 1
                 else:
-                    results["erratic_problems"].append(math_problem.get_id())
+                    results["erratic_problems"][math_problem.type].append(math_problem.problem_number)
                     results["test_counts"]["Error"] += 1
-                results["tests_results"][math_problem.get_id()] = (is_correct, agent_answer, real_answer)
+                    results["test_counts_by_type"][math_problem.type]["Error"] += 1
+                results["tests_results"][math_problem.type][math_problem.problem_number] = {"Correct": is_correct, "Agent Answer": agent_answer, "Real Answer": real_answer}
 
         results["score"] = round(n_correct/len(math_problems) * 100, 4)
         print(f'Correct: {n_correct}/{len(math_problems)}')

@@ -31,6 +31,9 @@ class AgentConditionGenerator(CodeInterpreterAgent):
 
     def __call__(self, state: MACMState) -> Any:
         print("In AgentConditionGenerator")
+
+        state.current_iterations += 1
+
         prompt_args = {
             "Known_conditions": state.verified_conditions,
             "Objective": state.objectives
@@ -43,7 +46,7 @@ class AgentConditionGenerator(CodeInterpreterAgent):
             state.unverified_conditions = []
         state.unverified_conditions.append(parsed_condition.derived_condition)
         # print(f"New condition: {new_condition}")
-        print(f"Summarized condition: {parsed_condition}")
+        # print(f"Summarized condition: {parsed_condition}")
 
         return state
     

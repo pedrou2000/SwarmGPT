@@ -39,7 +39,7 @@ class AgentConditionJudge(CodeInterpreterAgent):
                 state.unverified_conditions = []
             state.verified_conditions.extend(state.unverified_conditions)
         state.unverified_conditions = []
-        print(f"Condition Judge Judgement: {summarized_condition_judegement.judgement}")
+        # print(f"Condition Judge Judgement: {summarized_condition_judegement.judgement}")
 
         return state
     

@@ -2,7 +2,7 @@ import os
 
 
 # GPT Constants
-MODEL_VERSION = 4
+MODEL_VERSION = 3
 MODEL_MAP = {
     # 3: "gpt-3.5-turbo",
     3: "gpt-4o-mini",
@@ -43,6 +43,8 @@ HUMAN_EVAL_AGENT_CODER_PLUS_DIR = HUMAN_EVAL_DIR + "agent_coder_plus/"
 # Math Problem Solver Directories
 MATH_DATASET_DIR = os.path.join(BENCHMARKS_DIR, "MATH/test/")
 MATH_EVAL_DIR = RESULTS_DIR + "math/" + MODEL_NAME + "/"
+MATH_MACM_EVAL_DIR = RESULTS_DIR + "math/" + MODEL_NAME + "/macm/"
+MATH_SINFGLE_AGENT_EVAL_DIR = RESULTS_DIR + "math/" + MODEL_NAME + "/single_agent/"
 
 # Epub Summarizer Directories
 BOOKS_DIR = os.path.join(DATA_DIR, "books/")
