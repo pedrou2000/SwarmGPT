@@ -14,22 +14,18 @@ def is_nested(string):
     '''
 
 
-def is_nested(string):
     stack = []
     has_nested = False
 
     for char in string:
         if char == '[':
             stack.append(char)
-            if len(stack) > 1:
+        elif char == ']' and stack:
+            stack.pop()
+            if len(stack) > 0:  # There is at least one '[' still in the stack
                 has_nested = True
-        elif char == ']':
-            if stack:
-                stack.pop()
-            else:
-                return False
 
-    return has_nested and not stack
+    return has_nested
 
 def check(candidate):
 

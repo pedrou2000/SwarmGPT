@@ -34,29 +34,30 @@ def minPath(grid, k):
 from typing import List
 
 def minPath(grid: List[List[int]], k: int) -> List[int]:
-    N = len(grid)
-    min_path = None
+    n = len(grid)
+    min_path = []
 
-    def dfs(x, y, path):
+    # Directions for moving up, down, left, right
+    directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+
+    def dfs(x, y, current_path):
         nonlocal min_path
-        if len(path) == k:
-            if min_path is None or path < min_path:
-                min_path = path[:]
+        if len(current_path) == k:
+            if not min_path or current_path < min_path:
+                min_path = current_path.copy()
             return
         
-        # Directions for moving up, down, left, right
-        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
         for dx, dy in directions:
             new_x, new_y = x + dx, y + dy
-            if 0 <= new_x < N and 0 <= new_y < N:
-                path.append(grid[new_x][new_y])
-                dfs(new_x, new_y, path)
-                path.pop()  # backtrack
+            if 0 <= new_x < n and 0 <= new_y < n:
+                current_path.append(grid[new_x][new_y])
+                dfs(new_x, new_y, current_path)
+                current_path.pop()  # Backtrack
 
-    for i in range(N):
-        for j in range(N):
+    for i in range(n):
+        for j in range(n):
             dfs(i, j, [grid[i][j]])
-    
+
     return min_path
 
 def check(candidate):

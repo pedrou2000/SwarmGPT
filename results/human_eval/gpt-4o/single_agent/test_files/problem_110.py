@@ -15,13 +15,20 @@ def exchange(lst1, lst2):
 
 
 def exchange(lst1, lst2):
-    lst1_odd_count = sum(1 for x in lst1 if x % 2 != 0)
-    lst2_even_count = sum(1 for x in lst2 if x % 2 == 0)
-    
-    if lst1_odd_count <= lst2_even_count:
+    # First check if all elements in lst1 are already even
+    if all(x % 2 == 0 for x in lst1):
         return "YES"
-    else:
-        return "NO"
+    
+    # Separate the odd elements from lst1 and even elements from lst2
+    odd_in_lst1 = [x for x in lst1 if x % 2 != 0]
+    even_in_lst2 = [x for x in lst2 if x % 2 == 0]
+    
+    # If the number of odd elements in lst1 is less than or equal to the number of even elements in lst2
+    # then it is possible to make all elements in lst1 even
+    if len(odd_in_lst1) <= len(even_in_lst2):
+        return "YES"
+    
+    return "NO"
 
 def check(candidate):
 

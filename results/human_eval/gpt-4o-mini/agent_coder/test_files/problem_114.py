@@ -10,16 +10,15 @@ def minSubArraySum(nums):
 
 
 def minSubArraySum(nums):
-    min_sum = float('inf')
-    current_sum = 0
-    
-    for num in nums:
-        current_sum += num
-        if current_sum < min_sum:
-            min_sum = current_sum
-        if current_sum > 0:
-            current_sum = 0
-    
+    min_sum = float('inf')  # Start with a large number
+
+    for i in range(len(nums)):
+        current_sum = 0  # Reset current_sum for new starting index
+        for j in range(i, len(nums)):
+            current_sum += nums[j]  # Add the current element
+            if current_sum < min_sum:  # Update min_sum if current_sum is smaller
+                min_sum = current_sum
+
     return min_sum
 
 def check(candidate):

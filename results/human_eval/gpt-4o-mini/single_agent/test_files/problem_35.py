@@ -10,7 +10,7 @@ def max_element(l: list):
 
 
     if not l:
-        return None  # or raise an exception if an empty list is not allowed
+        return None  # or raise an exception if an empty list should not be allowed
     return max(l)
 
 

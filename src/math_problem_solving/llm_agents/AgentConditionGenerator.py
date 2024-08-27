@@ -30,7 +30,7 @@ class AgentConditionGenerator(CodeInterpreterAgent):
 
 
     def __call__(self, state: MACMState) -> Any:
-        print("In AgentConditionGenerator")
+        print("In AgentConditionGenerator ,current iteration: ", state.current_iterations, " max iterations: ", state.max_iterations)
 
         state.current_iterations += 1
 

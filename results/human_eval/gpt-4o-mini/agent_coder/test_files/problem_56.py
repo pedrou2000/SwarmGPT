@@ -29,13 +29,18 @@ def correct_bracketing(brackets: str) -> bool:
     False
     """
     counter = 0
+
     for char in brackets:
         if char == '<':
             counter += 1
         elif char == '>':
             counter -= 1
+            
+        # If at any point the counter goes negative
         if counter < 0:
             return False
+
+    # At the end, counter should be zero for valid brackets
     return counter == 0
 
 

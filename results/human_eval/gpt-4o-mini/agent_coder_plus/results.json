@@ -1,159 +1,34 @@
 {
-    "score": 87.8049,
+    "score": 88.4146,
     "test_counts": {
-        "NoError": 144,
-        "Error": 0,
-        "AssertionError": 20,
+        "NoError": 145,
+        "Error": 1,
+        "AssertionError": 18,
         "IncorrectInput": 0
     },
     "erratic_problems": [
-        32,
-        38,
-        65,
-        81,
+        77,
+        54,
         91,
+        75,
+        95,
+        93,
         102,
         118,
-        110,
-        115,
-        116,
         125,
-        93,
+        127,
+        130,
         126,
         132,
         134,
-        145,
         154,
-        159,
-        130,
+        145,
+        156,
+        160,
         163
     ],
     "tests_results": {
-        "15": [
-            true,
-            "NoError"
-        ],
-        "11": [
-            true,
-            "NoError"
-        ],
-        "5": [
-            true,
-            "NoError"
-        ],
-        "2": [
-            true,
-            "NoError"
-        ],
-        "3": [
-            true,
-            "NoError"
-        ],
-        "9": [
-            true,
-            "NoError"
-        ],
-        "8": [
-            true,
-            "NoError"
-        ],
-        "12": [
-            true,
-            "NoError"
-        ],
-        "14": [
-            true,
-            "NoError"
-        ],
-        "6": [
-            true,
-            "NoError"
-        ],
-        "7": [
-            true,
-            "NoError"
-        ],
-        "4": [
-            true,
-            "NoError"
-        ],
-        "1": [
-            true,
-            "NoError"
-        ],
-        "13": [
-            true,
-            "NoError"
-        ],
-        "0": [
-            true,
-            "NoError"
-        ],
-        "10": [
-            true,
-            "NoError"
-        ],
-        "16": [
-            true,
-            "NoError"
-        ],
-        "23": [
-            true,
-            "NoError"
-        ],
-        "17": [
-            true,
-            "NoError"
-        ],
-        "22": [
-            true,
-            "NoError"
-        ],
-        "27": [
-            true,
-            "NoError"
-        ],
-        "30": [
-            true,
-            "NoError"
-        ],
-        "24": [
-            true,
-            "NoError"
-        ],
-        "28": [
-            true,
-            "NoError"
-        ],
-        "18": [
-            true,
-            "NoError"
-        ],
-        "20": [
-            true,
-            "NoError"
-        ],
-        "25": [
-            true,
-            "NoError"
-        ],
-        "26": [
-            true,
-            "NoError"
-        ],
-        "31": [
-            true,
-            "NoError"
-        ],
-        "21": [
-            true,
-            "NoError"
-        ],
-        "19": [
-            true,
-            "NoError"
-        ],
-        "35": [
+        "69": [
             true,
             "NoError"
         ],
@@ -161,51 +36,15 @@
             true,
             "NoError"
         ],
-        "39": [
-            true,
-            "NoError"
-        ],
-        "36": [
-            true,
-            "NoError"
-        ],
-        "29": [
-            true,
-            "NoError"
-        ],
-        "34": [
-            true,
-            "NoError"
-        ],
-        "32": [
-            false,
-            "AssertionError"
-        ],
-        "45": [
-            true,
-            "NoError"
-        ],
         "33": [
             true,
             "NoError"
         ],
-        "44": [
+        "32": [
             true,
             "NoError"
         ],
-        "42": [
-            true,
-            "NoError"
-        ],
-        "40": [
-            true,
-            "NoError"
-        ],
-        "41": [
-            true,
-            "NoError"
-        ],
-        "46": [
+        "72": [
             true,
             "NoError"
         ],
@@ -213,43 +52,39 @@
             true,
             "NoError"
         ],
-        "52": [
-            true,
-            "NoError"
-        ],
         "37": [
             true,
             "NoError"
         ],
-        "47": [
+        "21": [
             true,
             "NoError"
         ],
-        "54": [
+        "65": [
             true,
             "NoError"
         ],
-        "50": [
+        "78": [
             true,
             "NoError"
         ],
-        "51": [
+        "6": [
             true,
             "NoError"
         ],
-        "55": [
+        "25": [
             true,
             "NoError"
         ],
-        "49": [
+        "30": [
             true,
             "NoError"
         ],
-        "58": [
+        "87": [
             true,
             "NoError"
         ],
-        "56": [
+        "24": [
             true,
             "NoError"
         ],
@@ -257,15 +92,87 @@
             true,
             "NoError"
         ],
-        "57": [
+        "11": [
             true,
             "NoError"
         ],
-        "38": [
-            false,
-            "AssertionError"
+        "82": [
+            true,
+            "NoError"
         ],
-        "59": [
+        "31": [
+            true,
+            "NoError"
+        ],
+        "12": [
+            true,
+            "NoError"
+        ],
+        "29": [
+            true,
+            "NoError"
+        ],
+        "13": [
+            true,
+            "NoError"
+        ],
+        "49": [
+            true,
+            "NoError"
+        ],
+        "22": [
+            true,
+            "NoError"
+        ],
+        "88": [
+            true,
+            "NoError"
+        ],
+        "86": [
+            true,
+            "NoError"
+        ],
+        "64": [
+            true,
+            "NoError"
+        ],
+        "8": [
+            true,
+            "NoError"
+        ],
+        "26": [
+            true,
+            "NoError"
+        ],
+        "63": [
+            true,
+            "NoError"
+        ],
+        "46": [
+            true,
+            "NoError"
+        ],
+        "42": [
+            true,
+            "NoError"
+        ],
+        "84": [
+            true,
+            "NoError"
+        ],
+        "77": [
+            false,
+            "Error"
+        ],
+        "79": [
+            true,
+            "NoError"
+        ],
+        "7": [
+            true,
+            "NoError"
+        ],
+        "90": [
             true,
             "NoError"
         ],
@@ -273,23 +180,55 @@
             true,
             "NoError"
         ],
-        "61": [
-            true,
-            "NoError"
-        ],
-        "62": [
-            true,
-            "NoError"
-        ],
-        "65": [
+        "54": [
             false,
             "AssertionError"
+        ],
+        "16": [
+            true,
+            "NoError"
+        ],
+        "14": [
+            true,
+            "NoError"
+        ],
+        "15": [
+            true,
+            "NoError"
+        ],
+        "85": [
+            true,
+            "NoError"
+        ],
+        "81": [
+            true,
+            "NoError"
+        ],
+        "57": [
+            true,
+            "NoError"
         ],
         "66": [
             true,
             "NoError"
         ],
-        "63": [
+        "1": [
+            true,
+            "NoError"
+        ],
+        "10": [
+            true,
+            "NoError"
+        ],
+        "80": [
+            true,
+            "NoError"
+        ],
+        "35": [
+            true,
+            "NoError"
+        ],
+        "70": [
             true,
             "NoError"
         ],
@@ -301,83 +240,67 @@
             true,
             "NoError"
         ],
-        "64": [
+        "28": [
             true,
             "NoError"
         ],
-        "70": [
+        "59": [
             true,
             "NoError"
         ],
-        "74": [
+        "9": [
             true,
             "NoError"
         ],
-        "69": [
+        "51": [
             true,
             "NoError"
         ],
-        "73": [
+        "50": [
             true,
             "NoError"
         ],
-        "72": [
+        "52": [
             true,
             "NoError"
         ],
-        "77": [
+        "20": [
             true,
             "NoError"
         ],
-        "76": [
+        "41": [
             true,
             "NoError"
         ],
-        "71": [
+        "62": [
             true,
             "NoError"
         ],
-        "79": [
+        "61": [
             true,
             "NoError"
         ],
-        "75": [
+        "19": [
             true,
             "NoError"
         ],
-        "80": [
+        "55": [
             true,
             "NoError"
         ],
-        "78": [
+        "5": [
             true,
             "NoError"
         ],
-        "86": [
+        "18": [
             true,
             "NoError"
         ],
-        "81": [
-            false,
-            "AssertionError"
-        ],
-        "85": [
+        "4": [
             true,
             "NoError"
         ],
-        "90": [
-            true,
-            "NoError"
-        ],
-        "82": [
-            true,
-            "NoError"
-        ],
-        "87": [
-            true,
-            "NoError"
-        ],
-        "92": [
+        "3": [
             true,
             "NoError"
         ],
@@ -385,39 +308,31 @@
             false,
             "AssertionError"
         ],
-        "84": [
+        "74": [
             true,
             "NoError"
         ],
-        "95": [
+        "17": [
             true,
             "NoError"
         ],
-        "88": [
+        "76": [
             true,
             "NoError"
         ],
-        "89": [
+        "44": [
             true,
             "NoError"
         ],
-        "96": [
+        "27": [
             true,
             "NoError"
         ],
-        "97": [
+        "58": [
             true,
             "NoError"
         ],
-        "94": [
-            true,
-            "NoError"
-        ],
-        "100": [
-            true,
-            "NoError"
-        ],
-        "99": [
+        "23": [
             true,
             "NoError"
         ],
@@ -425,11 +340,95 @@
             true,
             "NoError"
         ],
-        "101": [
+        "38": [
+            true,
+            "NoError"
+        ],
+        "39": [
+            true,
+            "NoError"
+        ],
+        "75": [
+            false,
+            "AssertionError"
+        ],
+        "2": [
+            true,
+            "NoError"
+        ],
+        "40": [
+            true,
+            "NoError"
+        ],
+        "0": [
+            true,
+            "NoError"
+        ],
+        "56": [
+            true,
+            "NoError"
+        ],
+        "34": [
+            true,
+            "NoError"
+        ],
+        "73": [
+            true,
+            "NoError"
+        ],
+        "47": [
+            true,
+            "NoError"
+        ],
+        "71": [
+            true,
+            "NoError"
+        ],
+        "45": [
+            true,
+            "NoError"
+        ],
+        "36": [
+            true,
+            "NoError"
+        ],
+        "92": [
+            true,
+            "NoError"
+        ],
+        "96": [
+            true,
+            "NoError"
+        ],
+        "95": [
+            false,
+            "AssertionError"
+        ],
+        "89": [
+            true,
+            "NoError"
+        ],
+        "97": [
+            true,
+            "NoError"
+        ],
+        "93": [
+            false,
+            "AssertionError"
+        ],
+        "94": [
+            true,
+            "NoError"
+        ],
+        "99": [
             true,
             "NoError"
         ],
         "98": [
+            true,
+            "NoError"
+        ],
+        "100": [
             true,
             "NoError"
         ],
@@ -445,7 +444,11 @@
             true,
             "NoError"
         ],
-        "109": [
+        "105": [
+            true,
+            "NoError"
+        ],
+        "101": [
             true,
             "NoError"
         ],
@@ -461,11 +464,11 @@
             true,
             "NoError"
         ],
-        "105": [
+        "112": [
             true,
             "NoError"
         ],
-        "114": [
+        "109": [
             true,
             "NoError"
         ],
@@ -473,7 +476,11 @@
             true,
             "NoError"
         ],
-        "117": [
+        "110": [
+            true,
+            "NoError"
+        ],
+        "114": [
             true,
             "NoError"
         ],
@@ -481,23 +488,19 @@
             true,
             "NoError"
         ],
-        "112": [
+        "116": [
             true,
             "NoError"
         ],
-        "118": [
-            false,
-            "AssertionError"
-        ],
-        "110": [
-            false,
-            "AssertionError"
+        "117": [
+            true,
+            "NoError"
         ],
         "115": [
-            false,
-            "AssertionError"
+            true,
+            "NoError"
         ],
-        "122": [
+        "119": [
             true,
             "NoError"
         ],
@@ -505,17 +508,17 @@
             true,
             "NoError"
         ],
+        "118": [
+            false,
+            "AssertionError"
+        ],
+        "122": [
+            true,
+            "NoError"
+        ],
         "120": [
             true,
             "NoError"
-        ],
-        "123": [
-            true,
-            "NoError"
-        ],
-        "116": [
-            false,
-            "AssertionError"
         ],
         "124": [
             true,
@@ -529,15 +532,15 @@
             true,
             "NoError"
         ],
+        "123": [
+            true,
+            "NoError"
+        ],
         "127": [
-            true,
-            "NoError"
+            false,
+            "AssertionError"
         ],
-        "131": [
-            true,
-            "NoError"
-        ],
-        "93": [
+        "130": [
             false,
             "AssertionError"
         ],
@@ -545,19 +548,11 @@
             false,
             "AssertionError"
         ],
-        "135": [
+        "131": [
             true,
             "NoError"
         ],
-        "119": [
-            true,
-            "NoError"
-        ],
-        "129": [
-            true,
-            "NoError"
-        ],
-        "137": [
+        "133": [
             true,
             "NoError"
         ],
@@ -573,19 +568,7 @@
             true,
             "NoError"
         ],
-        "139": [
-            true,
-            "NoError"
-        ],
-        "133": [
-            true,
-            "NoError"
-        ],
-        "140": [
-            true,
-            "NoError"
-        ],
-        "143": [
+        "142": [
             true,
             "NoError"
         ],
@@ -593,35 +576,15 @@
             true,
             "NoError"
         ],
-        "144": [
+        "135": [
             true,
             "NoError"
         ],
-        "146": [
+        "137": [
             true,
             "NoError"
         ],
-        "142": [
-            true,
-            "NoError"
-        ],
-        "150": [
-            true,
-            "NoError"
-        ],
-        "147": [
-            true,
-            "NoError"
-        ],
-        "151": [
-            true,
-            "NoError"
-        ],
-        "152": [
-            true,
-            "NoError"
-        ],
-        "148": [
+        "143": [
             true,
             "NoError"
         ],
@@ -629,13 +592,45 @@
             true,
             "NoError"
         ],
+        "139": [
+            true,
+            "NoError"
+        ],
+        "149": [
+            true,
+            "NoError"
+        ],
+        "147": [
+            true,
+            "NoError"
+        ],
+        "140": [
+            true,
+            "NoError"
+        ],
+        "148": [
+            true,
+            "NoError"
+        ],
+        "146": [
+            true,
+            "NoError"
+        ],
+        "144": [
+            true,
+            "NoError"
+        ],
         "153": [
             true,
             "NoError"
         ],
-        "145": [
-            false,
-            "AssertionError"
+        "150": [
+            true,
+            "NoError"
+        ],
+        "152": [
+            true,
+            "NoError"
         ],
         "154": [
             false,
@@ -645,11 +640,23 @@
             true,
             "NoError"
         ],
-        "156": [
+        "145": [
+            false,
+            "AssertionError"
+        ],
+        "159": [
             true,
             "NoError"
         ],
+        "156": [
+            false,
+            "AssertionError"
+        ],
         "157": [
+            true,
+            "NoError"
+        ],
+        "151": [
             true,
             "NoError"
         ],
@@ -661,29 +668,21 @@
             true,
             "NoError"
         ],
-        "160": [
-            true,
-            "NoError"
-        ],
-        "159": [
-            false,
-            "AssertionError"
-        ],
         "158": [
             true,
             "NoError"
         ],
-        "149": [
-            true,
-            "NoError"
-        ],
-        "130": [
+        "160": [
             false,
             "AssertionError"
         ],
         "163": [
             false,
             "AssertionError"
+        ],
+        "129": [
+            true,
+            "NoError"
         ]
     }
 }

@@ -12,16 +12,16 @@ def unique(l: list):
     >>> unique([5, 3, 5, 2, 3, 3, 9, 0, 123])
     [0, 2, 3, 5, 9, 123]
     """
-    # Step 1: Create a set from the list to remove duplicates
+    # Step 2: Remove duplicates by converting to a set
     unique_elements = set(l)
     
-    # Step 2: Convert the set back to a list
+    # Step 3: Convert back to a list
     unique_list = list(unique_elements)
     
-    # Step 3: Sort the list
+    # Step 4: Sort the list
     unique_list.sort()
     
-    # Step 4: Return the sorted list
+    # Step 5: Return the result
     return unique_list
 
 

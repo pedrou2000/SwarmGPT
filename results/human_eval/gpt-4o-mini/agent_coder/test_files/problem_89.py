@@ -13,15 +13,25 @@ def encrypt(s):
 
 
 def encrypt(s):
-    result = []
-    
-    for c in s:
-        if 'a' <= c <= 'z':  # Check if the character is a lowercase letter
-            # Shift the character by 4 positions
-            shifted_char = chr((ord(c) - ord('a') + 4) % 26 + ord('a'))
-            result.append(shifted_char)
-    
-    return ''.join(result)
+    """Create a function encrypt that takes a string as an argument and
+    returns a string encrypted with the alphabet being rotated. 
+    The alphabet should be rotated in a manner such that the letters 
+    shift down by four places.
+    For example:
+    encrypt('hi') returns 'lm'
+    encrypt('asdfghjkl') returns 'ewhjklnop'
+    encrypt('gf') returns 'kj'
+    encrypt('et') returns 'ix'
+    """
+    result = ""
+    for char in s:
+        if 'a' <= char <= 'z':  # Check if the character is a lowercase letter
+            # Shift the character by 4 positions, wrapping around if necessary
+            new_char = chr(((ord(char) - ord('a') + 4) % 26) + ord('a'))
+            result += new_char
+        else:
+            result += char  # Append non-lowercase letters as is
+    return result
 
 def check(candidate):
 

@@ -15,24 +15,20 @@ def get_max_triples(n):
     """
 
 
-def get_max_triples(n):
     a = [i * i - i + 1 for i in range(1, n + 1)]
     count = 0
-    
-    # Count occurrences of a[i] % 3
-    mod_count = [0] * 3
-    for value in a:
-        mod_count[value % 3] += 1
+    mod_count = [0, 0, 0]
 
-    # Calculate the number of valid triples
-    # Case 1: all three numbers have the same remainder
-    for m in mod_count:
-        if m >= 3:
-            count += (m * (m - 1) * (m - 2)) // 6
+    for num in a:
+        mod_count[num % 3] += 1
 
-    # Case 2: one number from each remainder group
+    # Count triples of the same modulo
+    for m in range(3):
+        count += mod_count[m] * (mod_count[m] - 1) * (mod_count[m] - 2) // 6
+
+    # Count triples with different modulos (0, 1, 2)
     count += mod_count[0] * mod_count[1] * mod_count[2]
-    
+
     return count
 
 def check(candidate):

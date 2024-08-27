@@ -21,7 +21,6 @@ def separate_paren_groups(paren_string: str) -> List[str]:
     >>> separate_paren_groups('( ) (( )) (( )( ))')
     ['()', '(())', '(()())']
     """
-    
     result = []
     current_string = []
     current_depth = 0

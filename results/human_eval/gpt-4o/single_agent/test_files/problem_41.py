@@ -14,6 +14,10 @@ def car_race_collision(n: int):
     """
 
 
+    # Since all cars move at the same speed and start infinitely far from each other,
+    # each car from the left set will collide with exactly one car from the right set.
+    # Therefore, the number of collisions is simply the number of cars in one set, which is `n`.
+
     return n
 
 

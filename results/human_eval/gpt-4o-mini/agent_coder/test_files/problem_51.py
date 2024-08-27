@@ -19,8 +19,7 @@ def remove_vowels(text):
 
 
 def remove_vowels(text):
-    """
-    remove_vowels is a function that takes string and returns string without vowels.
+    """remove_vowels is a function that takes string and returns string without vowels.
     >>> remove_vowels('')
     ''
     >>> remove_vowels("abcdef\nghijklm")
@@ -34,14 +33,14 @@ def remove_vowels(text):
     >>> remove_vowels('zbcd')
     'zbcd'
     """
-    vowels = 'aeiouAEIOU'
-    result = []
-
-    for char in text:
-        if char not in vowels:
-            result.append(char)
-
-    return ''.join(result)
+    vowels = 'aeiouAEIOU'  # define vowels (both lowercase and uppercase)
+    result = []  # initialize an empty list to store non-vowel characters
+    
+    for c in text:  # iterate through each character in the input text
+        if c not in vowels:  # check if the character is not a vowel
+            result.append(c)  # if it's not a vowel, add it to the result list
+            
+    return ''.join(result)  # join the result list into a string and return it
 
 
 

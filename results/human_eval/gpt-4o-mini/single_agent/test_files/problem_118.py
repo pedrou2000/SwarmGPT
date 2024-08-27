@@ -17,12 +17,12 @@ def get_closest_vowel(word):
 
 
     vowels = "aeiouAEIOU"
-    n = len(word)
+    length = len(word)
 
-    for i in range(n - 2, 0, -1):
-        if word[i] in vowels and word[i - 1].isalpha() and word[i + 1].isalpha() and word[i - 1] not in vowels and word[i + 1] not in vowels:
-            return word[i]
-    
+    for i in range(length - 2, 0, -1):
+        if word[i] in vowels:
+            if word[i - 1].isalpha() and word[i + 1].isalpha() and word[i - 1] not in vowels and word[i + 1] not in vowels:
+                return word[i]
     return ""
 
 def check(candidate):

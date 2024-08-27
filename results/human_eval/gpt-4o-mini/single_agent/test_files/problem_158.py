@@ -11,16 +11,18 @@ def find_max(words):
     """
 
 
-    unique_counts = {}
+    max_word = ""
+    max_unique_count = 0
     
     for word in words:
-        unique_counts[word] = len(set(word))
-    
-    max_unique = max(unique_counts.values(), default=0)
-    
-    candidates = [word for word in unique_counts if unique_counts[word] == max_unique]
-    
-    return min(candidates) if candidates else ""
+        unique_chars = set(word)
+        unique_count = len(unique_chars)
+        
+        if (unique_count > max_unique_count) or (unique_count == max_unique_count and word < max_word):
+            max_word = word
+            max_unique_count = unique_count
+            
+    return max_word
 
 def check(candidate):
 

@@ -14,20 +14,20 @@ def find_max(words):
 from typing import List
 
 def find_max(words: List[str]) -> str:
-    max_word = ""
     max_unique_count = 0
-
+    max_word = ""
+    
     for word in words:
-        unique_chars = set(word)
-        unique_count = len(unique_chars)
-
+        # Count unique characters using a set
+        unique_count = len(set(word))
+        
         if unique_count > max_unique_count:
             max_unique_count = unique_count
             max_word = word
         elif unique_count == max_unique_count:
             if word < max_word:
                 max_word = word
-
+                
     return max_word
 
 def check(candidate):

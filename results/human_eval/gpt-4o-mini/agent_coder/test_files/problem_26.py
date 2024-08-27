@@ -17,21 +17,22 @@ def remove_duplicates(numbers: List[int]) -> List[int]:
     >>> remove_duplicates([1, 2, 3, 2, 4])
     [1, 3, 4]
     """
-    count = {}
     
-    # Count occurrences of each number
+    # Step 1: Count occurrences
+    count = {}
     for number in numbers:
         if number in count:
             count[number] += 1
         else:
             count[number] = 1
             
-    # Filter numbers that occur only once
+    # Step 2: Filter the list
     result = []
     for number in numbers:
         if count[number] == 1:
             result.append(number)
     
+    # Step 3: Return the result
     return result
 
 

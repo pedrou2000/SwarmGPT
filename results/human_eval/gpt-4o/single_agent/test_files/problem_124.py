@@ -23,39 +23,26 @@ def valid_date(date):
 
 def valid_date(date):
     import re
-    
-    # Check if the string is empty
+
+    # Check if the date string is empty
     if not date:
         return False
     
-    # Regex to match the date format mm-dd-yyyy
-    pattern = r'^(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])-(\d{4})$'
-    
-    if not re.match(pattern, date):
+    # Check if the date matches the format mm-dd-yyyy
+    match = re.match(r'^(0[1-9]|1[0-2])-([0-2][1-9]|3[01])-([0-9]{4})$', date)
+    if not match:
         return False
     
     month, day, year = map(int, date.split('-'))
     
-    # Check month range
-    if month < 1 or month > 12:
+    # Check the validity of the day based on the month
+    if month in {4, 6, 9, 11} and not (1 <= day <= 30):
         return False
-    
-    # Check day range based on the month
-    if month in {1, 3, 5, 7, 8, 10, 12}:
-        if day < 1 or day > 31:
-            return False
-    elif month in {4, 6, 9, 11}:
-        if day < 1 or day > 30:
-            return False
-    elif month == 2:
-        # Check for leap year
-        if (year % 4 == 0 and year % 100 != 0) or (year % 400 == 0):
-            if day < 1 or day > 29:
-                return False
-        else:
-            if day < 1 or day > 28:
-                return False
-    
+    elif month == 2 and not (1 <= day <= 29):
+        return False
+    elif month in {1, 3, 5, 7, 8, 10, 12} and not (1 <= day <= 31):
+        return False
+
     return True
 
 def check(candidate):

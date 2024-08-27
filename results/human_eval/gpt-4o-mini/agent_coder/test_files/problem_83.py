@@ -7,17 +7,15 @@ def starts_one_ends(n):
 
 
 def starts_one_ends(n):
-    """
-    Given a positive integer n, return the count of the numbers of n-digit
-    positive integers that start or end with 1.
-    """
     if n == 1:
-        return 1
-    else:
-        count_start_1 = 10 ** (n - 1)  # Numbers starting with 1
-        count_end_1 = 9 * 10 ** (n - 2)  # Numbers ending with 1
-        count_both = 10 ** (n - 2)  # Numbers starting and ending with 1
-        return count_start_1 + count_end_1 - count_both
+        return 1  # Only the number '1'
+    
+    count_starting_with_1 = 10 ** (n - 1)
+    count_ending_with_1 = 9 * (10 ** (n - 2))
+    
+    total_count = count_starting_with_1 + count_ending_with_1 - 1  # Subtract 1 to avoid double counting '11'
+    
+    return total_count
 
 def check(candidate):
 

@@ -36,21 +36,18 @@ def max_fill(grid, capacity):
     """
 
 
-from typing import List
 import math
+from typing import List
 
 def max_fill(grid: List[List[int]], capacity: int) -> int:
-    total_water_units = 0
+    total_lowers = 0
     
-    # Count total number of '1's in the grid
     for row in grid:
-        total_water_units += sum(row)
+        count_water = sum(row)  # Count the number of 1s in the row
+        lowers_needed = math.ceil(count_water / capacity)  # Calculate the lowers needed for this row
+        total_lowers += lowers_needed  # Add to total lowers
     
-    # Calculate the number of lowerings needed
-    # Use math.ceil to ensure we round up
-    lowerings = math.ceil(total_water_units / capacity)
-    
-    return lowerings
+    return total_lowers
 
 def check(candidate):
 

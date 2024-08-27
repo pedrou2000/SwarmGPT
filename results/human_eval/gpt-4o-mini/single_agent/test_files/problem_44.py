@@ -21,7 +21,7 @@ def change_base(x: int, base: int):
         digits.append(str(x % base))
         x //= base
     
-    return ''.join(reversed(digits))
+    return ''.join(digits[::-1])
 
 
 

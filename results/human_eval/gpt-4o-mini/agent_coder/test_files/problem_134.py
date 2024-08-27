@@ -15,23 +15,21 @@ def check_if_last_char_is_a_letter(txt):
 
 
 def check_if_last_char_is_a_letter(txt):
-    # Trim trailing spaces
-    trimmed_txt = txt.rstrip()
-    
-    # If the string is empty after trimming, return False
-    if not trimmed_txt:
+    trimmed_txt = txt.rstrip()  # Remove trailing spaces
+    if len(trimmed_txt) == 0:    # Check if the string is empty
         return False
-    
-    # Get the last character
-    last_char = trimmed_txt[-1]
-    
-    # Check if the last character is alphabetical
-    if last_char.isalpha():
-        # Check if it is not part of a word
-        if len(trimmed_txt) == 1 or not trimmed_txt[-2].isalpha():
-            return True
-    
-    return False
+
+    last_char = trimmed_txt[-1]  # Get the last character
+
+    # Check if the last character is an alphabetical character
+    if not last_char.isalpha():
+        return False
+
+    # Ensure that the last character is not preceded by a space
+    if len(trimmed_txt) > 1 and trimmed_txt[-2] == ' ':
+        return False
+
+    return True
 
 def check(candidate):
 

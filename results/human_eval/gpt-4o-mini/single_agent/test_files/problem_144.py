@@ -13,17 +13,15 @@ def simplify(x, n):
     """
 
 
-    from fractions import Fraction
+    numerator_x, denominator_x = map(int, x.split('/'))
+    numerator_n, denominator_n = map(int, n.split('/'))
 
-    # Convert the string fractions to Fraction objects
-    fraction_x = Fraction(x)
-    fraction_n = Fraction(n)
-
-    # Calculate the product
-    product = fraction_x * fraction_n
+    # Calculate the product of the two fractions
+    product_numerator = numerator_x * numerator_n
+    product_denominator = denominator_x * denominator_n
 
     # Check if the product is a whole number
-    return product.denominator == 1
+    return product_numerator % product_denominator == 0
 
 def check(candidate):
 

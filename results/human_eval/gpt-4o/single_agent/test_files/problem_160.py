@@ -26,10 +26,14 @@ def do_algebra(operator, operand):
     """
 
 
-def do_algebra(operator, operand):
+    # Initialize the expression with the first operand
     expression = str(operand[0])
+    
+    # Iterate through operators and corresponding operands
     for i in range(len(operator)):
-        expression += f" {operator[i]} {operand[i+1]}"
+        expression += operator[i] + str(operand[i + 1])
+    
+    # Evaluate the built expression
     return eval(expression)
 
 def check(candidate):

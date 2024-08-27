@@ -19,35 +19,26 @@ def tri(n):
 
 
 def tri(n):
-    """ Generate the first n + 1 numbers of the Tribonacci sequence. """
-    if n < 0:
-        return []
-    
-    tribonacci_sequence = []
-    
-    # Base cases for the Tribonacci sequence
+    """Generate the first n + 1 numbers of the Tribonacci sequence."""
+    result = []
+
+    # Base cases
     if n >= 0:
-        tribonacci_sequence.append(1)  # tri(0)
+        result.append(1)  # T(0)
     if n >= 1:
-        tribonacci_sequence.append(1)  # tri(1)
+        result.append(3)  # T(1)
     if n >= 2:
-        tribonacci_sequence.append(2)  # tri(2)
-
+        result.append(2)  # T(2)
+    
+    # Generate the rest of the Tribonacci numbers
     for i in range(3, n + 1):
-        # Each term is the sum of the three preceding terms
-        next_value = (tribonacci_sequence[i - 1] + 
-                      tribonacci_sequence[i - 2] + 
-                      tribonacci_sequence[i - 3])
-        tribonacci_sequence.append(next_value)
+        next_value = result[i - 1] + result[i - 2] + result[i - 3]
+        result.append(next_value)
 
-    return tribonacci_sequence[:n + 1]
+    return result
 
-# Test the function with examples
-print(tri(3))  # Output: [1, 1, 2, 4]
-print(tri(4))  # Output: [1, 1, 2, 4, 7]
-print(tri(5))  # Output: [1, 1, 2, 4, 7, 13]
-print(tri(6))  # Output: [1, 1, 2, 4, 7, 13, 24]
-print(tri(10)) # Output: [1, 1, 2, 4, 7, 13, 24, 44, 81, 149, 274]
+# Example usage
+print(tri(6))  # Should output the first 7 Tribonacci numbers
 
 def check(candidate):
 

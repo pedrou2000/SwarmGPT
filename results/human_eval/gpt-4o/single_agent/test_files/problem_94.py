@@ -15,8 +15,6 @@ def skjkasdkd(lst):
 
 
 def skjkasdkd(lst):
-    import math
-
     def is_prime(n):
         if n <= 1:
             return False
@@ -31,16 +29,15 @@ def skjkasdkd(lst):
             i += 6
         return True
 
-    max_prime = None
+    largest_prime = -1
     for num in lst:
-        if is_prime(num):
-            if max_prime is None or num > max_prime:
-                max_prime = num
+        if is_prime(num) and num > largest_prime:
+            largest_prime = num
 
-    if max_prime is None:
+    if largest_prime == -1:
         return 0
 
-    return sum(int(digit) for digit in str(max_prime))
+    return sum(int(digit) for digit in str(largest_prime))
 
 def check(candidate):
 

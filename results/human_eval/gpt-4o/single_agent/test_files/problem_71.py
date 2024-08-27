@@ -14,8 +14,9 @@ def triangle_area(a, b, c):
 
     # Check if the sides form a valid triangle
     if a + b > c and a + c > b and b + c > a:
-        # Using Heron's formula to calculate the area
+        # Calculate the semi-perimeter
         s = (a + b + c) / 2
+        # Use Heron's formula to calculate the area
         area = (s * (s - a) * (s - b) * (s - c)) ** 0.5
         return round(area, 2)
     else:

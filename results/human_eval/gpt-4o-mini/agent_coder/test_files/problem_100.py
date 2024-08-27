@@ -17,14 +17,16 @@ def make_a_pile(n):
 
 def make_a_pile(n):
     levels = []
-    current_stones = n
     
     for i in range(n):
-        levels.append(current_stones)
-        if current_stones % 2 == 0:
-            current_stones += 2  # next even number
+        if i == 0:
+            levels.append(n)
         else:
-            current_stones += 2  # next odd number
+            if levels[-1] % 2 == 1:  # Last level stones is odd
+                next_stone_count = levels[-1] + 2  # Next odd number
+            else:  # Last level stones is even
+                next_stone_count = levels[-1] + 2  # Next even number
+            levels.append(next_stone_count)
     
     return levels
 

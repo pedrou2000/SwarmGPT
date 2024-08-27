@@ -12,7 +12,17 @@ def encrypt(s):
     """
 
 
-    return ''.join(chr((ord(char) - ord('a') + 4) % 26 + ord('a')) if char.islower() else char for char in s)
+    encrypted = []
+    for char in s:
+        if char.isalpha():  # Check if the character is a letter
+            shift = 4  # Shift by 2 multiplied by 2
+            base = ord('a') if char.islower() else ord('A')
+            # Calculate the new character with wrapping around the alphabet
+            new_char = chr((ord(char) - base + shift) % 26 + base)
+            encrypted.append(new_char)
+        else:
+            encrypted.append(char)  # Non-alphabet characters remain unchanged
+    return ''.join(encrypted)
 
 def check(candidate):
 

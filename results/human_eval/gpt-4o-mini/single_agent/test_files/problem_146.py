@@ -9,14 +9,13 @@ def specialFilter(nums):
     """
 
 
-def specialFilter(nums):
-    def is_first_and_last_odd(n):
-        str_num = str(abs(n))  # Convert to string and take absolute value
+    def is_odd_digit(num):
+        str_num = str(abs(num))
         return int(str_num[0]) % 2 == 1 and int(str_num[-1]) % 2 == 1
 
     count = 0
     for num in nums:
-        if num > 10 and is_first_and_last_odd(num):
+        if num > 10 and is_odd_digit(num):
             count += 1
     return count
 

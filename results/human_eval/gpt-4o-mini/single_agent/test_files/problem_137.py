@@ -13,19 +13,18 @@ def compare_one(a, b):
     """
 
 
-def compare_one(a, b):
-    def parse_value(value):
-        if isinstance(value, str):
-            value = value.replace(',', '.')
-        return float(value) if isinstance(value, (str, int, float)) else None
+    def parse_number(num):
+        if isinstance(num, str):
+            num = num.replace(',', '.')
+        return float(num) if isinstance(num, (int, float, str)) else None
 
-    parsed_a = parse_value(a)
-    parsed_b = parse_value(b)
+    a_parsed = parse_number(a)
+    b_parsed = parse_number(b)
 
-    if parsed_a is None or parsed_b is None or parsed_a == parsed_b:
+    if a_parsed == b_parsed:
         return None
 
-    return a if parsed_a > parsed_b else b
+    return a if a_parsed > b_parsed else b
 
 def check(candidate):
 

@@ -19,11 +19,17 @@ def closest_integer(value):
     '''
 
 
-    value = float(value)
-    if value > 0:
-        return int(value + 0.5)
+    num = float(value)
+    lower_int = int(num)
+    upper_int = lower_int + 1
+
+    if abs(num - lower_int) < abs(num - upper_int):
+        return lower_int
+    elif abs(num - lower_int) > abs(num - upper_int):
+        return upper_int
     else:
-        return int(value - 0.5)
+        # If equidistant, round away from zero
+        return upper_int if num > 0 else lower_int
 
 def check(candidate):
 

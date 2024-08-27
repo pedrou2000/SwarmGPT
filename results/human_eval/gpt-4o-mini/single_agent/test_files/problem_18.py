@@ -13,14 +13,14 @@ def how_many_times(string: str, substring: str) -> int:
 
     count = 0
     start = 0
-
+    
     while True:
         start = string.find(substring, start)
         if start == -1:
             break
         count += 1
-        start += 1  # Move to the next character for overlapping cases
-
+        start += 1  # Move one character forward to count overlapping
+        
     return count
 
 

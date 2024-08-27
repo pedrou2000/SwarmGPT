@@ -20,14 +20,19 @@ def circular_shift(x, shift):
     "12"
     """
     str_x = str(x)  # Convert integer to string
-    length = len(str_x)  # Get the length of the string
+    n = len(str_x)  # Get the length of the string representation
 
-    if shift > length:  # If shift is greater than number of digits
-        return str_x[::-1]  # Return reversed string
+    if shift > n:
+        return str_x[::-1]  # Return the reversed string if shift is greater than length
     else:
-        effective_shift = shift % length  # Calculate effective shift
-        new_string = str_x[-effective_shift:] + str_x[:-effective_shift]  # Perform circular shift
-        return new_string  # Return the result
+        effective_shift = shift % n  # Calculate effective shift
+        return str_x[-effective_shift:] + str_x[:-effective_shift]  # Perform circular shift
+
+# Example usage (for testing)
+print(circular_shift(12, 1))  # Output: "21"
+print(circular_shift(12, 2))  # Output: "12"
+print(circular_shift(12345, 3))  # Output: "34512"
+print(circular_shift(12345, 7))  # Output: "54321"
 
 def check(candidate):
 

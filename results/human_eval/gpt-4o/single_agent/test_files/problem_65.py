@@ -10,15 +10,14 @@ def circular_shift(x, shift):
     """
 
 
-def circular_shift(x, shift):
-    digits = str(x)
-    length = len(digits)
+    x_str = str(x)
+    num_digits = len(x_str)
     
-    if shift >= length:
-        return digits[::-1]
+    if shift > num_digits:
+        return x_str[::-1]
     
-    shift = shift % length
-    return digits[-shift:] + digits[:-shift]
+    shift = shift % num_digits
+    return x_str[-shift:] + x_str[:-shift]
 
 def check(candidate):
 

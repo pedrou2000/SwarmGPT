@@ -13,15 +13,24 @@ def compare_one(a, b):
     """
 
 
-def compare_one(a, b):
-    def convert_to_float(value):
-        if isinstance(value, str):
-            value = value.replace(',', '.')
-        return float(value)
-    
-    if convert_to_float(a) == convert_to_float(b):
-        return None
-    return a if convert_to_float(a) > convert_to_float(b) else b
+    def compare_one(a, b):
+        def to_float(value):
+            if isinstance(value, str):
+                value = value.replace(",", ".")
+                return float(value)
+            return float(value)
+        
+        if a == b:
+            return None
+        
+        # Compare in original types if different types
+        if type(a) != type(b):
+            float_a = to_float(a)
+            float_b = to_float(b)
+            return a if float_a > float_b else b
+        
+        # Compare in native types if same type
+        return a if a > b else b
 
 def check(candidate):
 

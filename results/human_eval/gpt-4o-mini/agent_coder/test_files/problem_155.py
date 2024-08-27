@@ -15,19 +15,16 @@ def even_odd_count(num):
         even_odd_count(-12) ==> (1, 1)
         even_odd_count(123) ==> (1, 2)
     """
-    # Convert the number to string and remove the sign if negative
-    num_str = str(abs(num))
     even_count = 0
     odd_count = 0
     
-    # Iterate through each digit in the string representation
-    for char in num_str:
-        digit = int(char)  # Convert character back to integer
-        if digit % 2 == 0:  # Check if even
+    # Convert to absolute value and to string
+    for digit in str(abs(num)):
+        if int(digit) % 2 == 0:
             even_count += 1
-        else:  # Odd case
+        else:
             odd_count += 1
-            
+
     return (even_count, odd_count)
 
 def check(candidate):

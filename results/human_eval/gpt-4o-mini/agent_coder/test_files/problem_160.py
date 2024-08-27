@@ -27,16 +27,15 @@ def do_algebra(operator, operand):
 
 
 def do_algebra(operator, operand):
-    """ Given two lists operator, and operand, evaluate the algebraic expression. """
-    # Construct the expression as a string
-    expression = ''
-    for i in range(len(operand)):
-        expression += str(operand[i])  # Add the operand
-        if i < len(operator):  # Check to avoid index error
-            expression += operator[i]  # Add the operator
+    """ Given two lists operator and operand, evaluates the expression formed by them. """
+    expression = str(operand[0])  # Start with the first operand
     
-    # Evaluate the expression
+    for i in range(len(operator)):
+        expression += f" {operator[i]} {operand[i + 1]}"  # Append operator and next operand
+    
+    # Evaluate the expression safely
     result = eval(expression)
+    
     return result
 
 def check(candidate):

@@ -35,16 +35,16 @@ def prod_signs(arr: List[int]) -> Optional[int]:
 
     for number in arr:
         if number > 0:
-            product_of_signs *= 1
+            sign = 1
         elif number < 0:
-            product_of_signs *= -1
+            sign = -1
         else:
-            product_of_signs = 0
-            break  # no need to continue if we have a zero
+            sign = 0
 
+        product_of_signs *= sign
         sum_of_magnitudes += abs(number)
 
-    return sum_of_magnitudes * product_of_signs
+    return product_of_signs * sum_of_magnitudes
 
 def check(candidate):
 

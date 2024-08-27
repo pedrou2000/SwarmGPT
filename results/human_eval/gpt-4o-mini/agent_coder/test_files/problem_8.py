@@ -21,17 +21,17 @@ def sum_product(numbers: List[int]) -> Tuple[int, int]:
     >>> sum_product([1, 2, 3, 4])
     (10, 24)
     """
-    total_sum = 0
-    total_product = 1
-    
     if not numbers:  # Check if the list is empty
         return (0, 1)
     
-    for number in numbers:
-        total_sum += number
-        total_product *= number
+    sum_value = 0
+    product_value = 1
     
-    return (total_sum, total_product)
+    for number in numbers:
+        sum_value += number  # Calculate sum
+        product_value *= number  # Calculate product
+    
+    return (sum_value, product_value)  # Return the results as a tuple
 
 
 

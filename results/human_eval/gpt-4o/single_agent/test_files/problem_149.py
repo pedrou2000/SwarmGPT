@@ -17,13 +17,17 @@ def sorted_list_sum(lst):
 
 
 def sorted_list_sum(lst):
-    # Remove strings with odd lengths
-    filtered_lst = [s for s in lst if len(s) % 2 == 0]
+    # Filter out strings with odd lengths
+    even_length_strings = [s for s in lst if len(s) % 2 == 0]
     
-    # Sort the remaining strings first by length, then alphabetically
-    sorted_lst = sorted(filtered_lst, key=lambda x: (len(x), x))
+    # Sort the list by length first, then alphabetically
+    sorted_list = sorted(even_length_strings, key=lambda x: (len(x), x))
     
-    return sorted_lst
+    return sorted_list
+
+# Example usage:
+# assert sorted_list_sum(["aa", "a", "aaa"]) == ["aa"]
+# assert sorted_list_sum(["ab", "a", "aaa", "cd"]) == ["ab", "cd"]
 
 def check(candidate):
 

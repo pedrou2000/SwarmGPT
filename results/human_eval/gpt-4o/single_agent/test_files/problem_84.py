@@ -15,10 +15,13 @@ def solve(N):
     """
 
 
-    # Calculate the sum of the digits of N
-    digit_sum = sum(int(digit) for digit in str(N))
+    # Convert N to a string to iterate through its digits
+    digits = str(N)
     
-    # Convert the sum to binary and return as a string
+    # Sum the digits
+    digit_sum = sum(int(digit) for digit in digits)
+    
+    # Convert the sum to a binary string and return it
     return bin(digit_sum)[2:]
 
 def check(candidate):

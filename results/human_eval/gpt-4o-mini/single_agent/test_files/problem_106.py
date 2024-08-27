@@ -10,16 +10,17 @@ def f(n):
     """
 
 
-def f(n):
-    from math import factorial
-    
     result = []
     for i in range(1, n + 1):
         if i % 2 == 0:
-            result.append(factorial(i))
+            # Calculate factorial for even indices
+            factorial = 1
+            for j in range(1, i + 1):
+                factorial *= j
+            result.append(factorial)
         else:
+            # Calculate sum from 1 to i for odd indices
             result.append(sum(range(1, i + 1)))
-    
     return result
 
 def check(candidate):

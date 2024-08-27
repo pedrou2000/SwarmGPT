@@ -12,17 +12,39 @@ def cycpattern_check(a , b):
 
 
 def cycpattern_check(a, b):
-    """You are given 2 words. You need to return True if the second word or any of its rotations is a substring in the first word."""
+    """Check if the second word or any of its rotations is a substring in the first word.
     
-    # Check if the length of b is greater than a, if so return False
-    if len(b) > len(a):
-        return False
+    Args:
+    a (str): The first word.
+    b (str): The second word.
     
-    # Concatenate b with itself to generate all rotations
-    concatenated = b + b
+    Returns:
+    bool: True if any rotation of b is a substring of a, otherwise False.
     
-    # Check if a contains b as a substring in the concatenated string
-    return a in concatenated
+    Examples:
+    >>> cycpattern_check("abcd", "abd")
+    False
+    >>> cycpattern_check("hello", "ell")
+    True
+    >>> cycpattern_check("whassup", "psus")
+    False
+    >>> cycpattern_check("abab", "baa")
+    True
+    >>> cycpattern_check("efef", "eeff")
+    False
+    >>> cycpattern_check("himenss", "simen")
+    True
+    """
+    b_rotated = b + b
+    return any(rotation in a for rotation in (b_rotated[i:i+len(b)] for i in range(len(b))))
+
+# Test examples
+print(cycpattern_check("abcd", "abd"))  # False
+print(cycpattern_check("hello", "ell"))  # True
+print(cycpattern_check("whassup", "psus"))  # False
+print(cycpattern_check("abab", "baa"))  # True
+print(cycpattern_check("efef", "eeff"))  # False
+print(cycpattern_check("himenss", "simen"))  # True
 
 def check(candidate):
 

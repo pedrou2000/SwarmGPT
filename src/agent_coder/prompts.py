@@ -7,6 +7,14 @@ with open("AgentCoder/prompts/test_designer_humaneval_prompt_update.txt", "r") a
 with open("AgentCoder/prompts/humaneval_prompt_update.txt", "r") as file:
     AgentCoder_system = file.read()
 
+SINGLE_AGENT = { 
+    "system_prompt": """ 
+        You are an expert software engineer. You are asked to write code to solve a problem 
+        which involves creating a Python method to solve a problem indicated as the comments of the method. 
+        You should only output the completition of the method, not the entire file.
+    """
+}
+
 
 AGENT_CODER = {
     "AgentTestGenerator": {

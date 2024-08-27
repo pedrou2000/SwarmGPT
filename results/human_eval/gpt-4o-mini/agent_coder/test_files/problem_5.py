@@ -12,23 +12,25 @@ def intersperse(numbers: List[int], delimeter: int) -> List[int]:
 
 from typing import List
 
-def intersperse(numbers: List[int], delimiter: int) -> List[int]:
-    """ Insert a number 'delimiter' between every two consecutive elements of input list `numbers'
+def intersperse(numbers: List[int], delimeter: int) -> List[int]:
+    """ Insert a number 'delimeter' between every two consecutive elements of input list `numbers'
     >>> intersperse([], 4)
     []
     >>> intersperse([1, 2, 3], 4)
     [1, 4, 2, 4, 3]
     """
+    
     if not numbers:  # Check if the list is empty
         return []
     
-    result = []
-    for i in range(len(numbers)):
-        result.append(numbers[i])  # Add the current number
-        if i < len(numbers) - 1:   # If it's not the last number
-            result.append(delimiter)  # Add the delimiter
-
-    return result
+    result = []  # Initialize an empty result list
+    
+    for i in range(len(numbers)):  # Iterate through the list
+        result.append(numbers[i])  # Add the current number to result
+        if i < len(numbers) - 1:  # If not the last element
+            result.append(delimeter)  # Add the delimiter
+    
+    return result  # Return the final result
 
 
 

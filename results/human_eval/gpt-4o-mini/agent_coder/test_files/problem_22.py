@@ -18,10 +18,12 @@ def filter_integers(values: List[Any]) -> List[int]:
     [5]
     >>> filter_integers([1, 2, 3, 'abc', {}, []])
     [1, 2, 3]
+    >>> filter_integers([0, -1, 'test', None, 2.5])
+    [0, -1]
     """
     result = []
     for value in values:
-        if isinstance(value, int):  # Check if the value is an integer
+        if isinstance(value, int):  # This line is already correct
             result.append(value)
     return result
 

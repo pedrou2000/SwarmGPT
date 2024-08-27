@@ -17,18 +17,22 @@ def median(l: list):
     15.0
     """
     # Step 1: Sort the list
-    sorted_list = sorted(l)
+    l_sorted = sorted(l)
     
-    # Step 2: Determine the length of the list
-    n = len(sorted_list)
+    # Step 2: Find the length of the list
+    n = len(l_sorted)
     
-    # Step 3: Calculate and return the median
+    # Step 3: Calculate the median
     if n % 2 == 1:  # If odd
-        return sorted_list[n // 2]
+        return l_sorted[n // 2]
     else:  # If even
-        mid1 = sorted_list[n // 2 - 1]
-        mid2 = sorted_list[n // 2]
-        return (mid1 + mid2) / 2.0
+        mid1 = l_sorted[n // 2 - 1]
+        mid2 = l_sorted[n // 2]
+        return (mid1 + mid2) / 2
+
+# Example usage
+print(median([3, 1, 2, 4, 5]))  # Output: 3
+print(median([-10, 4, 6, 1000, 10, 20]))  # Output: 15.0
 
 
 

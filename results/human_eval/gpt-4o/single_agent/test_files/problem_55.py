@@ -20,15 +20,16 @@ def fib(n: int):
     >>> fib(8)
     21
     """
-    if n == 0:
-        return 0
+    if n <= 0:
+        raise ValueError("n must be a positive integer")
     elif n == 1:
         return 1
-    else:
-        a, b = 0, 1
-        for _ in range(2, n + 1):
-            a, b = b, a + b
-        return b
+    elif n == 2:
+        return 1
+    a, b = 1, 1
+    for _ in range(2, n):
+        a, b = b, a + b
+    return b
 
 
 

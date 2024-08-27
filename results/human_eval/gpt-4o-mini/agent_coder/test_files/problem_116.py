@@ -13,13 +13,22 @@ def sort_array(arr):
 
 
 def sort_array(arr):
-    """Sort an array of non-negative integers based on the number of ones in their binary representation."""
-    return sorted(arr, key=lambda x: (bin(x).count('1'), x))
+    """
+    In this Kata, you have to sort an array of integers according to
+    the number of ones in their binary representation in ascending order.
+    For similar number of ones, sort based on decimal value.
+
+    >>> sort_array([1, 5, 2, 3, 4]) == [1, 2, 3, 4, 5]
+    >>> sort_array([-2, -3, -4, -5, -6]) == [-6, -5, -4, -3, -2]
+    >>> sort_array([1, 0, 2, 3, 4]) == [0, 1, 2, 3, 4]
+    """
+    # Sort by number of ones in binary representation, then by value
+    return sorted(arr, key=lambda x: (bin(abs(x)).count('1'), x))
 
 # Example usage:
 print(sort_array([1, 5, 2, 3, 4]))  # Output: [1, 2, 3, 4, 5]
-print(sort_array([0, 1, 2, 3, 4]))  # Output: [0, 1, 2, 3, 4]
-print(sort_array([3, 5, 7, 9, 11])) # Output: [3, 5, 9, 7, 11]
+print(sort_array([-2, -3, -4, -5, -6]))  # Output: [-6, -5, -4, -3, -2]
+print(sort_array([1, 0, 2, 3, 4]))  # Output: [0, 1, 2, 3, 4]
 
 def check(candidate):
 

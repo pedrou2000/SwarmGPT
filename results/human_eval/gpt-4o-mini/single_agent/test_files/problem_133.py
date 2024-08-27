@@ -15,9 +15,7 @@ def sum_squares(lst):
     """
 
 
-    import math
-
-    return sum(math.ceil(x) ** 2 for x in lst)
+    return sum((int(num) + (num % 1 > 0)) ** 2 for num in lst)
 
 def check(candidate):
 

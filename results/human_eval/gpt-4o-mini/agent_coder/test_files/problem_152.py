@@ -19,7 +19,15 @@ def compare(game,guess):
 from typing import List
 
 def compare(game: List[int], guess: List[int]) -> List[int]:
-    """ Compare the actual scores of games with the guesses and return the differences.
+    """Compares the actual game scores with the guessed scores.
+    
+    Args:
+    game: List of actual scores.
+    guess: List of guessed scores.
+    
+    Returns:
+    A list of absolute differences or zeroes.
+    
     >>> compare([1,2,3,4,5,1],[1,2,3,4,2,-2])
     [0, 0, 0, 0, 3, 3]
     >>> compare([0,5,0,0,0,4],[4,1,1,0,0,-2])
@@ -27,9 +35,10 @@ def compare(game: List[int], guess: List[int]) -> List[int]:
     """
     result = []
     for i in range(len(game)):
-        difference = abs(game[i] - guess[i])
-        result.append(difference)
-    
+        if guess[i] == game[i]:
+            result.append(0)
+        else:
+            result.append(abs(guess[i] - game[i]))
     return result
 
 def check(candidate):

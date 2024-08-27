@@ -7,19 +7,21 @@ from langgraph.graph import StateGraph, END
 
 from data_classes.MACMState import MACMState
 from langgraphs.macm import get_macm_graph
+from langgraphs.macm_tests import get_macm_tests_graph
 from llm_agents.AgentMetaMACMController import AgentMetaMACMController
 from llm_agents.AgentIndividualMathSolver import AgentIndividualMathSolver
+from llm_agents.AgentSolutionEvaluator import AgentSolutionEvaluator
 
 def router(state: MACMState):
-    if state.current_meta_iterations == state.n_macm_iterations:
-        if not state.macm_completed:
-            state.macm_completed = True
+    if state.current_meta_iterations == state.n_multi_agent_iterations:
+        if not state.multi_agent_completed:
+            state.multi_agent_completed = True
             response = "SingleAgentContinue"
         else:
             response = "MetaMACMComplete"
 
     else:
-        if not state.macm_completed:
+        if not state.multi_agent_completed:
             response = "MACMContinue"
         else:
             response = "SingleAgentContinue"
@@ -28,22 +30,28 @@ def router(state: MACMState):
 def get_meta_macm_graph():
     graph = StateGraph(MACMState)
 
+    graph.add_node("Tests Generation", get_macm_tests_graph().compile())
     graph.add_node("MACM", get_macm_graph().compile())
     graph.add_node("AgentIndividualMathSolver", AgentIndividualMathSolver())
     graph.add_node("AgentMetaMACMController", AgentMetaMACMController())
+    graph.add_node("Solution Evaluator", AgentSolutionEvaluator())
 
-    graph.set_entry_point("MACM")
-    graph.add_edge("MACM", "AgentMetaMACMController")
-    graph.add_edge("AgentIndividualMathSolver", "AgentMetaMACMController")
+    graph.set_entry_point("Tests Generation")
+    graph.add_edge("Tests Generation", "AgentMetaMACMController")
     graph.add_conditional_edges(
         "AgentMetaMACMController",
         router,
         {
-            "MetaMACMComplete": END,
+            "MetaMACMComplete": "Solution Evaluator",
             "MACMContinue": "MACM",
             "SingleAgentContinue": "AgentIndividualMathSolver"
         }
     )
+
+    graph.add_edge("MACM", "AgentMetaMACMController")
+    graph.add_edge("AgentIndividualMathSolver", "AgentMetaMACMController")
+
+    graph.add_edge("Solution Evaluator", END)
 
     return graph
 

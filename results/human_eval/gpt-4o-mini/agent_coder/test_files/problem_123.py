@@ -18,24 +18,24 @@ def get_odd_collatz(n):
     """
 
 
-def get_odd_collatz(n):
-    """ Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence.
-    >>> get_odd_collatz(5)
-    [1, 5]
-    """
+from typing import List
+
+def get_odd_collatz(n: int) -> List[int]:
+    """ Given a positive integer n, return a sorted list that has the odd numbers in collatz sequence. """
     odd_numbers = []
-    current_number = n
+    current = n
     
-    while current_number != 1:
-        if current_number % 2 == 1:  # Check if current_number is odd
-            odd_numbers.append(current_number)
-        if current_number % 2 == 0:  # If even, halve it
-            current_number //= 2
-        else:  # If odd, apply the 3n + 1 rule
-            current_number = 3 * current_number + 1
+    while current != 1:
+        if current % 2 == 1:  # current is odd
+            odd_numbers.append(current)
+        if current % 2 == 0:  # current is even
+            current //= 2
+        else:  # current is odd
+            current = 3 * current + 1
     
-    odd_numbers.append(1)  # Include the last term 1
-    odd_numbers.sort()  # Sort the list of odd numbers
+    odd_numbers.append(1)  # 1 is included in the sequence
+    odd_numbers.sort()  # sort the list of odd numbers
+    
     return odd_numbers
 
 def check(candidate):

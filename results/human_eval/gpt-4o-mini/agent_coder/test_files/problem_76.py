@@ -14,21 +14,25 @@ def is_simple_power(x, n):
 
 
 def is_simple_power(x, n):
-    """Returns true if x is a simple power of n, false otherwise."""
+    """Return true if x is a simple power of n."""
     
-    if n == 0 or n == 1:
+    # Special case for n = 1
+    if n == 1:
         return x == 1
-    if x == 1:
-        return True
+    
+    # Special case for n <= 0
+    if n <= 0:
+        return False
     
     k = 0
-    while True:
-        power = n ** k
+    power = 1  # this is n^k for k=0
+    while power <= x:
         if power == x:
             return True
-        if power > x:
-            return False
         k += 1
+        power = n ** k  # calculate n^k
+    
+    return False
 
 def check(candidate):
 

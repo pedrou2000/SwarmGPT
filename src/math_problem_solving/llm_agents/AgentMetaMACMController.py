@@ -19,21 +19,25 @@ class AgentMetaMACMController():
         state.objectives = []
         state.steps = []
         state.final_answer = None
+        state.current_iterations = 0
         return state
 
     def __call__(self, state: MACMState) -> Any:
-        print("\n\n\nIn AgentMetaMACMController at iteration ", state.current_meta_iterations+1, "\n\n\n")
+        print("\nIn AgentMetaMACMController at iteration ", state.current_meta_iterations+1, "\n")
 
-        state.current_meta_iterations += 1
-        if state.current_meta_iterations == state.n_macm_iterations:
-            if not state.macm_completed:
-                state.macm_completed = True
-                state.current_meta_iterations = 0
+
+        if hasattr(state, "final_answer"):
+            state.current_meta_iterations += 1
+
+            if state.final_answer in state.final_answers:
+                state.final_answers[state.final_answer] += 1
+            else:
+                state.final_answers[state.final_answer] = 1
         
-        if state.final_answer in state.final_answers:
-            state.final_answers[state.final_answer] += 1
-        else:
-            state.final_answers[state.final_answer] = 1
+        if state.current_meta_iterations == state.n_multi_agent_iterations:
+            if not state.multi_agent_completed:
+                state.multi_agent_completed = True
+                state.current_meta_iterations = 0
 
         # Clean the state
         state = self.clean_state(state)

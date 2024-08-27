@@ -12,14 +12,12 @@ def reverse_delete(s,c):
     """
 
 
-def reverse_delete(s, c):
-    # Remove characters from s that are present in c
+    # Remove characters in c from s
     result = ''.join(char for char in s if char not in c)
     
-    # Check if the resulting string is a palindrome
+    # Check if the result string is a palindrome
     is_palindrome = result == result[::-1]
     
-    # Return the result string and the palindrome check result
     return (result, is_palindrome)
 
 def check(candidate):

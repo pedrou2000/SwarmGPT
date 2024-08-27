@@ -16,8 +16,7 @@ def split_words(txt):
     elif ',' in txt:
         return txt.split(',')
     else:
-        odd_count = sum(1 for char in txt if 'a' <= char <= 'z' and (ord(char) - ord('a')) % 2 == 0)
-        return odd_count
+        return sum(1 for char in txt if char.islower() and (ord(char) - ord('a')) % 2 != 0)
 
 def check(candidate):
 

@@ -25,30 +25,30 @@ def file_name_check(file_name):
     - The substring before the dot should not be empty, and it starts with a letter from 
     the latin alphapet ('a'-'z' and 'A'-'Z').
     - The substring after the dot should be one of these: ['txt', 'exe', 'dll']
-    Examples:
-    file_name_check("example.txt") # => 'Yes'
-    file_name_check("1example.dll") # => 'No' (the name should start with a latin alphapet letter)
     """
-    
-    # Count digits
-    digit_count = sum(c.isdigit() for c in file_name)
-    if digit_count > 3:
-        return 'No'
     
     # Check for exactly one dot
     if file_name.count('.') != 1:
         return 'No'
     
-    # Split into name and extension
+    # Split the file name into name and extension
     name, extension = file_name.split('.')
     
-    # Check if name is empty and starts with a letter
-    if len(name) == 0 or not name[0].isalpha():
+    # Check if the name is empty
+    if not name:
         return 'No'
     
-    # Allowed extensions
-    allowed_extensions = ['txt', 'exe', 'dll']
-    if extension not in allowed_extensions:
+    # Check if the first character of the name is a letter
+    if not name[0].isalpha():
+        return 'No'
+    
+    # Check if the extension is valid
+    if extension not in ['txt', 'exe', 'dll']:
+        return 'No'
+    
+    # Count the digits in the file name
+    digit_count = sum(c.isdigit() for c in file_name)
+    if digit_count > 3:
         return 'No'
     
     return 'Yes'

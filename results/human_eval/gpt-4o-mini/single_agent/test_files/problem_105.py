@@ -27,27 +27,22 @@ def by_length(arr):
     if not arr:
         return []
     
-    # Filter and sort the numbers between 1 and 9
-    filtered_sorted = sorted(num for num in arr if 1 <= num <= 9)
+    # Filter and sort the array
+    filtered_sorted = sorted([x for x in arr if 1 <= x <= 9])
     
     # Reverse the sorted array
     reversed_arr = filtered_sorted[::-1]
     
-    # Mapping of digits to their names
+    # Mapping from digit to its name
     digit_to_name = {
-        1: "One", 
-        2: "Two", 
-        3: "Three", 
-        4: "Four", 
-        5: "Five", 
-        6: "Six", 
-        7: "Seven", 
-        8: "Eight", 
-        9: "Nine"
+        1: "One", 2: "Two", 3: "Three", 4: "Four", 
+        5: "Five", 6: "Six", 7: "Seven", 8: "Eight", 9: "Nine"
     }
     
-    # Replace digits by their corresponding names
-    return [digit_to_name[num] for num in reversed_arr]
+    # Replace digits with their corresponding names
+    result = [digit_to_name[x] for x in reversed_arr]
+    
+    return result
 
 def check(candidate):
 

@@ -14,17 +14,17 @@ def simplify(x, n):
 
 
 def simplify(x, n):
-    from fractions import Fraction
-    
-    # Convert string fractions to Fraction objects
-    x_frac = Fraction(x)
-    n_frac = Fraction(n)
-    
-    # Multiply the fractions
-    result = x_frac * n_frac
-    
-    # Check if the result is a whole number
-    return result.denominator == 1
+    def parse_fraction(fraction):
+        numerator, denominator = map(int, fraction.split('/'))
+        return numerator, denominator
+
+    x_num, x_den = parse_fraction(x)
+    n_num, n_den = parse_fraction(n)
+
+    result_num = x_num * n_num
+    result_den = x_den * n_den
+
+    return result_num % result_den == 0
 
 def check(candidate):
 

@@ -13,17 +13,12 @@ def change_base(x: int, base: int):
     """
 
 
-    if base < 2 or base > 10:
-        raise ValueError("Base must be between 2 and 10, inclusive.")
-    
     if x == 0:
-        return '0'
-    
+        return "0"
     digits = []
-    while x:
+    while x > 0:
         digits.append(str(x % base))
         x = x // base
-        
     return ''.join(digits[::-1])
 
 

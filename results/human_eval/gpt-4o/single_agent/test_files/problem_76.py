@@ -15,12 +15,12 @@ def is_simple_power(x, n):
 
     if x == 1:
         return True
-    power = 1
-    result = n
-    while result < x:
-        result *= n
-        power += 1
-    return result == x
+    power = n
+    while power <= x:
+        if power == x:
+            return True
+        power *= n
+    return False
 
 def check(candidate):
 

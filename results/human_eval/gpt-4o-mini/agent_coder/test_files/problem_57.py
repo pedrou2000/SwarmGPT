@@ -20,23 +20,19 @@ def monotonic(l: list) -> bool:
     >>> monotonic([4, 1, 0, -10])
     True
     """
-    if len(l) < 2:  # A list with 0 or 1 element is trivially monotonic
+    if len(l) < 2:
         return True
-    
-    increasing = True
-    decreasing = True
-    
+
+    is_increasing = True
+    is_decreasing = True
+
     for i in range(len(l) - 1):
         if l[i] < l[i + 1]:
-            decreasing = False
+            is_decreasing = False
         elif l[i] > l[i + 1]:
-            increasing = False
-        
-        # Early exit if both are false
-        if not increasing and not decreasing:
-            return False
-            
-    return increasing or decreasing
+            is_increasing = False
+
+    return is_increasing or is_decreasing
 
 
 

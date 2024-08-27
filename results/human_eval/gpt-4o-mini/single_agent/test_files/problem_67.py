@@ -14,14 +14,9 @@ def fruit_distribution(s,n):
     """
 
 
-    # Extract the number of apples and oranges from the string
-    parts = s.split()
-    apples = int(parts[0])  # First part is the number of apples
-    oranges = int(parts[3])  # Fourth part is the number of oranges
-    
-    # Calculate the number of mangoes
-    mangoes = n - apples - oranges
-    return mangoes
+    apples = int(s.split()[0])  # Extract number of apples from the string
+    oranges = int(s.split()[3])  # Extract number of oranges from the string
+    return n - apples - oranges  # Calculate and return the number of mangoes
 
 def check(candidate):
 

@@ -13,7 +13,7 @@ def triangle_area(a, b, c):
 
 
     if a + b > c and a + c > b and b + c > a:
-        s = (a + b + c) / 2  # semi-perimeter
+        s = (a + b + c) / 2  # Semi-perimeter
         area = (s * (s - a) * (s - b) * (s - c)) ** 0.5  # Heron's formula
         return round(area, 2)
     else:

@@ -28,7 +28,7 @@ def sum_to_n(n: int) -> int:
     >>> sum_to_n(1)
     1
     """
-    return (n * (n + 1)) // 2  # Using integer division for correctness with integers
+    return (n * (n + 1)) // 2  # Using integer division for correctness
 
 
 

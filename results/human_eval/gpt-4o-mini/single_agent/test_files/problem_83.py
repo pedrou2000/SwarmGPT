@@ -7,18 +7,19 @@ def starts_one_ends(n):
 
 
     if n == 1:
-        return 2  # '1' and '1' (the only one-digit number is 1)
+        return 2  # The numbers are 1 and 1 (only one digit, both start and end with 1)
     
-    # Count of n-digit numbers starting with 1
-    start_with_1 = 10 ** (n - 1)  # 1xxxx... (n-1 zeros)
+    # Count of n-digit numbers that start with 1
+    start_with_1 = 10**(n-1)  # The first digit is 1, the rest (n-1) digits can be 0-9
     
-    # Count of n-digit numbers ending with 1
-    end_with_1 = 9 * (10 ** (n - 2))  # 1 to 9 for the first digit and 0-9 for the rest
+    # Count of n-digit numbers that end with 1
+    end_with_1 = 9 * (10**(n-1))  # The last digit is 1, the first digit can be 1-9, the rest (n-2) can be 0-9
     
-    # Total count of n-digit numbers that start or end with 1
-    total_count = start_with_1 + end_with_1
+    # Count of n-digit numbers that both start and end with 1
+    start_and_end_with_1 = 10**(n-2)  # The first digit is 1, the last digit is 1, the rest (n-2) digits can be 0-9
     
-    return total_count
+    # Total count is the sum of both counts minus the intersection (to avoid double counting)
+    return start_with_1 + end_with_1 - start_and_end_with_1
 
 def check(candidate):
 

@@ -9,26 +9,17 @@ def is_multiply_prime(a):
     """
 
 
-from itertools import combinations_with_replacement
+from itertools import product
 
 def is_multiply_prime(a):
-    """Write a function that returns true if the given number is the multiplication of 3 prime numbers
-    and false otherwise.
-    Knowing that (a) is less than 100.
-    Example:
-    is_multiply_prime(30) == True
-    30 = 2 * 3 * 5
-    """
+    """Check if the number is the product of 3 prime numbers."""
+    primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
     
-    # List of prime numbers less than 100
-    primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 
-              47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
-    
-    # Check all combinations of 3 prime numbers with replacement
-    for p1, p2, p3 in combinations_with_replacement(primes, 3):
+    # Check all combinations of three primes
+    for p1, p2, p3 in product(primes, repeat=3):
         if p1 * p2 * p3 == a:
             return True
-    
+            
     return False
 
 def check(candidate):

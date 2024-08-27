@@ -11,10 +11,9 @@ def string_to_md5(text):
 import hashlib
 
 def string_to_md5(text):
-    if text == "":
+    if not text:
         return None
-    md5_hash = hashlib.md5()
-    md5_hash.update(text.encode('utf-8'))
+    md5_hash = hashlib.md5(text.encode())
     return md5_hash.hexdigest()
 
 def check(candidate):

@@ -15,16 +15,16 @@ def triangle_area(a, b, c):
 import math
 
 def triangle_area(a, b, c):
-    # Check if the sides form a valid triangle
-    if (a + b > c) and (a + c > b) and (b + c > a):
-        # Calculate the semi-perimeter
+    ''' 
+    Given the lengths of the three sides of a triangle. Return the area of
+    the triangle rounded to 2 decimal points if the three sides form a valid triangle. 
+    Otherwise return -1
+    '''
+    if (a + b > c) and (a + c > b) and (b + c > a) and (a > 0 and b > 0 and c > 0):
         s = (a + b + c) / 2
-        # Calculate the area using Heron's formula
         area = math.sqrt(s * (s - a) * (s - b) * (s - c))
-        # Return the area rounded to 2 decimal points
-        return round(area, 2)
+        return f"{area:.2f}"  # Format the area to 2 decimal places as a string
     else:
-        # Return -1 if it's not a valid triangle
         return -1
 
 def check(candidate):

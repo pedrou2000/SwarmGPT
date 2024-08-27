@@ -13,7 +13,7 @@ def odd_count(lst):
     """
 
 
-    return [f"the number of odd elements {sum(1 for char in s if char in '13579')}n the str{sum(1 for char in s if char in '13579')}ng {sum(1 for char in s if char in '13579')} of the {sum(1 for char in s if char in '13579')}nput." for s in lst]
+    return [f"the number of odd elements {sum(1 for char in s if int(char) % 2 != 0)}n the str{sum(1 for char in s if int(char) % 2 != 0)}ng {sum(1 for char in s if int(char) % 2 != 0)} of the {sum(1 for char in s if int(char) % 2 != 0)}nput." for s in lst]
 
 def check(candidate):
 

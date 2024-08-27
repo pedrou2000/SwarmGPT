@@ -21,10 +21,16 @@ class MACMState():
 
     # Meta State
     final_answers: Annotated[dict, Field(description="Final answers to the math problems")]
-    n_macm_iterations: Annotated[int, Field(description="Number of MACM iterations run")]
+    n_multi_agent_iterations: Annotated[int, Field(description="Number of MACM iterations run")]
     n_single_agent_iterations: Annotated[int, Field(description="Number of single agent iterations run")]
     current_meta_iterations: Annotated[int, Field(description="Current MACM iteration number")]
-    macm_completed: Annotated[bool, Field(description="Flag to indicate if the MACM part of the algorithm has been completed")]
+    multi_agent_completed: Annotated[bool, Field(description="Flag to indicate if the MACM part of the algorithm has been completed")]
+
+    # Test Generation
+    generated_tests: Annotated[str, Field(description="Generated tests for the math problem")] 
+    feedback: Annotated[str, Field(description="Feedback on how to fix the tests")]
+    passed_tests_threshold: Annotated[float, Field(description="Threshold for passing the tests of the tests")]
+    tests_passed: Annotated[bool, Field(description="Flag to indicate if the tests are considered correct")]
 
     def __init__(
             self, 
@@ -37,10 +43,14 @@ class MACMState():
             steps: Optional[List[str]] = None,
             final_answer: Optional[str] = None,
             final_answers: Optional[dict] = None,
-            n_macm_iterations: Optional[int] = None,
+            n_multi_agent_iterations: Optional[int] = None,
             n_single_agent_iterations: Optional[int] = None,
             current_meta_iterations: Optional[int] = None, 
-            macm_completed: Optional[bool] = False
+            multi_agent_completed: Optional[bool] = False,
+            generated_tests: Optional[str] = None,
+            feedback: Optional[str] = None, 
+            passed_tests_threshold: Optional[float] = None,
+            tests_passed: Optional[bool] = None,
         ):
         if math_problem is not None:
             self.math_problem = math_problem
@@ -60,14 +70,22 @@ class MACMState():
             self.final_answer = final_answer
         if final_answers is not None:
             self.final_answers = final_answers
-        if n_macm_iterations is not None:
-            self.n_macm_iterations = n_macm_iterations
+        if n_multi_agent_iterations is not None:
+            self.n_multi_agent_iterations = n_multi_agent_iterations
         if n_single_agent_iterations is not None:
             self.n_single_agent_iterations = n_single_agent_iterations
         if current_meta_iterations is not None:
             self.current_meta_iterations = current_meta_iterations
-        if macm_completed is not None:
-            self.macm_completed = macm_completed
+        if multi_agent_completed is not None:
+            self.multi_agent_completed = multi_agent_completed
+        if generated_tests is not None:
+            self.generated_tests = generated_tests
+        if feedback is not None:
+            self.feedback = feedback
+        if passed_tests_threshold is not None:
+            self.passed_tests_threshold = passed_tests_threshold
+        if tests_passed is not None:
+            self.tests_passed = tests_passed
     
     def __str__(self) -> str:
         return f"MACM State with math problem: {self.math_problem}"

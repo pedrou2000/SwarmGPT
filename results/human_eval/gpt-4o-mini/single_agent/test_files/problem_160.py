@@ -26,10 +26,19 @@ def do_algebra(operator, operand):
     """
 
 
-    expression = str(operand[0])
-    for op, num in zip(operator, operand[1:]):
-        expression += f" {op} {num}"
-    return eval(expression)
+    result = operand[0]
+    for i in range(len(operator)):
+        if operator[i] == '+':
+            result += operand[i + 1]
+        elif operator[i] == '-':
+            result -= operand[i + 1]
+        elif operator[i] == '*':
+            result *= operand[i + 1]
+        elif operator[i] == '//':
+            result //= operand[i + 1]
+        elif operator[i] == '**':
+            result **= operand[i + 1]
+    return result
 
 def check(candidate):
 

@@ -17,19 +17,15 @@ def encode(message):
 
     vowels = 'aeiouAEIOU'
     encoded_message = []
-    
+
     for char in message:
         if char.isalpha():
             # Swap case
             if char in vowels:
-                # Replace vowel with the letter that appears 2 places ahead
-                if char.islower():
-                    new_char = chr((ord(char) - ord('a') + 2) % 26 + ord('a'))
-                else:
-                    new_char = chr((ord(char) - ord('A') + 2) % 26 + ord('A'))
-                encoded_message.append(new_char)
+                # Replace vowel with the letter 2 places ahead
+                next_char = chr(ord(char) + 2)
+                encoded_message.append(next_char.swapcase())
             else:
-                # Just swap case for consonants
                 encoded_message.append(char.swapcase())
         else:
             encoded_message.append(char)

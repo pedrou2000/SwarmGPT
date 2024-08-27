@@ -31,42 +31,45 @@ def minPath(grid, k):
     """
 
 
-    from heapq import heappop, heappush
-    from collections import deque
+from heapq import heappop, heappush
 
-    def minPath(grid, k):
-        N = len(grid)
-        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+def minPath(grid, k):
+    N = len(grid)
+    directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+    
+    def in_bounds(x, y):
+        return 0 <= x < N and 0 <= y < N
+    
+    min_heap = []
+    
+    for i in range(N):
+        for j in range(N):
+            heappush(min_heap, (grid[i][j], [(i, j)]))
+    
+    while min_heap:
+        current_value, path = heappop(min_heap)
         
-        # Use a min-heap to maintain the smallest path lexicographically
-        heap = []
+        if len(path) == k:
+            return [grid[x][y] for x, y in path]
         
-        # Initialize the heap with all the start points
-        for i in range(N):
-            for j in range(N):
-                heappush(heap, (grid[i][j], [(i, j)]))
+        last_x, last_y = path[-1]
         
-        # BFS using heap to find the smallest lexicographic path of length k
-        while heap:
-            value, path = heappop(heap)
-            
-            if len(path) == k:
-                return [grid[i][j] for i, j in path]
-            
-            x, y = path[-1]
-            for dx, dy in directions:
-                nx, ny = x + dx, y + dy
-                
-                if 0 <= nx < N and 0 <= ny < N:
-                    new_path = path + [(nx, ny)]
-                    new_value = value + grid[nx][ny]
-                    heappush(heap, (new_value, new_path))
-        
-        return []
+        for dx, dy in directions:
+            nx, ny = last_x + dx, last_y + dy
+            if in_bounds(nx, ny):
+                new_path = path + [(nx, ny)]
+                heappush(min_heap, (current_value + grid[nx][ny], new_path))
+    
+    return []
 
-# Example usage:
-print(minPath([[1,2,3], [4,5,6], [7,8,9]], 3)) # Output: [1, 2, 1]
-print(minPath([[5,9,3], [4,1,6], [7,8,2]], 1)) # Output: [1]
+# Example usage
+# grid = [[1,2,3], [4,5,6], [7,8,9]]
+# k = 3
+# print(minPath(grid, k))  # Output: [1, 2, 1]
+
+# grid = [[5,9,3], [4,1,6], [7,8,2]]
+# k = 1
+# print(minPath(grid, k))  # Output: [1]
 
 def check(candidate):
 

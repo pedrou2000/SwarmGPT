@@ -12,25 +12,15 @@ def reverse_delete(s,c):
     """
 
 
-def reverse_delete(s: str, c: str) -> tuple:
-    """Delete all characters in s that are equal to any character in c,
-    then check if the resulting string is a palindrome.
+def reverse_delete(s, c):
+    # Step 1: Remove characters from s that are in c
+    result = ''.join([char for char in s if char not in c])
     
-    Args:
-    s (str): The original string.
-    c (str): The string containing characters to be deleted from s.
+    # Step 2: Check if the result is a palindrome
+    is_palindrome = result == result[::-1]
     
-    Returns:
-    tuple: A tuple containing the modified string and a boolean indicating if it's a palindrome.
-    """
-    result = ''.join([char for char in s if char not in c])  # Step 1: Remove characters
-    is_palindrome = result == result[::-1]  # Step 2: Check for palindrome
-    return (result, is_palindrome)  # Step 3: Return result
-
-# Example test cases
-print(reverse_delete("abcde", "ae"))  # Output: ('bcd', False)
-print(reverse_delete("abcdef", "b"))   # Output: ('acdef', False)
-print(reverse_delete("abcdedcba", "ab"))  # Output: ('cdedc', True)
+    # Step 3: Return the result string and palindrome check
+    return (result, is_palindrome)
 
 def check(candidate):
 

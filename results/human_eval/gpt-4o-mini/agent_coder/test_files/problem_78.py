@@ -20,14 +20,14 @@ def hex_key(num):
 
 
 def hex_key(num):
-    """ Count the number of prime hexadecimal digits in the input string. """
+    """Count the number of prime hexadecimal digits in a given hexadecimal string."""
     prime_hex_digits = {'2', '3', '5', '7', 'B', 'D'}
     count = 0
-    
-    for char in num:
-        if char in prime_hex_digits:
+
+    for digit in num:
+        if digit in prime_hex_digits:
             count += 1
-            
+
     return count
 
 def check(candidate):

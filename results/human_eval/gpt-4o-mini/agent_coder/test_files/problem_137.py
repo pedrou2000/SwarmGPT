@@ -14,27 +14,25 @@ def compare_one(a, b):
 
 
 def compare_one(a, b):
-    def normalize(value):
+    # Helper function to convert a string representation of a number
+    def convert_to_float(value):
         if isinstance(value, str):
-            # Replace ',' with '.' for decimal point
-            value = value.replace(',', '.')
-            try:
-                return float(value)
-            except ValueError:
-                return value  # if conversion fails, return the string itself
-        return value  # if it's not a string, return it as is
+            value = value.replace(',', '.')  # Replace commas with dots
+        return float(value)
 
-    normalized_a = normalize(a)
-    normalized_b = normalize(b)
+    # Convert both values to their float representation for comparison
+    a_float = convert_to_float(a)
+    b_float = convert_to_float(b)
 
-    if normalized_a == normalized_b:
+    # Compare the float values
+    if a_float == b_float:
         return None
-    elif normalized_a > normalized_b:
+    elif a_float > b_float:
         return a
     else:
         return b
 
-# Example test cases
+# Test cases
 print(compare_one(1, 2.5))        # ➞ 2.5
 print(compare_one(1, "2,3"))      # ➞ "2,3"
 print(compare_one("5,1", "6"))    # ➞ "6"

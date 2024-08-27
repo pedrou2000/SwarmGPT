@@ -18,18 +18,15 @@ def Strongest_Extension(class_name, extensions):
     """
 
 
-    max_strength = float('-inf')
-    strongest_extension = ""
-    
-    for ext in extensions:
-        cap = sum(1 for c in ext if c.isupper())
-        sm = sum(1 for c in ext if c.islower())
-        strength = cap - sm
-        
-        if strength > max_strength:
-            max_strength = strength
-            strongest_extension = ext
-    
+    def calculate_strength(extension):
+        cap = sum(1 for char in extension if char.isupper())
+        sm = sum(1 for char in extension if char.islower())
+        return cap - sm
+
+    if not extensions:
+        return class_name
+
+    strongest_extension = max(extensions, key=calculate_strength)
     return f"{class_name}.{strongest_extension}"
 
 def check(candidate):

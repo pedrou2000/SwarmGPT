@@ -17,23 +17,19 @@ def match_parens(lst):
 
 
 def match_parens(lst):
-    # Function to check if a string has balanced parentheses
     def is_balanced(s):
-        balance = 0
+        count = 0
         for char in s:
             if char == '(':
-                balance += 1
-            elif char == ')':
-                balance -= 1
-            if balance < 0:
+                count += 1
+            else:
+                count -= 1
+            if count < 0:
                 return False
-        return balance == 0
-    
-    # Check all possible concatenations
+        return count == 0
+
     s1, s2 = lst
-    if is_balanced(s1 + s2) or is_balanced(s2 + s1):
-        return 'Yes'
-    return 'No'
+    return 'Yes' if is_balanced(s1 + s2) or is_balanced(s2 + s1) else 'No'
 
 def check(candidate):
 

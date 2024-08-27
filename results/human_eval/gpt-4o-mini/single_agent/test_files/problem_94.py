@@ -14,6 +14,7 @@ def skjkasdkd(lst):
     """
 
 
+def skjkasdkd(lst):
     def is_prime(n):
         if n <= 1:
             return False
@@ -26,10 +27,10 @@ def skjkasdkd(lst):
     for number in lst:
         if is_prime(number) and number > largest_prime:
             largest_prime = number
-
+            
     if largest_prime == -1:
-        return 0
-
+        return 0  # or some indication that there are no primes
+    
     return sum(int(digit) for digit in str(largest_prime))
 
 def check(candidate):

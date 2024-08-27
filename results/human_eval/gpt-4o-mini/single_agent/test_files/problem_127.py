@@ -29,14 +29,19 @@ def intersection(interval1, interval2):
                 return False
         return True
 
-    start = max(interval1[0], interval2[0])
-    end = min(interval1[1], interval2[1])
+    start1, end1 = interval1
+    start2, end2 = interval2
     
-    if start > end:
-        return "NO"
+    # Find the intersection
+    start_intersection = max(start1, start2)
+    end_intersection = min(end1, end2)
     
-    length = end - start
-    if is_prime(length):
+    if start_intersection > end_intersection:
+        return "NO"  # No intersection
+    
+    intersection_length = end_intersection - start_intersection
+    
+    if is_prime(intersection_length):
         return "YES"
     else:
         return "NO"

@@ -49,3 +49,70 @@ MACM_MATH_SOLVER = {
 
     }
 }
+
+META_MACM_MATH_SOLVER = {
+    "AgentTestGenerator": {
+    "system": """
+You are going to be given a potential solution to a math problem, called solution. Your task is to generate the minimal set of 
+verifications the solution to the given math problem should pass. 
+Focus only on verifying the core components of the problem, such as key equations, function evaluations, or any other specific
+ operations described in the problem statement. Ensure that the tests confirm the correctness of these core components without 
+ introducing additional edge cases or variations. There should be no more than 2 or 3 verifications at most.
+
+Here are two examples:
+
+## Example 1
+### Math Problem:
+If \(7 - 4x = 15\), what is the value of \(8x + 2\)?
+
+### Tests a potential solution should pass:
+1. Compute x = (solution - 2) / 8. Check that 7 - 4x = 15.
+
+## Example 2
+### Math Problem:
+Every student in the senior class is taking history or science. There are $200$ seniors in the class. If there are $126$ seniors taking history and $129$ seniors taking science, how many students are taking both history and science?
+### Tests a potential solution should pass:
+1. Check that 126 + 129 - solution = 200.
+    """,
+        "user": """
+    ### Math Problem :\n{math_problem}\n
+    ### Tests a potential solution should pass:\n
+    """
+    },
+    "AgentTestChecker": {
+        "system": """
+Your task is to evaluate the correctness of the tests provided and provide feedback on how to fix the tests if any of them are incorrect.
+Report the total number of tests executed and the number of tests that are correct in your opinion.
+""",
+        "user": """
+## Description of the math problem whose solution we will want to test :\n{math_problem}\n ## Tests to check: \n{generated_tests}\n\n 
+## Feedback about the correcteness of the tests in structured format: \n
+        """,
+    },
+    "AgentTestRefiner": {
+        "system": """
+You are an expert tester. Another tester has written some tests to check if a solution to a given math problem is correct, but the tests are not correct.
+Your task is to refine the tests so that they are correct and a correct solution to the problem would pass the tests. Do not attempt to solve the problem, just refine the tests.
+""",
+        "user": """
+## Description of the math problem for whose solution we are designing tests:\n{math_problem} 
+## Tests to Refine: \n{generated_tests}\n 
+## Feedback on the tests after running the tests: \n {feedback}\n\n 
+## Improved Tests: \n
+        """,
+    },
+
+    "AgentSolutionEvaluator": {
+        "system": """
+Your task is to evaluate the final solutions provided by the agents and select the best solution.
+You should report the number of tests that a given solution passes. 
+""",
+        "user": """
+## Candidate for being the solution to the problem: \n{answer}\n {tests}\n\n ---\n ## Report of the number of tests that the solution passes and the total number of tests: \n
+        """,
+        "parser_system": """
+Given the code which has been run and the feedback provided, please parse the feedback into a structured format.
+You should return the total number of tests and the number of tests that passed.
+        """
+    }
+}

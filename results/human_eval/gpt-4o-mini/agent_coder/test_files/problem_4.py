@@ -23,13 +23,19 @@ def mean_absolute_deviation(numbers: List[float]) -> float:
     >>> mean_absolute_deviation([1.0, 2.0, 3.0, 4.0])
     1.0
     """
-    if not numbers:
-        return 0.0
-
-    mean = sum(numbers) / len(numbers)
-    absolute_deviations = [abs(num - mean) for num in numbers]
     
-    mad = sum(absolute_deviations) / len(numbers)
+    if not numbers:
+        return 0.0  # Handle empty list case
+    
+    # Step 3: Calculate mean
+    mean_value = sum(numbers) / len(numbers)
+    
+    # Step 4: Calculate absolute deviations
+    absolute_deviations = [abs(x - mean_value) for x in numbers]
+    
+    # Step 6: Calculate mean of absolute deviations
+    mad = sum(absolute_deviations) / len(absolute_deviations)
+    
     return mad
 
 

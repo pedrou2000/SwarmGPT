@@ -15,8 +15,8 @@ def iscube(a):
 
 
 def iscube(a):
-    cube_root = round(a ** (1/3))
-    return cube_root ** 3 == a
+    root = round(a ** (1/3))
+    return root ** 3 == a
 
 def check(candidate):
 

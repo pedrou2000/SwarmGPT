@@ -28,15 +28,16 @@ def move_one_ball(arr):
     """
 
 
-def move_one_ball(arr):
     if not arr:
         return True
-    
+
     n = len(arr)
+    sorted_arr = sorted(arr)
+
     for i in range(n):
-        if all(arr[(i + j) % n] <= arr[(i + j + 1) % n] for j in range(n - 1)):
+        if all(arr[(i + j) % n] == sorted_arr[j] for j in range(n)):
             return True
-    
+
     return False
 
 def check(candidate):

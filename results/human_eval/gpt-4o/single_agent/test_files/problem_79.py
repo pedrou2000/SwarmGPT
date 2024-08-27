@@ -12,7 +12,10 @@ def decimal_to_binary(decimal):
     decimal_to_binary(32)   # returns "db100000db"
     """
 
-None
+
+    binary_str = bin(decimal)[2:]  # Convert to binary and remove '0b' prefix
+    return f"db{binary_str}db"
+
 def check(candidate):
 
     # Check some simple cases

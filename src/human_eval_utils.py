@@ -1,5 +1,5 @@
 import concurrent.futures
-import re, os, json
+import re, os, json, time
 import runpy
 from datasets import load_dataset
 import constants
@@ -36,7 +36,7 @@ def construct_test_program(prompt: str, completion: str, test_program: str, meho
         # Make sure path exists or create it
         save_path = os.path.abspath(save_path)
         if not os.path.exists(os.path.dirname(save_path)):
-            os.makedirs(os.path.dirname(save_path))
+            os.makedirs(os.path.dirname(save_path), exist_ok=True)
         with open(save_path, "w") as file:
             file.write(test_program)
     return test_program
@@ -83,17 +83,26 @@ def get_erratic_problems(file_path):
     # Return the list of erratic problems
     return data.get("erratic_problems", [])
 
-def test_humaneval_task(agent: callable, task_number: int, task: dict, max_iterations: int, passed_tests_threshold: float):
+def test_humaneval_task(agent: callable, task_number: int, task: dict, max_iterations: int, passed_tests_threshold: float, 
+                        test_path: str = None, n_attempts=5):
+    # n_attempt = 0
+    # while n_attempt < n_attempts:
+    #     try:
+    #         completion = agent(task['prompt'], max_iterations=max_iterations, passed_tests_threshold=passed_tests_threshold)
+    #         break
+    #     except Exception as e:
+    #         print(f"Error in test_humaneval_task: {e}")
+    #         time.sleep(10)
+    #         n_attempt += 1
 
-    completion = agent(task['prompt'], max_iterations=max_iterations, passed_tests_threshold=passed_tests_threshold)
-
-    test_path = constants.HUMAN_EVAL_AGENT_CODER_DIR + 'test_files/' + f'problem_{task_number}.py'
-    test_program = construct_test_program(task['prompt'], completion, task['test'], task['entry_point'], save_path=test_path)
+    test_path = test_path + 'test_files/' + f'problem_{task_number}.py'
+    # test_program = construct_test_program(task['prompt'], completion, task['test'], task['entry_point'], save_path=test_path)
     (code_works, reason) = code_runs_without_errors(file_path=test_path)
     
     return task_number, code_works, reason
 
-def test_humaneval_parallel(agent: callable, task_numbers: list, tasks: list, max_iterations: int, passed_tests_threshold: float):
+def test_humaneval_parallel(agent: callable, task_numbers: list, tasks: list, max_iterations: int, passed_tests_threshold: float, 
+                            test_path: str = None, max_workers: int = 8, n_attempts=5):
     results = {
         "score": 0, 
         "test_counts": {"NoError": 0, "Error": 0, "AssertionError": 0, "IncorrectInput": 0}, 
@@ -103,8 +112,8 @@ def test_humaneval_parallel(agent: callable, task_numbers: list, tasks: list, ma
 
     n_correct = 0
 
-    with concurrent.futures.ThreadPoolExecutor() as executor:
-        future_to_task = {executor.submit(test_humaneval_task, agent, task_number, tasks[task_number], max_iterations, passed_tests_threshold): task_number for task_number in task_numbers}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+        future_to_task = {executor.submit(test_humaneval_task, agent, task_number, tasks[task_number], max_iterations, passed_tests_threshold, test_path, n_attempts): task_number for task_number in task_numbers}
 
         for future in concurrent.futures.as_completed(future_to_task):
             task_number = future_to_task[future]

@@ -12,18 +12,11 @@ def fix_spaces(text):
     """
 
 
-    import re
-    
-    # Replace all consecutive spaces with a single space
-    text = re.sub(r'\s+', ' ', text)
-    
-    # If there are more than two consecutive spaces, replace them with '-'
-    text = re.sub(r' {3,}', '-', text)
-    
-    # Replace remaining single spaces with underscores
-    text = text.replace(' ', '_')
-    
-    return text
+    # Replace all consecutive spaces with a temporary placeholder
+    temp_text = text.replace('   ', '-').replace('  ', '_')
+    # Replace the temporary placeholder with underscores
+    fixed_text = temp_text.replace(' ', '_')
+    return fixed_text
 
 def check(candidate):
 

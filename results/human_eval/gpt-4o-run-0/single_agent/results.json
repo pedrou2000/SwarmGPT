@@ -1,0 +1,690 @@
+{
+    "score": 87.1951,
+    "test_counts": {
+        "NoError": 143,
+        "Error": 1,
+        "AssertionError": 20,
+        "IncorrectInput": 0
+    },
+    "erratic_problems": [
+        41,
+        67,
+        70,
+        86,
+        88,
+        91,
+        93,
+        101,
+        108,
+        110,
+        115,
+        120,
+        125,
+        123,
+        132,
+        127,
+        129,
+        145,
+        151,
+        163,
+        147
+    ],
+    "tests_results": {
+        "2": [
+            true,
+            "NoError"
+        ],
+        "7": [
+            true,
+            "NoError"
+        ],
+        "3": [
+            true,
+            "NoError"
+        ],
+        "4": [
+            true,
+            "NoError"
+        ],
+        "5": [
+            true,
+            "NoError"
+        ],
+        "1": [
+            true,
+            "NoError"
+        ],
+        "0": [
+            true,
+            "NoError"
+        ],
+        "6": [
+            true,
+            "NoError"
+        ],
+        "10": [
+            true,
+            "NoError"
+        ],
+        "11": [
+            true,
+            "NoError"
+        ],
+        "12": [
+            true,
+            "NoError"
+        ],
+        "9": [
+            true,
+            "NoError"
+        ],
+        "14": [
+            true,
+            "NoError"
+        ],
+        "13": [
+            true,
+            "NoError"
+        ],
+        "8": [
+            true,
+            "NoError"
+        ],
+        "15": [
+            true,
+            "NoError"
+        ],
+        "16": [
+            true,
+            "NoError"
+        ],
+        "17": [
+            true,
+            "NoError"
+        ],
+        "21": [
+            true,
+            "NoError"
+        ],
+        "22": [
+            true,
+            "NoError"
+        ],
+        "18": [
+            true,
+            "NoError"
+        ],
+        "19": [
+            true,
+            "NoError"
+        ],
+        "23": [
+            true,
+            "NoError"
+        ],
+        "20": [
+            true,
+            "NoError"
+        ],
+        "24": [
+            true,
+            "NoError"
+        ],
+        "26": [
+            true,
+            "NoError"
+        ],
+        "28": [
+            true,
+            "NoError"
+        ],
+        "25": [
+            true,
+            "NoError"
+        ],
+        "27": [
+            true,
+            "NoError"
+        ],
+        "29": [
+            true,
+            "NoError"
+        ],
+        "30": [
+            true,
+            "NoError"
+        ],
+        "34": [
+            true,
+            "NoError"
+        ],
+        "31": [
+            true,
+            "NoError"
+        ],
+        "36": [
+            true,
+            "NoError"
+        ],
+        "35": [
+            true,
+            "NoError"
+        ],
+        "38": [
+            true,
+            "NoError"
+        ],
+        "32": [
+            true,
+            "NoError"
+        ],
+        "42": [
+            true,
+            "NoError"
+        ],
+        "40": [
+            true,
+            "NoError"
+        ],
+        "39": [
+            true,
+            "NoError"
+        ],
+        "43": [
+            true,
+            "NoError"
+        ],
+        "33": [
+            true,
+            "NoError"
+        ],
+        "37": [
+            true,
+            "NoError"
+        ],
+        "45": [
+            true,
+            "NoError"
+        ],
+        "41": [
+            false,
+            "AssertionError"
+        ],
+        "44": [
+            true,
+            "NoError"
+        ],
+        "47": [
+            true,
+            "NoError"
+        ],
+        "48": [
+            true,
+            "NoError"
+        ],
+        "46": [
+            true,
+            "NoError"
+        ],
+        "52": [
+            true,
+            "NoError"
+        ],
+        "50": [
+            true,
+            "NoError"
+        ],
+        "53": [
+            true,
+            "NoError"
+        ],
+        "54": [
+            true,
+            "NoError"
+        ],
+        "49": [
+            true,
+            "NoError"
+        ],
+        "51": [
+            true,
+            "NoError"
+        ],
+        "58": [
+            true,
+            "NoError"
+        ],
+        "60": [
+            true,
+            "NoError"
+        ],
+        "57": [
+            true,
+            "NoError"
+        ],
+        "56": [
+            true,
+            "NoError"
+        ],
+        "62": [
+            true,
+            "NoError"
+        ],
+        "55": [
+            true,
+            "NoError"
+        ],
+        "63": [
+            true,
+            "NoError"
+        ],
+        "66": [
+            true,
+            "NoError"
+        ],
+        "59": [
+            true,
+            "NoError"
+        ],
+        "61": [
+            true,
+            "NoError"
+        ],
+        "67": [
+            false,
+            "AssertionError"
+        ],
+        "68": [
+            true,
+            "NoError"
+        ],
+        "64": [
+            true,
+            "NoError"
+        ],
+        "72": [
+            true,
+            "NoError"
+        ],
+        "70": [
+            false,
+            "AssertionError"
+        ],
+        "65": [
+            true,
+            "NoError"
+        ],
+        "71": [
+            true,
+            "NoError"
+        ],
+        "74": [
+            true,
+            "NoError"
+        ],
+        "73": [
+            true,
+            "NoError"
+        ],
+        "76": [
+            true,
+            "NoError"
+        ],
+        "69": [
+            true,
+            "NoError"
+        ],
+        "77": [
+            true,
+            "NoError"
+        ],
+        "78": [
+            true,
+            "NoError"
+        ],
+        "80": [
+            true,
+            "NoError"
+        ],
+        "79": [
+            true,
+            "NoError"
+        ],
+        "75": [
+            true,
+            "NoError"
+        ],
+        "82": [
+            true,
+            "NoError"
+        ],
+        "84": [
+            true,
+            "NoError"
+        ],
+        "86": [
+            false,
+            "AssertionError"
+        ],
+        "85": [
+            true,
+            "NoError"
+        ],
+        "87": [
+            true,
+            "NoError"
+        ],
+        "88": [
+            false,
+            "AssertionError"
+        ],
+        "83": [
+            true,
+            "NoError"
+        ],
+        "90": [
+            true,
+            "NoError"
+        ],
+        "92": [
+            true,
+            "NoError"
+        ],
+        "89": [
+            true,
+            "NoError"
+        ],
+        "91": [
+            false,
+            "AssertionError"
+        ],
+        "81": [
+            true,
+            "NoError"
+        ],
+        "95": [
+            true,
+            "NoError"
+        ],
+        "93": [
+            false,
+            "AssertionError"
+        ],
+        "96": [
+            true,
+            "NoError"
+        ],
+        "97": [
+            true,
+            "NoError"
+        ],
+        "94": [
+            true,
+            "NoError"
+        ],
+        "98": [
+            true,
+            "NoError"
+        ],
+        "101": [
+            false,
+            "AssertionError"
+        ],
+        "99": [
+            true,
+            "NoError"
+        ],
+        "102": [
+            true,
+            "NoError"
+        ],
+        "100": [
+            true,
+            "NoError"
+        ],
+        "103": [
+            true,
+            "NoError"
+        ],
+        "104": [
+            true,
+            "NoError"
+        ],
+        "108": [
+            false,
+            "AssertionError"
+        ],
+        "107": [
+            true,
+            "NoError"
+        ],
+        "109": [
+            true,
+            "NoError"
+        ],
+        "111": [
+            true,
+            "NoError"
+        ],
+        "105": [
+            true,
+            "NoError"
+        ],
+        "106": [
+            true,
+            "NoError"
+        ],
+        "112": [
+            true,
+            "NoError"
+        ],
+        "110": [
+            false,
+            "AssertionError"
+        ],
+        "113": [
+            true,
+            "NoError"
+        ],
+        "114": [
+            true,
+            "NoError"
+        ],
+        "117": [
+            true,
+            "NoError"
+        ],
+        "115": [
+            false,
+            "AssertionError"
+        ],
+        "116": [
+            true,
+            "NoError"
+        ],
+        "120": [
+            false,
+            "AssertionError"
+        ],
+        "122": [
+            true,
+            "NoError"
+        ],
+        "118": [
+            true,
+            "NoError"
+        ],
+        "119": [
+            true,
+            "NoError"
+        ],
+        "121": [
+            true,
+            "NoError"
+        ],
+        "125": [
+            false,
+            "AssertionError"
+        ],
+        "126": [
+            true,
+            "NoError"
+        ],
+        "123": [
+            false,
+            "AssertionError"
+        ],
+        "128": [
+            true,
+            "NoError"
+        ],
+        "130": [
+            true,
+            "NoError"
+        ],
+        "133": [
+            true,
+            "NoError"
+        ],
+        "131": [
+            true,
+            "NoError"
+        ],
+        "124": [
+            true,
+            "NoError"
+        ],
+        "132": [
+            false,
+            "AssertionError"
+        ],
+        "135": [
+            true,
+            "NoError"
+        ],
+        "134": [
+            true,
+            "NoError"
+        ],
+        "136": [
+            true,
+            "NoError"
+        ],
+        "138": [
+            true,
+            "NoError"
+        ],
+        "139": [
+            true,
+            "NoError"
+        ],
+        "137": [
+            true,
+            "NoError"
+        ],
+        "140": [
+            true,
+            "NoError"
+        ],
+        "127": [
+            false,
+            "AssertionError"
+        ],
+        "129": [
+            false,
+            "Error"
+        ],
+        "142": [
+            true,
+            "NoError"
+        ],
+        "145": [
+            false,
+            "AssertionError"
+        ],
+        "143": [
+            true,
+            "NoError"
+        ],
+        "146": [
+            true,
+            "NoError"
+        ],
+        "148": [
+            true,
+            "NoError"
+        ],
+        "151": [
+            false,
+            "AssertionError"
+        ],
+        "150": [
+            true,
+            "NoError"
+        ],
+        "144": [
+            true,
+            "NoError"
+        ],
+        "149": [
+            true,
+            "NoError"
+        ],
+        "141": [
+            true,
+            "NoError"
+        ],
+        "152": [
+            true,
+            "NoError"
+        ],
+        "153": [
+            true,
+            "NoError"
+        ],
+        "159": [
+            true,
+            "NoError"
+        ],
+        "155": [
+            true,
+            "NoError"
+        ],
+        "157": [
+            true,
+            "NoError"
+        ],
+        "158": [
+            true,
+            "NoError"
+        ],
+        "154": [
+            true,
+            "NoError"
+        ],
+        "160": [
+            true,
+            "NoError"
+        ],
+        "156": [
+            true,
+            "NoError"
+        ],
+        "162": [
+            true,
+            "NoError"
+        ],
+        "163": [
+            false,
+            "AssertionError"
+        ],
+        "147": [
+            false,
+            "AssertionError"
+        ],
+        "161": [
+            true,
+            "NoError"
+        ]
+    }
+}

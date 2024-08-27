@@ -9,18 +9,14 @@ def specialFilter(nums):
     """
 
 
-def specialFilter(nums):
-    def is_odd_digit(n):
-        return n in {1, 3, 5, 7, 9}
+    def is_odd_digit(digit):
+        return digit in {'1', '3', '5', '7', '9'}
     
-    count = 0
-    for num in nums:
-        abs_num = abs(num)
-        if abs_num > 10:
-            str_num = str(abs_num)
-            if is_odd_digit(int(str_num[0])) and is_odd_digit(int(str_num[-1])):
-                count += 1
-    return count
+    def first_and_last_digits_are_odd(num):
+        num_str = str(abs(num))
+        return is_odd_digit(num_str[0]) and is_odd_digit(num_str[-1])
+
+    return len([num for num in nums if num > 10 and first_and_last_digits_are_odd(num)])
 
 def check(candidate):
 

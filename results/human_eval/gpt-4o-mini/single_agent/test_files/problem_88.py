@@ -21,9 +21,8 @@ def sort_array(array):
     
     first_index_value = array[0]
     last_index_value = array[-1]
-    sum_indices = first_index_value + last_index_value
-
-    if sum_indices % 2 == 0:
+    
+    if (first_index_value + last_index_value) % 2 == 0:
         return sorted(array, reverse=True)
     else:
         return sorted(array)

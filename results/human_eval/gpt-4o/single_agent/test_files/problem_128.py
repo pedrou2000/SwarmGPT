@@ -13,19 +13,18 @@ def prod_signs(arr):
     """
 
 
-def prod_signs(arr):
     if not arr:
         return None
-    
-    magnitude_sum = sum(abs(num) for num in arr)
-    sign_product = 1
+
+    sum_magnitudes = sum(abs(num) for num in arr)
+    product_of_signs = 1
     for num in arr:
         if num == 0:
-            sign_product = 0
+            product_of_signs = 0
             break
-        sign_product *= (1 if num > 0 else -1)
-    
-    return magnitude_sum * sign_product
+        product_of_signs *= (1 if num > 0 else -1)
+
+    return sum_magnitudes * product_of_signs
 
 def check(candidate):
 

@@ -20,7 +20,14 @@ def will_it_fly(q,w):
 
 
 def will_it_fly(q, w):
-    return q == q[::-1] and sum(q) <= w
+    # Check if the list q is a palindrome
+    is_palindromic = q == q[::-1]
+    
+    # Calculate the sum of elements in q
+    total_weight = sum(q)
+    
+    # The object will fly if it is palindromic and the total weight is less than or equal to w
+    return is_palindromic and total_weight <= w
 
 def check(candidate):
 

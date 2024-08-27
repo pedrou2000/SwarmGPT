@@ -13,27 +13,44 @@ def fix_spaces(text):
 
 
 def fix_spaces(text):
+    # Trim the text to remove leading and trailing spaces
+    text = text.strip()
+    
+    # If the trimmed text is empty, return an empty string
+    if not text:
+        return ""
+    
     result = []
-    space_count = 0
     
-    for char in text:
-        if char == ' ':
-            space_count += 1
-        else:
-            if space_count > 2:
-                result.append('-')
-            elif space_count > 0:
+    # Split the text by whitespace (this handles multiple spaces correctly)
+    parts = text.split()
+    
+    # Iterate through the parts
+    for i, part in enumerate(parts):
+        if i > 0:  # If it's not the first part, we need to add a separator
+            # Check how many spaces were between the last and current part
+            previous_space_count = text.find(part) - (text.find(parts[i-1]) + len(parts[i-1]))
+            if previous_space_count == 1:
                 result.append('_')
-            space_count = 0
-            result.append(char)
+            elif previous_space_count > 1:
+                result.append('-')
+        
+        # Append the current part
+        result.append(part)
     
-    # Handle any spaces at the end of the string
-    if space_count > 2:
-        result.append('-')
-    elif space_count > 0:
-        result.append('_')
-    
+    # Join the result list into a single string
     return ''.join(result)
+
+# Testing the function with provided test cases
+print(fix_spaces("Example"))      # Expected: "Example"
+print(fix_spaces("Example 1"))    # Expected: "Example_1"
+print(fix_spaces(" Example 2"))   # Expected: "_Example_2"
+print(fix_spaces(" Example   3"))  # Expected: "_Example-3"
+print(fix_spaces("   Leading spaces")) # Expected: "-Leading_spaces"
+print(fix_spaces("Trailing spaces   ")) # Expected: "Trailing_spaces-"
+print(fix_spaces("Multiple    spaces    here")) # Expected: "Multiple-spaces-here"
+print(fix_spaces("NoSpacesHere"))  # Expected: "NoSpacesHere"
+print(fix_spaces(""))               # Expected: ""
 
 def check(candidate):
 

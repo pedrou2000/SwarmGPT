@@ -13,10 +13,10 @@ def is_bored(S):
     """
 
 
+def is_bored(S):
     import re
-
     sentences = re.split(r'[.!?]', S)
-    return sum(1 for sentence in sentences if sentence.strip().startswith('I'))
+    return sum(sentence.strip().startswith('I') for sentence in sentences)
 
 def check(candidate):
 

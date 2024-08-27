@@ -11,22 +11,16 @@ def words_string(s):
 
 
 def words_string(s):
-    """ 
-    You will be given a string of words separated by commas or spaces. Your task is
-    to split the string into words and return an array of the words.
+    # Step 1: Replace commas with spaces
+    clean_string = s.replace(',', ' ')
     
-    For example:
-    words_string("Hi, my name is John") == ["Hi", "my", "name", "is", "John"]
-    words_string("One, two, three, four, five, six") == ["One", "two", "three", "four", "five", "six"]
-    """
-    # Replace commas with spaces
-    s = s.replace(',', ' ')
-    # Split the string by spaces and filter out any empty strings
-    return s.split()
-
-# Example test cases
-print(words_string("Hi, my name is John"))  # Output: ["Hi", "my", "name", "is", "John"]
-print(words_string("One, two, three, four, five, six"))  # Output: ["One", "two", "three", "four", "five", "six"]
+    # Step 2: Split the string by spaces
+    words = clean_string.split()
+    
+    # Step 3: Filter out any empty strings (not strictly necessary due to split behavior)
+    # This step is generally redundant because split() without arguments already handles multiple spaces.
+    
+    return words
 
 def check(candidate):
 

@@ -11,21 +11,20 @@ def count_upper(s):
 
 
 def count_upper(s):
-    """ Given a string s, count the number of uppercase vowels in even indices.
+    """
+    Given a string s, count the number of uppercase vowels in even indices.
     
     For example:
     count_upper('aBCdEf') returns 1
     count_upper('abcdefg') returns 0
     count_upper('dBBE') returns 0
     """
-    vowels = {'A', 'E', 'I', 'O', 'U'}
-    count = 0
-    
-    for index in range(0, len(s), 2):  # Iterate through even indices
-        if s[index] in vowels:          # Check if the character is an uppercase vowel
-            count += 1                   # Increment the count if it is
-            
-    return count
+    counter = 0
+    for index, character in enumerate(s):
+        if index % 2 == 0:  # Check if index is even
+            if character in 'AEIOU':  # Check if character is an uppercase vowel
+                counter += 1  # Increment the counter
+    return counter
 
 def check(candidate):
 

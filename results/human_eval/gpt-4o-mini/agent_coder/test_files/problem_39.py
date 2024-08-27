@@ -16,7 +16,7 @@ def prime_fib(n: int):
     """
 
 
-def is_prime(num: int) -> bool:
+def is_prime(num):
     if num <= 1:
         return False
     for i in range(2, int(num**0.5) + 1):
@@ -24,18 +24,16 @@ def is_prime(num: int) -> bool:
             return False
     return True
 
-def prime_fib(n: int) -> int:
+def prime_fib(n: int):
     fib1, fib2 = 0, 1
     count = 0
-    
-    while True:
-        next_fib = fib1 + fib2
-        fib1, fib2 = fib2, next_fib
-        
-        if is_prime(next_fib):
+    while count < n:
+        fib_next = fib1 + fib2
+        fib1, fib2 = fib2, fib_next
+        if is_prime(fib_next):
             count += 1
             if count == n:
-                return next_fib
+                return fib_next
 
 
 

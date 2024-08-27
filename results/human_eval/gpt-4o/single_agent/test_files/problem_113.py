@@ -16,8 +16,8 @@ def odd_count(lst):
 def odd_count(lst):
     result = []
     for s in lst:
-        odd_digits = sum(1 for char in s if int(char) % 2 != 0)
-        result.append(f"the number of odd elements {odd_digits}n the str{odd_digits}ng {odd_digits} of the {odd_digits}nput.")
+        odd_digits_count = sum(1 for char in s if char in '13579')
+        result.append(f"the number of odd elements {odd_digits_count}n the str{odd_digits_count}ng {odd_digits_count} of the {odd_digits_count}nput.")
     return result
 
 def check(candidate):

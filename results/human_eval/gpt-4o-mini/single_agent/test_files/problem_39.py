@@ -17,9 +17,9 @@ def prime_fib(n: int):
 
 
     def is_prime(num):
-        if num < 2:
+        if num <= 1:
             return False
-        for i in range(2, int(num ** 0.5) + 1):
+        for i in range(2, int(num**0.5) + 1):
             if num % i == 0:
                 return False
         return True
@@ -27,14 +27,14 @@ def prime_fib(n: int):
     def fibonacci_generator():
         a, b = 0, 1
         while True:
-            a, b = b, a + b
             yield a
+            a, b = b, a + b
 
-    prime_fib_count = 0
+    count = 0
     for fib in fibonacci_generator():
         if is_prime(fib):
-            prime_fib_count += 1
-            if prime_fib_count == n:
+            count += 1
+            if count == n:
                 return fib
 
 

@@ -14,15 +14,14 @@ def anti_shuffle(s):
     """
 
 
-    def anti_shuffle(s):
-        def sort_word(word):
-            return ''.join(sorted(word))
-
-        result = []
-        for word in s.split(' '):
-            result.append(sort_word(word))
-        
-        return ' '.join(result)
+def anti_shuffle(s):
+    def sort_word(word):
+        return ''.join(sorted(word))
+    
+    words = s.split(' ')
+    sorted_words = [sort_word(word) for word in words]
+    
+    return ' '.join(sorted_words)
 
 def check(candidate):
 

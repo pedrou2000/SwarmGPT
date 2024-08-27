@@ -11,7 +11,7 @@ def count_nums(arr):
     """
 
 
-    return sum(1 for num in arr if sum(int(digit) if num >= 0 else -int(digit) for digit in str(abs(num))) > 0)
+    return sum(1 for num in arr if sum(int(digit) * (-1 if i == 0 and num < 0 else 1) for i, digit in enumerate(str(abs(num)))) > 0)
 
 def check(candidate):
 

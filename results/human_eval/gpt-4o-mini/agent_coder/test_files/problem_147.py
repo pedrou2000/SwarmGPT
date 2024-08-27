@@ -18,26 +18,34 @@ def get_max_triples(n):
 from math import comb
 
 def get_max_triples(n):
-    # Step 1: Generate the array a
-    a = [(i * i - i + 1) for i in range(1, n + 1)]
+    # Step 1: Create the array a
+    a = [i * i - i + 1 for i in range(1, n + 1)]
     
-    # Step 2: Count elements in each modulo group
-    count = [0, 0, 0]
+    # Step 2: Count how many numbers give each remainder when divided by 3
+    count_remainders = [0, 0, 0]
+    for value in a:
+        remainder = value % 3
+        count_remainders[remainder] += 1
     
-    for number in a:
-        count[number % 3] += 1
+    # Step 3: Count valid triples
+    count = 0
+    
+    # Combinations of remainder 0
+    if count_remainders[0] >= 3:
+        count += comb(count_remainders[0], 3)
 
-    result = 0
+    # Combinations of remainder 1
+    if count_remainders[1] >= 3:
+        count += comb(count_remainders[1], 3)
 
-    # Step 3: Count triples from the same group
-    for i in range(3):
-        if count[i] >= 3:
-            result += comb(count[i], 3)  # n choose 3
+    # Combinations of remainder 2
+    if count_remainders[2] >= 3:
+        count += comb(count_remainders[2], 3)
 
-    # Step 4: Count one from each group
-    result += count[0] * count[1] * count[2]
+    # Combinations of one from each remainder
+    count += count_remainders[0] * count_remainders[1] * count_remainders[2]
 
-    return result
+    return count
 
 def check(candidate):
 

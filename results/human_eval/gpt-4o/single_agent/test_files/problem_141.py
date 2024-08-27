@@ -15,29 +15,25 @@ def file_name_check(file_name):
     """
 
 
-def file_name_check(file_name):
     import re
     
-    # Check if there's exactly one dot
-    if file_name.count('.') != 1:
-        return 'No'
-    
-    # Split the filename into two parts
-    name_part, extension = file_name.rsplit('.', 1)
-    
-    # Check if the extension is valid
-    if extension not in ['txt', 'exe', 'dll']:
-        return 'No'
-    
-    # Check if the name part is not empty and starts with a letter
-    if not name_part or not re.match(r'^[a-zA-Z]', name_part):
-        return 'No'
-    
-    # Check if there are more than 3 digits in the name part
-    if len(re.findall(r'[0-9]', name_part)) > 3:
-        return 'No'
-    
-    return 'Yes'
+    def file_name_check(file_name):
+        # Conditions checks
+        if file_name.count('.') != 1:
+            return 'No'
+        
+        name, extension = file_name.rsplit('.', 1)
+        
+        if not name or not name[0].isalpha():
+            return 'No'
+        
+        if len(re.findall(r'[0-9]', file_name)) > 3:
+            return 'No'
+        
+        if extension not in ['txt', 'exe', 'dll']:
+            return 'No'
+        
+        return 'Yes'
 
 def check(candidate):
 

@@ -13,15 +13,14 @@ def encrypt(s):
 
 
 def encrypt(s):
-    def shift_char(c):
-        if 'a' <= c <= 'z':
-            return chr(((ord(c) - ord('a') + 4) % 26) + ord('a'))
-        elif 'A' <= c <= 'Z':
-            return chr(((ord(c) - ord('A') + 4) % 26) + ord('A'))
+    result = []
+    for char in s:
+        if 'a' <= char <= 'z':
+            new_char = chr(((ord(char) - ord('a') + 4) % 26) + ord('a'))
+            result.append(new_char)
         else:
-            return c
-
-    return ''.join(shift_char(c) for c in s)
+            result.append(char)
+    return ''.join(result)
 
 def check(candidate):
 

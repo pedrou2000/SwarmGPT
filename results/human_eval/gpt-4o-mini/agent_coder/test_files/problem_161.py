@@ -13,20 +13,36 @@ def solve(s):
 
 
 def solve(s):
-    result = []
-    has_letters = False
-
-    for char in s:
-        if char.isalpha():
-            has_letters = True
-            result.append(char.swapcase())
-        else:
-            result.append(char)
-
-    if has_letters:
-        return ''.join(result)
-    else:
+    """You are given a string s.
+    if s[i] is a letter, reverse its case from lower to upper or vise versa, 
+    otherwise keep it as it is.
+    If the string contains no letters, reverse the string.
+    The function should return the resulted string.
+    Examples
+    solve("1234") = "4321"
+    solve("ab") = "AB"
+    solve("#a@C") = "#A@c"
+    """
+    
+    # Check if there are any letters in the string
+    has_letters = any(c.isalpha() for c in s)
+    
+    if not has_letters:
+        # If no letters, return the reversed string
         return s[::-1]
+    
+    result = []
+    
+    for c in s:
+        if c.isalpha():
+            if c.islower():
+                result.append(c.upper())
+            else:
+                result.append(c.lower())
+        else:
+            result.append(c)
+    
+    return ''.join(result)
 
 def check(candidate):
 

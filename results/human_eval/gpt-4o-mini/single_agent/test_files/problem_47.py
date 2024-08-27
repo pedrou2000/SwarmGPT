@@ -9,14 +9,17 @@ def median(l: list):
     """
 
 
-    sorted_list = sorted(l)
-    n = len(sorted_list)
+    if not l:
+        raise ValueError("The list is empty")
+    
+    l_sorted = sorted(l)
+    n = len(l_sorted)
     mid = n // 2
-
+    
     if n % 2 == 0:
-        return (sorted_list[mid - 1] + sorted_list[mid]) / 2
+        return (l_sorted[mid - 1] + l_sorted[mid]) / 2
     else:
-        return sorted_list[mid]
+        return l_sorted[mid]
 
 
 

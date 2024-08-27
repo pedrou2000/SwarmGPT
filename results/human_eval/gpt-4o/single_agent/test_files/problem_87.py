@@ -24,10 +24,13 @@ def get_row(lst, x):
 def get_row(lst, x):
     result = []
     for row_idx, row in enumerate(lst):
-        for col_idx, value in enumerate(row):
-            if value == x:
+        for col_idx, val in enumerate(row):
+            if val == x:
                 result.append((row_idx, col_idx))
+    
+    # Sort by row in ascending order, then by column in descending order
     result.sort(key=lambda coord: (coord[0], -coord[1]))
+    
     return result
 
 def check(candidate):

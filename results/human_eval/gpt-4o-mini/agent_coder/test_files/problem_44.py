@@ -27,14 +27,13 @@ def change_base(x: int, base: int) -> str:
     if x == 0:
         return '0'
     
-    result = []
+    result = ''
     while x > 0:
         remainder = x % base
-        result.append(str(remainder))
+        result = str(remainder) + result
         x = x // base
-    
-    result.reverse()
-    return ''.join(result)
+        
+    return result
 
 
 

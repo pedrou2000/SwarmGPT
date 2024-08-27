@@ -16,6 +16,8 @@ def is_nested(string):
 
 def is_nested(string):
     stack = []
+    nested = False
+    
     for char in string:
         if char == '[':
             stack.append(char)
@@ -23,10 +25,11 @@ def is_nested(string):
             if stack:
                 stack.pop()
                 if stack:
-                    return True
+                    nested = True
             else:
                 return False
-    return False
+    
+    return nested and not stack
 
 def check(candidate):
 

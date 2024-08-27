@@ -20,16 +20,26 @@ def find_closest_elements(numbers: List[float]) -> Tuple[float, float]:
     (2.0, 2.2)
     >>> find_closest_elements([1.0, 2.0, 3.0, 4.0, 5.0, 2.0])
     (2.0, 2.0)
+    >>> find_closest_elements([1.0, 4.5, 4.8, 10.0, 10.5])
+    (4.5, 4.8)
+    >>> find_closest_elements([-1.5, -1.2, 0.0, 1.0])
+    (-1.5, -1.2)
+    >>> find_closest_elements([10.0, 10.5, 15.0])
+    (10.0, 10.5)
     """
-    numbers.sort()
-    min_diff = float('inf')
-    closest_pair = ()
+    # Step 1: Sort the numbers
+    sorted_numbers = sorted(numbers)
     
-    for i in range(len(numbers) - 1):
-        current_diff = numbers[i + 1] - numbers[i]
-        if current_diff < min_diff:
-            min_diff = current_diff
-            closest_pair = (numbers[i], numbers[i + 1])
+    # Step 2: Initialize minimum difference and closest pair
+    min_diff = float('inf')
+    closest_pair = (None, None)
+    
+    # Step 3: Find the closest pair
+    for i in range(len(sorted_numbers) - 1):
+        diff = sorted_numbers[i + 1] - sorted_numbers[i]
+        if diff < min_diff:
+            min_diff = diff
+            closest_pair = (sorted_numbers[i], sorted_numbers[i + 1])
     
     return closest_pair
 

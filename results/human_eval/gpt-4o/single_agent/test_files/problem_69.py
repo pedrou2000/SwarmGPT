@@ -14,12 +14,21 @@ def search(lst):
 
 def search(lst):
     from collections import Counter
-    
+
+    # Count the frequency of each element in the list
     freq = Counter(lst)
     
-    candidates = [num for num, count in freq.items() if count >= num]
+    # Initialize the result with -1, assuming no valid integer is found
+    result = -1
     
-    return max(candidates) if candidates else -1
+    # Iterate through the frequency dictionary
+    for num, count in freq.items():
+        # Check if the frequency is greater than or equal to the value of the integer
+        if count >= num:
+            # Update result to the maximum valid integer found
+            result = max(result, num)
+    
+    return result
 
 def check(candidate):
 

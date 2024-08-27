@@ -20,10 +20,9 @@ def digits(n):
     product = 1
     found_odd = False
 
-    for char in str(n):
-        digit = int(char)
-        if digit % 2 != 0:  # Check if the digit is odd
-            product *= digit
+    for digit in str(n):
+        if int(digit) % 2 != 0:  # Check if the digit is odd
+            product *= int(digit)
             found_odd = True
 
     if not found_odd:

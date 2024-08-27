@@ -18,20 +18,21 @@ def match_parens(lst):
 
     def match_parens(lst):
         # Count the number of open and close parentheses in both strings
-        open1, close1 = lst[0].count('('), lst[0].count(')')
-        open2, close2 = lst[1].count('('), lst[1].count(')')
+        open_count1 = lst[0].count('(')
+        close_count1 = lst[0].count(')')
+        open_count2 = lst[1].count('(')
+        close_count2 = lst[1].count(')')
         
-        # Check both concatenation orders
-        # Order 1: lst[0] + lst[1]
-        # Order 2: lst[1] + lst[0]
+        # Check the two possible concatenations
+        # 1. First string followed by second string
+        if open_count1 + open_count2 == close_count1 + close_count2:
+            if open_count1 <= close_count2 + open_count2:
+                return 'Yes'
         
-        # Check if lst[0] + lst[1] can be balanced
-        if open1 + open2 >= close1 + close2 and open1 >= close2:
-            return 'Yes'
-        
-        # Check if lst[1] + lst[0] can be balanced
-        if open2 + open1 >= close2 + close1 and open2 >= close1:
-            return 'Yes'
+        # 2. Second string followed by first string
+        if open_count2 + open_count1 == close_count2 + close_count1:
+            if open_count2 <= close_count1 + open_count1:
+                return 'Yes'
         
         return 'No'
 

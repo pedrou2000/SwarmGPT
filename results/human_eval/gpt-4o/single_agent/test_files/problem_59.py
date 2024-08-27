@@ -23,22 +23,30 @@ def largest_prime_factor(n: int):
             i += 6
         return True
 
-    largest_factor = None
-    factor = 2
-
-    while factor * factor <= n:
-        if n % factor == 0:
-            if is_prime(n // factor):
-                return n // factor
-            if is_prime(factor):
-                largest_factor = factor
-            n //= factor
-        else:
-            factor += 1
-
-    if n > 1:
-        return n
-
+    largest_factor = 1
+    # Check for smallest factors first
+    while n % 2 == 0:
+        largest_factor = 2
+        n //= 2
+    while n % 3 == 0:
+        largest_factor = 3
+        n //= 3
+    
+    # Check for factors starting from 5 and skipping even numbers
+    i = 5
+    while i * i <= n:
+        while n % i == 0:
+            largest_factor = i
+            n //= i
+        while n % (i + 2) == 0:
+            largest_factor = i + 2
+            n //= (i + 2)
+        i += 6
+    
+    # If n becomes a prime number greater than 4
+    if n > 4:
+        largest_factor = n
+    
     return largest_factor
 
 

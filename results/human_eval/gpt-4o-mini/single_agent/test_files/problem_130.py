@@ -18,23 +18,18 @@ def tri(n):
     """
 
 
-def tri(n):
-    if n < 0:
-        return []
-    
-    tribonacci = []
-    
+    result = []
     for i in range(n + 1):
         if i == 1:
-            tribonacci.append(3)
-        elif i == 0:
-            tribonacci.append(1)
+            result.append(3)
         elif i % 2 == 0:
-            tribonacci.append(1 + i / 2)
+            result.append(1 + i / 2)
         else:
-            tribonacci.append(tribonacci[i - 1] + tribonacci[i - 2] + tribonacci[i + 1] if i + 1 < len(tribonacci) else 0)
-
-    return tribonacci
+            tri_n_minus_1 = result[i - 1] if i - 1 >= 0 else 0
+            tri_n_minus_2 = result[i - 2] if i - 2 >= 0 else 0
+            tri_n_plus_1 = result[i + 1] if i + 1 <= n else 0
+            result.append(tri_n_minus_1 + tri_n_minus_2 + tri_n_plus_1)
+    return result
 
 def check(candidate):
 

@@ -152,12 +152,12 @@ class CodeInterpreterAgent:
     def _run_agent(self, n_attempts=3):
         for i in range(n_attempts):
             response = self._single_run_agent()
-            if response is not None:
+            if response is not None and hasattr(response.content[0], 'text'):
                 return response
             else:
                 print(f"Attempt {i} failed")
         print(f"Failed to run agent after {n_attempts} attempts")
-        return None
+        return response
 
     def _single_run_agent(self, n_attempts=3):        
         # Once the message is already stored, run the agent

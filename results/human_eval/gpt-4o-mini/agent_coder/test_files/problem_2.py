@@ -20,9 +20,9 @@ def truncate_number(number: float) -> float:
     >>> truncate_number(3.5)
     0.5
     """
-    integer_part = int(number)  # Get the integer part
+    integer_part = int(number)           # Get the integer part
     decimal_part = number - integer_part  # Calculate the decimal part
-    return decimal_part  # Return the decimal part
+    return decimal_part                   # Return the decimal part
 
 
 

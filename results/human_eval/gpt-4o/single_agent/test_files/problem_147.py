@@ -16,32 +16,29 @@ def get_max_triples(n):
 
 
 def get_max_triples(n):
+    # Step 1: Create the array a
     a = [i * i - i + 1 for i in range(1, n + 1)]
     
-    # Count the elements in a modulo 3
+    # Step 2: Count the occurrences of each modulo 3 result
     count_mod = [0, 0, 0]
     for num in a:
         count_mod[num % 3] += 1
     
-    # Calculate the number of valid triples
-    # We need to find C(count_mod[i], 3) + C(count_mod[i], 1) * C(count_mod[j], 1) * C(count_mod[k], 1)
-    # for all combinations of i, j, k such that (i + j + k) % 3 == 0
-    def comb(n, k):
-        if n < k:
-            return 0
-        if k == 2:
-            return n * (n - 1) // 2
-        if k == 3:
-            return n * (n - 1) * (n - 2) // 6
-        return 0
-    
+    # Step 3: Calculate the number of valid triples
+    count_0, count_1, count_2 = count_mod
     result = 0
-    # (0,0,0), (1,1,1), (2,2,2)
-    result += comb(count_mod[0], 3)
-    result += comb(count_mod[1], 3)
-    result += comb(count_mod[2], 3)
-    # (0,1,2)
-    result += count_mod[0] * count_mod[1] * count_mod[2]
+    
+    # Triples from (0, 0, 0)
+    result += count_0 * (count_0 - 1) * (count_0 - 2) // 6
+    
+    # Triples from (1, 1, 1)
+    result += count_1 * (count_1 - 1) * (count_1 - 2) // 6
+    
+    # Triples from (2, 2, 2)
+    result += count_2 * (count_2 - 1) * (count_2 - 2) // 6
+    
+    # Triples from (0, 1, 2)
+    result += count_0 * count_1 * count_2
     
     return result
 

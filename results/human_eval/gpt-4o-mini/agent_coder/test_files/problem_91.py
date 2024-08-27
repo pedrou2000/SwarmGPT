@@ -15,26 +15,17 @@ def is_bored(S):
 
 def is_bored(S):
     """ 
-    You'll be given a string of words, and your task is to count the number
-    of boredoms. A boredom is a sentence that starts with the word "I".
-    Sentences are delimited by '.', '?' or '!'.
-    
-    >>> is_bored("Hello world")
-    0
-    >>> is_bored("The sky is blue. The sun is shining. I love this weather")
-    1
+    Count the number of sentences starting with 'I'.
+    Sentences are delimited by '.', '?', or '!'.
     """
-    # Split the string into sentences using the delimiters
-    sentences = []
-    for delimiter in ['.', '?', '!']:
-        sentences = [sentence.strip() for sent in S.split(delimiter) for sentence in sent.splitlines() if sent.strip()]
-    
-    # Count sentences that start with "I"
     count = 0
+    # Split sentences using '.', '?', and '!' as delimiters
+    sentences = [sentence.strip() for sentence in S.replace('!', '.').replace('?', '.').split('.')]
+
     for sentence in sentences:
         if sentence.startswith("I"):
             count += 1
-    
+
     return count
 
 def check(candidate):

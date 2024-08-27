@@ -17,10 +17,9 @@ def rounded_avg(n, m):
     
     total_sum = sum(range(n, m + 1))
     count = m - n + 1
-    average = total_sum / count
-    rounded_average = round(average)
+    average = round(total_sum / count)
     
-    return bin(rounded_average)
+    return bin(average)
 
 def check(candidate):
 

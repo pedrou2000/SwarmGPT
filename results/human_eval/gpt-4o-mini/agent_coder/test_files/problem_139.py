@@ -13,15 +13,20 @@ def special_factorial(n):
     """
 
 
-def factorial(x):
-    if x == 0 or x == 1:
+def factorial(n):
+    """ Helper function to calculate factorial of n. """
+    if n == 0 or n == 1:
         return 1
-    result = 1
-    for i in range(2, x + 1):
-        result *= i
-    return result
+    product = 1
+    for i in range(2, n + 1):
+        product *= i
+    return product
 
 def special_factorial(n):
+    """The Brazilian factorial is defined as:
+    brazilian_factorial(n) = n! * (n-1)! * (n-2)! * ... * 1!
+    where n > 0
+    """
     result = 1
     for i in range(n, 0, -1):
         result *= factorial(i)

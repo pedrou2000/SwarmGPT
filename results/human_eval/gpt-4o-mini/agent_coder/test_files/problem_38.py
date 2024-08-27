@@ -17,19 +17,28 @@ def decode_cyclic(s: str):
     """
 
 
-def decode_cyclic(s: str):
+def decode_cyclic(s: str) -> str:
     """
-    takes as input string encoded with encode_cyclic function. Returns decoded string.
+    Takes as input a string encoded with the encode_cyclic function. 
+    Returns the decoded string.
     """
-    # Split the string into groups of up to 3 characters
-    groups = [s[(3 * i):min((3 * i + 3), len(s))] for i in range((len(s) + 2) // 3)]
+    # Split string into groups of 3
+    groups = [s[i:i + 3] for i in range(0, len(s), 3)]
     
-    # Rearrange the characters in each group
-    # Move the last character to the front for groups of length 3
-    groups = [(group[-1] + group[:-1]) if len(group) == 3 else group for group in groups]
-    
-    # Join all the groups into a single string
-    return "".join(groups)
+    # Reverse the cyclic shift for each group
+    decoded_groups = []
+    for group in groups:
+        if len(group) == 3:
+            # Move the last character to the front for cycling
+            decoded_groups.append(group[-1] + group[:-1])
+        else:
+            # If the group is less than 3 characters, leave it unchanged
+            decoded_groups.append(group)
+
+    return "".join(decoded_groups)
+
+# Example usage
+# print(decode_cyclic("cba"))  # This should return "abc" if "abc" was encoded with encode_cyclic.
 
 
 

@@ -12,15 +12,20 @@ def smallest_change(arr):
     """
 
 
-def smallest_change(arr):
-    change_count = 0
+from typing import List
+
+def smallest_change(arr: List[int]) -> int:
+    """ Given an array arr of integers, find the minimum number of elements that
+    need to be changed to make the array palindromic.
+    """
+    count = 0
     n = len(arr)
     
     for i in range(n // 2):
-        if arr[i] != arr[n - 1 - i]:
-            change_count += 1
+        if arr[i] != arr[n - i - 1]:
+            count += 1
             
-    return change_count
+    return count
 
 def check(candidate):
 

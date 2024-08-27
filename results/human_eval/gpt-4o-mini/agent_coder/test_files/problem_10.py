@@ -25,24 +25,24 @@ def is_palindrome(string: str) -> bool:
 
 def make_palindrome(string: str) -> str:
     """ Find the shortest palindrome that begins with a supplied string. """
-    n = len(string)
+    if not string:
+        return ''
     
-    # Find longest palindromic suffix
-    for i in range(n):
+    longest_suffix_index = 0
+    
+    # Find the longest palindromic suffix
+    for i in range(len(string)):
         if is_palindrome(string[i:]):
-            # The suffix string that is a palindrome
-            suffix = string[i:]
-            # The prefix string that needs to be reversed and added
-            prefix = string[:i]
-            return string + prefix[::-1]  # Append the reversed prefix
-
-    # If no palindromic suffix is found, return the original string + its reverse
-    return string + string[::-1]
-
-# Test cases
-print(make_palindrome(''))        # ''
-print(make_palindrome('cat'))     # 'catac'
-print(make_palindrome('cata'))    # 'catac'
+            longest_suffix_index = i
+            break
+    
+    # Get the prefix that is not part of the palindromic suffix
+    prefix = string[:longest_suffix_index]
+    
+    # Create the palindrome by appending the reversed prefix
+    palindrome = string + prefix[::-1]
+    
+    return palindrome
 
 
 

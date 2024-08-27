@@ -23,26 +23,35 @@ def find_zero(xs: list):
     """
 
 
-    def find_zero(xs: list):
-        # Using Newton's method to find a root of the polynomial
-        def derivative(xs):
-            return [i * coeff for i, coeff in enumerate(xs)][1:]  # Derivative coefficients
+    # Using Newton's method to find the root of the polynomial
+    def f(x):
+        return poly(xs, x)
 
-        x = 0.0  # Initial guess
-        tolerance = 1e-7
-        max_iterations = 1000
-        
-        for _ in range(max_iterations):
-            fx = poly(xs, x)
-            dfx = poly(derivative(xs), x)
-            if abs(dfx) < tolerance:  # Avoid division by zero
-                break
-            x_new = x - fx / dfx
-            if abs(x_new - x) < tolerance:
-                return x_new
-            x = x_new
-        
-        return x  # Return the found root
+    def df(x):
+        return sum([i * coeff * math.pow(x, i - 1) for i, coeff in enumerate(xs) if i > 0])
+
+    x0 = 0  # Initial guess
+    tolerance = 1e-7
+    max_iterations = 1000
+
+    for _ in range(max_iterations):
+        fx0 = f(x0)
+        dfx0 = df(x0)
+
+        if abs(fx0) < tolerance:
+            return x0
+
+        if dfx0 == 0:  # Avoid division by zero
+            break
+
+        x1 = x0 - fx0 / dfx0
+
+        if abs(x1 - x0) < tolerance:
+            return x1
+
+        x0 = x1
+
+    return None  # If no root is found within max_iterations
 
 
 

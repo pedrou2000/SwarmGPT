@@ -11,15 +11,15 @@ def rolling_max(numbers: List[int]) -> List[int]:
 
     if not numbers:
         return []
+    
+    max_so_far = numbers[0]
+    result = [max_so_far]
 
-    rolling_max_list = []
-    current_max = float('-inf')
-
-    for num in numbers:
-        current_max = max(current_max, num)
-        rolling_max_list.append(current_max)
-
-    return rolling_max_list
+    for num in numbers[1:]:
+        max_so_far = max(max_so_far, num)
+        result.append(max_so_far)
+    
+    return result
 
 
 

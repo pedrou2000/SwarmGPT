@@ -19,8 +19,8 @@ def sort_numbers(numbers: str) -> str:
     >>> sort_numbers('three one five')
     'one three five'
     """
-    
-    numeral_to_value = {
+    # Step 1: Create a mapping from words to numbers
+    word_to_number = {
         'zero': 0,
         'one': 1,
         'two': 2,
@@ -33,22 +33,17 @@ def sort_numbers(numbers: str) -> str:
         'nine': 9
     }
     
-    value_to_numeral = {v: k for k, v in numeral_to_value.items()}
+    # Step 2: Split the input string into a list of words
+    word_list = numbers.split()
     
-    # Split the input string into a list of numeral strings
-    numeral_list = numbers.split()
+    # Step 3: Sort the list based on the numerical values
+    sorted_list = sorted(word_list, key=lambda word: word_to_number[word])
     
-    # Convert to numeric values
-    numeric_values = [numeral_to_value[numeral] for numeral in numeral_list]
+    # Step 4: Join the sorted list into a single string
+    result = ' '.join(sorted_list)
     
-    # Sort the numeric values
-    numeric_values.sort()
-    
-    # Convert back to numeral strings
-    sorted_numerals = [value_to_numeral[value] for value in numeric_values]
-    
-    # Join the sorted list into a single string
-    return ' '.join(sorted_numerals)
+    # Step 5: Return the resulting string
+    return result
 
 
 

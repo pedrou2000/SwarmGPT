@@ -14,27 +14,42 @@ def histogram(test):
     """
 
 
-def histogram(test: str) -> dict:
-    """ Given a string representing a space separated lowercase letters, return a dictionary
+def histogram(test):
+    """Given a string representing a space separated lowercase letters, return a dictionary
     of the letter with the most repetition and containing the corresponding count.
+    If several letters have the same occurrence, return all of them.
+    
+    Example:
+    histogram('a b c') == {'a': 1, 'b': 1, 'c': 1}
+    histogram('a b b a') == {'a': 2, 'b': 2}
+    histogram('a b c a b') == {'a': 2, 'b': 2}
+    histogram('b b b b a') == {'b': 4}
+    histogram('') == {}
     """
-    count_dict = {}
+    # Step 1: Initialize a dictionary for counts
+    counts = {}
+    
+    # Step 2: Split the input string into letters
     letters = test.split()
-
-    # Count occurrences of each letter
+    
+    # Step 3: Count occurrences of each letter
     for letter in letters:
-        if letter in count_dict:
-            count_dict[letter] += 1
+        if letter in counts:
+            counts[letter] += 1
         else:
-            count_dict[letter] = 1
-
-    # Find the maximum occurrence count
-    max_count = max(count_dict.values(), default=0)
-
-    # Create a new dictionary for letters with the max count
-    max_letters = {letter: count for letter, count in count_dict.items() if count == max_count}
-
-    return max_letters
+            counts[letter] = 1
+            
+    # Step 4: Determine the maximum occurrence count
+    if not counts:  # Handle the case of an empty input
+        return {}
+    
+    max_count = max(counts.values())
+    
+    # Step 5: Collect all letters with the maximum count
+    result = {letter: count for letter, count in counts.items() if count == max_count}
+    
+    # Step 6: Return the result
+    return result
 
 def check(candidate):
 

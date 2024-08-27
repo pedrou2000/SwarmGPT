@@ -20,16 +20,14 @@ def will_it_fly(q,w):
 
 
 def will_it_fly(q, w):
-    """Returns True if the object q will fly, and False otherwise."""
-    
-    # Check if the list is a palindrome
-    is_palindrome = (q == q[::-1])
-    
-    # Calculate the sum of the elements
-    total_weight = sum(q)
-    
-    # Return True if both conditions are met
-    return is_palindrome and total_weight <= w
+    """ 
+    Determine if the object q will fly based on its balance and weight limit.
+    """
+    if q != q[::-1]:  # Check if q is a palindrome
+        return False
+    if sum(q) > w:  # Check if the sum of q is less than or equal to w
+        return False
+    return True  # If both conditions are satisfied, return True
 
 def check(candidate):
 

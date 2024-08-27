@@ -10,18 +10,15 @@ def f(n):
     """
 
 
+import math
+
 def f(n):
-    from math import factorial
-
-    def sum_up_to(i):
-        return sum(range(1, i + 1))
-
     result = []
     for i in range(1, n + 1):
         if i % 2 == 0:
-            result.append(factorial(i))
+            result.append(math.factorial(i))
         else:
-            result.append(sum_up_to(i))
+            result.append(sum(range(1, i + 1)))
     return result
 
 def check(candidate):

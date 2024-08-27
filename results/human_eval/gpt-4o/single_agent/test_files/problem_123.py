@@ -18,16 +18,15 @@ def get_odd_collatz(n):
     """
 
 
-def get_odd_collatz(n):
     odd_numbers = set()
+    
     while n != 1:
-        if n % 2 != 0:
+        if n % 2 == 1:
             odd_numbers.add(n)
-        if n % 2 == 0:
-            n //= 2
-        else:
-            n = 3 * n + 1
-    odd_numbers.add(1)  # 1 is always in the sequence
+        n = 3 * n + 1 if n % 2 == 1 else n // 2
+    
+    odd_numbers.add(1)  # Since the sequence always reaches 1
+    
     return sorted(odd_numbers)
 
 def check(candidate):

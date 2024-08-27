@@ -16,19 +16,8 @@ def car_race_collision(n: int):
 
 def car_race_collision(n: int) -> int:
     """
-    Calculate the number of collisions between cars moving in opposite directions.
-    
-    Parameters:
-    n (int): The number of cars moving left to right and right to left.
-    
-    Returns:
-    int: The total number of collisions.
-    
-    Examples:
-    >>> car_race_collision(3)
-    9
-    >>> car_race_collision(0)
-    0
+    This function outputs the number of collisions between two sets of cars.
+    Each set contains n cars driving in opposite directions on a straight road.
     """
     return n * n
 

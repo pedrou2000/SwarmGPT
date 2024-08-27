@@ -11,13 +11,13 @@ def sort_even(l: list):
     """
 
 
-    even_indices = [l[i] for i in range(len(l)) if i % 2 == 0]
-    even_indices.sort()
-    
+    even_indices = sorted(l[i] for i in range(len(l)) if i % 2 == 0)
     result = l[:]
-    for i, val in enumerate(even_indices):
-        result[i * 2] = val
-    
+    j = 0
+    for i in range(len(l)):
+        if i % 2 == 0:
+            result[i] = even_indices[j]
+            j += 1
     return result
 
 

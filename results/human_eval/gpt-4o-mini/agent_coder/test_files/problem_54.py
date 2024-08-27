@@ -18,10 +18,9 @@ def same_chars(s0: str, s1: str):
     """
 
 
-from collections import Counter
-
 def same_chars(s0: str, s1: str) -> bool:
-    """ Check if two words have the same characters.
+    """
+    Check if two words have the same characters.
     >>> same_chars('eabcdzzzz', 'dddzzzzzzzddeddabc')
     True
     >>> same_chars('abcd', 'dddddddabc')
@@ -35,7 +34,7 @@ def same_chars(s0: str, s1: str) -> bool:
     >>> same_chars('eabcdzzzz', 'dddzzzzzzzddddabc')
     False
     """
-    return Counter(s0) == Counter(s1)
+    return set(s0) == set(s1)
 
 
 

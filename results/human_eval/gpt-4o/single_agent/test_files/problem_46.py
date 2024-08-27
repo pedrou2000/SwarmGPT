@@ -17,7 +17,6 @@ def fib4(n: int):
     """
 
 
-def fib4(n: int):
     if n == 0:
         return 0
     elif n == 1:
@@ -27,15 +26,12 @@ def fib4(n: int):
     elif n == 3:
         return 0
 
-    # Initialize the base values
-    fib_values = [0, 0, 2, 0]
-
-    # Compute the sequence iteratively
+    fib = [0, 0, 2, 0]
     for i in range(4, n + 1):
-        next_val = fib_values[-1] + fib_values[-2] + fib_values[-3] + fib_values[-4]
-        fib_values.append(next_val)
+        next_fib = fib[-1] + fib[-2] + fib[-3] + fib[-4]
+        fib.append(next_fib)
 
-    return fib_values[n]
+    return fib[n]
 
 
 

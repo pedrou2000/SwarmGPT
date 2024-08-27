@@ -13,9 +13,9 @@ def digits(n):
     has_odd = False
     
     for digit in str(n):
-        digit = int(digit)
-        if digit % 2 != 0:  # Check if the digit is odd
-            product *= digit
+        d = int(digit)
+        if d % 2 == 1:  # Check if the digit is odd
+            product *= d
             has_odd = True
             
     return product if has_odd else 0

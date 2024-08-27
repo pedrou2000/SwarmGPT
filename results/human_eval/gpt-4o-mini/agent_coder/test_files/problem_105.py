@@ -23,25 +23,24 @@ def by_length(arr):
     """
 
 
-def by_length(arr):
-    """
-    Given an array of integers, sort the integers that are between 1 and 9 inclusive,
-    reverse the resulting array, and then replace each digit by its corresponding name from
-    "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine".
-    """
-    names = ["", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
+from typing import List
+
+def by_length(arr: List[int]) -> List[str]:
+    """ Sort integers between 1 and 9, reverse them, and replace them with their names. """
     
-    # Step 1: Filter the array for numbers between 1 and 9
-    filtered = [num for num in arr if 1 <= num <= 9]
+    number_names = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
     
-    # Step 2: Sort the filtered array
-    filtered.sort()
+    # Step 2: Filter the list to keep only numbers between 1 and 9
+    filtered_numbers = [num for num in arr if 1 <= num <= 9]
     
-    # Step 3: Reverse the sorted array
-    filtered.reverse()
+    # Step 3: Sort the filtered numbers
+    filtered_numbers.sort()
     
-    # Step 4: Map numbers to their names
-    result = [names[num] for num in filtered]
+    # Step 4: Reverse the sorted list
+    filtered_numbers.reverse()
+    
+    # Step 5: Map numbers to their corresponding names
+    result = [number_names[num - 1] for num in filtered_numbers]
     
     return result
 

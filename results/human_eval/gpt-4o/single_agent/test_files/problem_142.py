@@ -14,16 +14,15 @@ def sum_squares(lst):
     """
 
 
-def sum_squares(lst):
-    result = 0
-    for i, num in enumerate(lst):
-        if i % 3 == 0:
-            result += num ** 2
-        elif i % 4 == 0:
-            result += num ** 3
+    total = 0
+    for idx, val in enumerate(lst):
+        if idx % 3 == 0:
+            total += val ** 2
+        elif idx % 4 == 0:
+            total += val ** 3
         else:
-            result += num
-    return result
+            total += val
+    return total
 
 def check(candidate):
 

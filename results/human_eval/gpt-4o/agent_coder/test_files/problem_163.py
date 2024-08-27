@@ -21,24 +21,15 @@ def generate_integers(a, b):
     generate_integers(8, 2) => [2, 4, 6, 8]
     generate_integers(10, 14) => []
     """
-    # Ensure a is less than or equal to b
-    if a > b:
-        a, b = b, a
+    result = []
+    start = min(a, b)
+    end = max(a, b)
     
-    # Initialize the result list
-    even_digits = []
+    for i in range(start, end + 1):
+        if i % 2 == 0:
+            result.append(i)
     
-    # Loop through the range and collect even digits
-    for number in range(max(2, a), min(9, b) + 1):
-        if number % 2 == 0:
-            even_digits.append(number)
-    
-    return even_digits
-
-# Test cases to verify the solution
-print(generate_integers(2, 8))  # Output: [2, 4, 6, 8]
-print(generate_integers(8, 2))  # Output: [2, 4, 6, 8]
-print(generate_integers(10, 14))  # Output: []
+    return result
 
 def check(candidate):
 

@@ -30,18 +30,16 @@ def eat(number, need, remaining):
     """
 
 
-def eat(number: int, need: int, remaining: int):
-    carrots_needed = need
+def eat(number, need, remaining):
     total_eaten = number
-
-    if remaining >= carrots_needed:
-        total_eaten += carrots_needed
-        remaining -= carrots_needed
+    if remaining >= need:
+        total_eaten += need
+        left_after_meal = remaining - need
     else:
         total_eaten += remaining
-        remaining = 0
-
-    return [total_eaten, remaining]
+        left_after_meal = 0
+    
+    return [total_eaten, left_after_meal]
 
 def check(candidate):
 

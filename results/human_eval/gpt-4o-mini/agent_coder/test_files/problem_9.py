@@ -17,14 +17,13 @@ def rolling_max(numbers: List[int]) -> List[int]:
     >>> rolling_max([1, 2, 3, 2, 3, 4, 2])
     [1, 2, 3, 3, 3, 4, 4]
     """
-    
     result = []
     current_max = float('-inf')  # Initialize to negative infinity
 
     for number in numbers:
         if number > current_max:
-            current_max = number  # Update current max if the current number is larger
-        result.append(current_max)  # Append the current max to the result list
+            current_max = number
+        result.append(current_max)
 
     return result
 

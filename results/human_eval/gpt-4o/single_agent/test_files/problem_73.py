@@ -12,12 +12,15 @@ def smallest_change(arr):
     """
 
 
-def smallest_change(arr):
-    n = len(arr)
     changes = 0
-    for i in range(n // 2):
-        if arr[i] != arr[n - i - 1]:
+    left, right = 0, len(arr) - 1
+    
+    while left < right:
+        if arr[left] != arr[right]:
             changes += 1
+        left += 1
+        right -= 1
+        
     return changes
 
 def check(candidate):

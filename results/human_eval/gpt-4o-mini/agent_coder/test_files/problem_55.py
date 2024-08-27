@@ -11,7 +11,7 @@ def fib(n: int):
     """
 
 
-def fib(n: int) -> int:
+def fib(n: int):
     """Return n-th Fibonacci number.
     >>> fib(10)
     55
@@ -22,17 +22,18 @@ def fib(n: int) -> int:
     """
     if n == 0:
         return 0
-    elif n == 1:
+    if n == 1:
         return 1
-    
-    a, b = 0, 1  # Initialize fib(0) and fib(1)
-    
-    for _ in range(2, n + 1):
-        c = a + b  # Calculate the next Fibonacci number
-        a = b      # Move to the next
-        b = c      # Update to the latest Fibonacci number
-    
-    return b  # Return the n-th Fibonacci number
+
+    previous = 0
+    current = 1
+
+    for i in range(2, n + 1):
+        next_fib = previous + current
+        previous = current
+        current = next_fib
+
+    return current
 
 
 

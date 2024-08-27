@@ -16,8 +16,13 @@ def sorted_list_sum(lst):
     """
 
 
-    filtered_list = [s for s in lst if len(s) % 2 == 0]
-    return sorted(filtered_list, key=lambda x: (len(x), x))
+    # Filter out strings with odd lengths
+    filtered_lst = [s for s in lst if len(s) % 2 == 0]
+    
+    # Sort the filtered list first by length, then alphabetically
+    sorted_lst = sorted(filtered_lst, key=lambda x: (len(x), x))
+    
+    return sorted_lst
 
 def check(candidate):
 

@@ -14,17 +14,14 @@ def fruit_distribution(s,n):
     """
 
 
+def fruit_distribution(s, n):
     import re
-
     # Extract numbers from the string
     numbers = list(map(int, re.findall(r'\d+', s)))
-
-    # Sum the numbers of apples and oranges
+    # Calculate the total of apples and oranges
     total_apples_and_oranges = sum(numbers)
-
     # Calculate the number of mangoes
     mangoes = n - total_apples_and_oranges
-
     return mangoes
 
 def check(candidate):

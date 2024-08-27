@@ -9,10 +9,6 @@ def minSubArraySum(nums):
     """
 
 
-def minSubArraySum(nums):
-    if not nums:
-        return 0
-
     min_sum = float('inf')
     current_sum = 0
 

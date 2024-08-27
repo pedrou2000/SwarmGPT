@@ -19,14 +19,12 @@ def pairs_sum_to_zero(l):
 
 
 def pairs_sum_to_zero(l):
-    seen_numbers = set()
-    
-    for num in l:
-        if -num in seen_numbers:
-            return True
-        seen_numbers.add(num)
-    
-    return False
+    seen = set()  # Step 1: Create an empty set to track seen numbers
+    for num in l:  # Step 2: Iterate through each number in the list
+        if -num in seen:  # Step 3a: Check if the negative of the current number is in the set
+            return True  # Found two numbers that sum to zero
+        seen.add(num)  # Step 3b: Add the current number to the set
+    return False  # Step 4: No such pair found
 
 
 

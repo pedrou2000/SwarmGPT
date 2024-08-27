@@ -21,10 +21,11 @@ def multiply(a, b):
     multiply(2020, 1851) should return 0.
     multiply(14,-15) should return 20.
     """
-    unit_a = abs(a) % 10
-    unit_b = abs(b) % 10
-    product = unit_a * unit_b
-    return product
+    
+    unit_digit_a = abs(a) % 10  # Get the unit digit of a
+    unit_digit_b = abs(b) % 10  # Get the unit digit of b
+    
+    return unit_digit_a * unit_digit_b  # Multiply and return the result
 
 def check(candidate):
 

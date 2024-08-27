@@ -17,15 +17,14 @@ def is_sorted(lst):
     '''
 
 
-    if len(lst) < 2:
+    if len(lst) <= 1:
         return True
     
     seen = set()
-    last_num = lst[0]
+    last_num = float('-inf')
+    
     for num in lst:
-        if num in seen:
-            return False
-        if num < last_num:
+        if num in seen or num < last_num:
             return False
         seen.add(num)
         last_num = num

@@ -9,22 +9,29 @@ def is_multiply_prime(a):
     """
 
 
-    def is_prime(n):
-        if n <= 1:
-            return False
-        for i in range(2, int(n**0.5) + 1):
-            if n % i == 0:
-                return False
-        return True
+def is_multiply_prime(a):
+    if a < 2:
+        return False
 
-    primes = [i for i in range(2, 100) if is_prime(i)]
-    
-    for i in range(len(primes)):
-        for j in range(i, len(primes)):
-            for k in range(j, len(primes)):
-                if primes[i] * primes[j] * primes[k] == a:
-                    return True
-    return False
+    primes = []
+    for num in range(2, 100):
+        for i in range(2, int(num**0.5) + 1):
+            if num % i == 0:
+                break
+        else:
+            primes.append(num)
+
+    def check_product(primes, remaining, product, count):
+        if count == 3:
+            return product == a
+        for prime in primes:
+            if prime > remaining:
+                break
+            if check_product(primes, remaining // prime, product * prime, count + 1):
+                return True
+        return False
+
+    return check_product(primes, a, 1, 0)
 
 def check(candidate):
 

@@ -16,29 +16,34 @@ def encode(message):
 
 
 def encode(message):
-    result = []
+    """
+    Write a function that takes a message, and encodes it in such a 
+    way that it swaps the case of all letters and replaces all vowels with 
+    the letter that appears 2 places ahead in the English alphabet. 
+    Assume only letters. 
+    """
     vowels = 'aeiouAEIOU'
-    
+    encoded_message = []
+
     for char in message:
         if char in vowels:
-            # Calculate the letter that is two places ahead
+            # Replace vowel with the letter two places ahead
             if char.islower():
-                new_char = chr((ord(char) - ord('a') + 2) % 26 + ord('a'))
+                encoded_message.append(chr(ord(char) + 2))
             else:
-                new_char = chr((ord(char) - ord('A') + 2) % 26 + ord('A'))
-            result.append(new_char)
+                encoded_message.append(chr(ord(char) + 2).upper())
         else:
-            # Swap case
+            # Swap case for non-vowel characters
             if char.islower():
-                result.append(char.upper())
+                encoded_message.append(char.upper())
             else:
-                result.append(char.lower())
+                encoded_message.append(char.lower())
     
-    return ''.join(result)
+    return ''.join(encoded_message)
 
-# Let's test the function with the provided examples
-print(encode('test'))  # Should output 'TGST'
-print(encode('This is a message'))  # Should output 'tHKS KS C MGSSCGG'
+# Test cases
+print(encode('test'))  # Expected: 'TGST'
+print(encode('This is a message'))  # Expected: 'tHKS KS C MGSSCGG'
 
 def check(candidate):
 

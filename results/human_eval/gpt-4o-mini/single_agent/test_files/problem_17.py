@@ -16,14 +16,19 @@ def parse_music(music_string: str) -> List[int]:
     """
 
 
-    note_mapping = {
+    beats = {
         'o': 4,
         'o|': 2,
         '.|': 1
     }
     
+    # Split the music string into individual notes
     notes = music_string.split()
-    return [note_mapping[note] for note in notes]
+    
+    # Parse each note and get the corresponding beats
+    result = [beats[note] for note in notes if note in beats]
+    
+    return result
 
 
 

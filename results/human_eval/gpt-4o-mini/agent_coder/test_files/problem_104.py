@@ -13,12 +13,10 @@ def unique_digits(x):
     """
 
 
-from typing import List
-
-def unique_digits(x: List[int]) -> List[int]:
+def unique_digits(x):
     """Given a list of positive integers x. return a sorted list of all 
     elements that hasn't any even digit.
-    
+
     Note: Returned list should be sorted in increasing order.
     
     For example:
@@ -30,22 +28,16 @@ def unique_digits(x: List[int]) -> List[int]:
     result = []
     
     for number in x:
-        str_number = str(number)
-        is_unique = True
-        
-        for digit in str_number:
+        has_even_digit = False
+        for digit in str(number):
             if digit in '02468':
-                is_unique = False
+                has_even_digit = True
                 break
-                
-        if is_unique:
+        if not has_even_digit:
             result.append(number)
     
-    return sorted(result)
-
-# Example usage
-print(unique_digits([15, 33, 1422, 1]))  # Output: [1, 15, 33]
-print(unique_digits([152, 323, 1422, 10]))  # Output: []
+    result.sort()
+    return result
 
 def check(candidate):
 

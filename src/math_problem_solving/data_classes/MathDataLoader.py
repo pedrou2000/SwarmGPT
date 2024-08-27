@@ -1,5 +1,5 @@
 import concurrent.futures
-import sys, os, json, random
+import sys, os, json, random, time, pickle
 sys.path.append(os.getcwd())
 sys.path.append(os.path.dirname(os.getcwd()))
 sys.path.append(os.path.dirname(os.path.dirname(os.getcwd())))
@@ -52,6 +52,26 @@ class MathDataLoader():
         else:
             problem = random.choice(self.data[problem_type])
         return problem
+    
+    def get_several_random_problems(self, n_problems: int = 1,  level: int = None, problem_type: str = None) -> MathProblem:
+        # Get a random problem from the data
+        if problem_type is  None:
+            problem_type = random.choice(self.problem_types)
+        if level is not None:
+            problems_of_level = [problem for problem in self.data[problem_type] if problem.level == level]
+            selected_problems = random.sample(problems_of_level, n_problems)
+        else:
+            selected_problems = random.sample(self.data[problem_type], n_problems)  
+        return selected_problems
+    
+    def get_random_problems_balanced(self, n_problems_per_level_and_type: int = 2) -> list:
+        # Get a balanced set of random problems
+        problems = []
+        for problem_type in self.problem_types:
+            for level in range(1, 6):
+                problems.extend(self.get_several_random_problems(n_problems=n_problems_per_level_and_type, level=level, problem_type=problem_type))
+                
+        return problems
     
     def get_problem(self, type:str = "algebra", problem_number:int = 265) -> MathProblem:
         # Get a problem by type and number
@@ -112,6 +132,30 @@ class MathDataLoader():
                 raise ValueError(f"Requested {n_problems} problems, but only {self.n_total_problems} are available.")
         
         return random.sample(all_problems, n_problems)
+    
+    def save_problems(self, problems: list, save_path: str):
+        """
+        Save a list of MathProblem objects to a file.
+
+        :param problems: The list of MathProblem objects to save.
+        :param save_path: The file path where the problems should be saved.
+        """
+        if not os.path.exists(os.path.dirname(save_path)):
+            os.makedirs(os.path.dirname(save_path))
+        with open(save_path, 'wb') as file:
+            pickle.dump(problems, file)
+    
+    @staticmethod
+    def load_problems(load_path: str) -> list:
+        """
+        Load a list of MathProblem objects from a file.
+
+        :param load_path: The file path from which to load the problems.
+        :return: A list of MathProblem objects.
+        """
+        with open(load_path, 'rb') as file:
+            problems = pickle.load(file)
+        return problems
 
     def get_all_problems(self) -> list:
         """
@@ -125,8 +169,16 @@ class MathDataLoader():
         return all_problems
 
 
-    def test_math_task(self, agent: callable, math_problem: MathProblem):
-        response = agent(math_problem)
+    def test_math_task(self, agent: callable, math_problem: MathProblem, n_attempts: int = 5):
+        n_attempt = 0
+        while n_attempt < n_attempts:
+            try:
+                response = agent(math_problem)
+                break
+            except Exception as e:
+                print(f"Error in test_math_task: {e}")
+                time.sleep(10)
+                n_attempt += 1
         is_correct, agent_answer, real_answer = math_problem.is_correct_answer(response)
         return math_problem, is_correct, agent_answer, real_answer
 
@@ -141,6 +193,7 @@ class MathDataLoader():
         }
 
         n_correct = 0
+        n_completed = 0
 
         with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             future_to_task = {executor.submit(self.test_math_task, agent, math_problem): math_problem for math_problem in math_problems}
@@ -149,7 +202,8 @@ class MathDataLoader():
                 task_number = future_to_task[future]
                 math_problem, is_correct, agent_answer, real_answer = future.result()
                 
-                print(f'Math Problem: {math_problem.problem_statement}, Correct: {is_correct}, Agent Answer: {agent_answer}, Real Answer: {real_answer}')
+                n_completed += 1
+                print(f'Completed Tasks: {n_completed}/{len(math_problems)}. Correct: {is_correct}, Agent Answer: {agent_answer}, Real Answer: {real_answer}')
                 print('\n-----------------------------------\n')
 
                 if is_correct:

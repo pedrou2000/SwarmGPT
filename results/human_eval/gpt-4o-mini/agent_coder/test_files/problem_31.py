@@ -39,14 +39,13 @@ def is_prime(n):
     if n <= 1:
         return False
     if n == 2:
-        return True
+        return True  # 2 is prime
     if n % 2 == 0:
-        return False
+        return False  # Other even numbers are not prime
 
-    for i in range(3, int(n**0.5) + 1, 2):
+    for i in range(3, int(n**0.5) + 1, 2):  # Check only odd numbers
         if n % i == 0:
             return False
-
     return True
 
 

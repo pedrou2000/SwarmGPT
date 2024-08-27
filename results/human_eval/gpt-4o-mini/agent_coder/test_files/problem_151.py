@@ -16,11 +16,16 @@ def double_the_difference(lst):
 from typing import List
 
 def double_the_difference(lst: List[int]) -> int:
-    total_sum = 0
+    if not lst:  # Check if the list is empty
+        return 0
+
+    sum_of_squares = 0
+
     for number in lst:
-        if isinstance(number, int) and number >= 0 and number % 2 != 0:
-            total_sum += number ** 2
-    return total_sum
+        if isinstance(number, int) and number >= 0 and number % 2 != 0:  # Check if it's a non-negative odd integer
+            sum_of_squares += number * number  # Add the square of the number to the sum
+
+    return sum_of_squares
 
 def check(candidate):
 

@@ -21,16 +21,16 @@ def get_row(lst, x):
     """
 
 
-    result = []
-    for i in range(len(lst)):
-        for j in range(len(lst[i])):
-            if lst[i][j] == x:
-                result.append((i, j))
+    coordinates = []
+    for row_index, row in enumerate(lst):
+        for col_index, value in enumerate(row):
+            if value == x:
+                coordinates.append((row_index, col_index))
     
     # Sort by row (ascending) and then by column (descending)
-    result.sort(key=lambda coord: (coord[0], -coord[1]))
+    coordinates.sort(key=lambda coord: (coord[0], -coord[1]))
     
-    return result
+    return coordinates
 
 def check(candidate):
 

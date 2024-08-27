@@ -22,11 +22,9 @@ def can_arrange(arr):
     can_arrange([1,2,3]) = -1
     """
     last_index = -1
-
-    for index in range(1, len(arr)):
-        if arr[index] < arr[index - 1]:
-            last_index = index
-
+    for i in range(1, len(arr)):
+        if arr[i] < arr[i - 1]:
+            last_index = i
     return last_index
 
 def check(candidate):

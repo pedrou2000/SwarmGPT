@@ -12,10 +12,10 @@ def order_by_points(nums):
     """
 
 
-    def sum_of_digits(n):
+    def digit_sum(n):
         return sum(int(digit) for digit in str(abs(n)))
 
-    return sorted(nums, key=lambda x: (sum_of_digits(x), nums.index(x)))
+    return sorted(nums, key=lambda x: (digit_sum(x), nums.index(x)))
 
 def check(candidate):
 

@@ -12,15 +12,21 @@ def count_nums(arr):
 
 
 def count_nums(arr):
-    def sum_of_digits(n):
-        # Get the absolute value of n for digit extraction
-        n = abs(n)
-        # Calculate sum of digits
-        return sum(int(digit) for digit in str(n))
-    
     count = 0
-    for num in arr:
-        if sum_of_digits(num) > 0:  # Count only if the sum of digits is positive
+    
+    for number in arr:
+        sum_digits = 0
+        str_number = str(number)
+        
+        for idx, char in enumerate(str_number):
+            if idx == 0 and char == '-':
+                # If the first character is '-', we add its negative value
+                sum_digits += -int(str_number[1]) if len(str_number) > 1 else 0
+            elif char.isdigit():
+                # For all other digits, we add their positive value
+                sum_digits += int(char)
+        
+        if sum_digits > 0:
             count += 1
             
     return count

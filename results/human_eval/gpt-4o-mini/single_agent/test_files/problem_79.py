@@ -14,7 +14,7 @@ def decimal_to_binary(decimal):
 
 
     binary = bin(decimal)[2:]  # Convert decimal to binary and remove the '0b' prefix
-    return f"db{binary}db"  # Format the output with 'db' at both ends
+    return f"db{binary}db"  # Format the output string with 'db' at the beginning and end
 
 def check(candidate):
 

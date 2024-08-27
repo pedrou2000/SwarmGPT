@@ -17,14 +17,15 @@ def max_element(l: list):
     123
     """
     if not l:  # Check if the list is empty
-        return None  # or raise an exception
-
-    max_value = l[0]  # Initialize max_value with the first element
+        return None  # or you could raise an exception
+    
+    max_value = l[0]  # Start with the first element
+    
     for num in l:
         if num > max_value:
-            max_value = num  # Update max_value if a larger number is found
-
-    return max_value  # Return the maximum value found
+            max_value = num  # Update the max_value if a larger number is found
+            
+    return max_value
 
 
 

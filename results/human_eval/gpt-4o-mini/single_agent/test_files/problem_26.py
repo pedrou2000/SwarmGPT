@@ -9,11 +9,10 @@ def remove_duplicates(numbers: List[int]) -> List[int]:
     """
 
 
-    count = {}
-    for number in numbers:
-        count[number] = count.get(number, 0) + 1
-    
-    return [number for number in numbers if count[number] == 1]
+    from collections import Counter
+
+    counts = Counter(numbers)
+    return [num for num in numbers if counts[num] == 1]
 
 
 

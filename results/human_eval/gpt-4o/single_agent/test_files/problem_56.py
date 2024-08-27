@@ -15,12 +15,11 @@ def correct_bracketing(brackets: str):
     """
 
 
-def correct_bracketing(brackets: str):
     count = 0
-    for char in brackets:
-        if char == '<':
+    for bracket in brackets:
+        if bracket == "<":
             count += 1
-        elif char == '>':
+        elif bracket == ">":
             count -= 1
         if count < 0:
             return False

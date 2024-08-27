@@ -22,17 +22,16 @@ def valid_date(date):
 
 
 def valid_date(date):
-    """Validates the given date string."""
-    
+    """Validate a given date string in mm-dd-yyyy format."""
     # Check if the date string is empty
     if not date:
         return False
     
-    # Check format: mm-dd-yyyy
+    # Check the format mm-dd-yyyy
     if len(date) != 10 or date[2] != '-' or date[5] != '-':
         return False
     
-    # Split into month, day, year
+    # Split the date string into components
     month_str, day_str, year_str = date.split('-')
     
     # Convert to integers
@@ -41,25 +40,24 @@ def valid_date(date):
         day = int(day_str)
         year = int(year_str)
     except ValueError:
-        return False  # If conversion fails, return False
+        return False  # In case of non-integer values
     
     # Validate the month
     if month < 1 or month > 12:
         return False
     
     # Validate the day based on the month
-    if day < 1:
-        return False
-    if month == 2:  # February
-        if day > 29:
+    if month in (1, 3, 5, 7, 8, 10, 12):
+        if day < 1 or day > 31:
             return False
-    elif month in (4, 6, 9, 11):  # Months with 30 days
-        if day > 30:
+    elif month in (4, 6, 9, 11):
+        if day < 1 or day > 30:
             return False
-    else:  # Months with 31 days
-        if day > 31:
+    elif month == 2:
+        if day < 1 or day > 29:
             return False
     
+    # If all checks passed
     return True
 
 def check(candidate):

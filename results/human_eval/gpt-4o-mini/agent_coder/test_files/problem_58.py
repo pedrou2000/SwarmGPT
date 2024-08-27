@@ -17,17 +17,17 @@ def common(l1: list, l2: list):
     >>> common([5, 3, 2, 8], [3, 2])
     [2, 3]
     """
-    # Step 1: Convert lists to sets
+    # Convert lists to sets to get unique elements
     set1 = set(l1)
     set2 = set(l2)
     
-    # Step 2: Find intersection of both sets
+    # Find the intersection of the two sets
     common_elements = set1.intersection(set2)
     
-    # Step 3: Convert to list and sort
-    sorted_common_elements = sorted(common_elements)
+    # Convert the resulting set to a sorted list
+    result = sorted(common_elements)
     
-    return sorted_common_elements
+    return result
 
 
 

@@ -16,16 +16,17 @@ def string_to_md5(text):
     If 'text' is an empty string, return None.
 
     >>> string_to_md5('Hello world') == '3e25960a79dbc69b674cd4ec67a72c62'
-    >>> string_to_md5('') == None
-    >>> string_to_md5('ABCDE') == '7ac66c0f148de9519b8bd264312c4d64'
-    >>> string_to_md5('!@#$%^&*()_+') == 'd8578edf8458ce06fbc5bb76a58c5ca4'
-    >>> string_to_md5('Hello worldHello worldHello worldHello worldHello world') == '2d52d6e4f3c9d3d5d7ecb5c49e6a2e7e'
     """
     if text == "":
         return None
     
+    # Create an MD5 hash object
     md5_hash = hashlib.md5()
+    
+    # Update the hash object with the bytes of the input string
     md5_hash.update(text.encode('utf-8'))
+    
+    # Return the hexadecimal representation of the hash
     return md5_hash.hexdigest()
 
 def check(candidate):

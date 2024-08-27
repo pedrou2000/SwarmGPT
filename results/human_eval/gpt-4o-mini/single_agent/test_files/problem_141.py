@@ -15,7 +15,6 @@ def file_name_check(file_name):
     """
 
 
-def file_name_check(file_name):
     if file_name.count('.') != 1:
         return 'No'
     
@@ -27,7 +26,7 @@ def file_name_check(file_name):
     if extension not in ['txt', 'exe', 'dll']:
         return 'No'
     
-    digit_count = sum(c.isdigit() for c in file_name)
+    digit_count = sum(c.isdigit() for c in name)
     
     if digit_count > 3:
         return 'No'

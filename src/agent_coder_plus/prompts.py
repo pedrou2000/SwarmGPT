@@ -64,3 +64,19 @@ Your task is to refine the code so that it passes the tests.
         """,
     }
 }
+
+META_AGENT_CODER = {
+    "AgentSolutionEvaluator": {
+        "system": """
+Your task is to evaluate the final solutions provided by the agents and select the best solution.
+You should report the number of tests that a given solution passes. 
+""",
+        "user": """
+## Code to test (Do not modify): \n{completed_method}\n {test_cases}\n\n ---\n ## Report of the number of tests that the solution passes and the total number of tests: \n
+        """,
+        "parser_system": """
+Given the code which has been run and the feedback provided, please parse the feedback into a structured format.
+You should return the total number of tests and the number of tests that passed.
+        """
+    }
+}

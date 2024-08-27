@@ -19,13 +19,19 @@ def get_odd_collatz(n):
 
 
 def get_odd_collatz(n):
-    odd_numbers = []
+    collatz_sequence = []
+    
     while n != 1:
-        if n % 2 != 0:  # Check if n is odd
-            odd_numbers.append(n)
-        n = n // 2 if n % 2 == 0 else 3 * n + 1  # Apply Collatz rules
-    odd_numbers.append(1)  # Include 1 in the list
-    return sorted(odd_numbers)
+        collatz_sequence.append(n)
+        if n % 2 == 0:
+            n //= 2
+        else:
+            n = 3 * n + 1
+    
+    collatz_sequence.append(1)  # Add the last term which is 1
+    odd_numbers = sorted(num for num in collatz_sequence if num % 2 != 0)
+    
+    return odd_numbers
 
 def check(candidate):
 

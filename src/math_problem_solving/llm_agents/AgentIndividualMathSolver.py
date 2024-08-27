@@ -13,6 +13,7 @@ from data_classes.MACMState import MACMState
 class AgentIndividualMathSolver(MultiTurnLLMAgent):
     system_prompt: str = prompts.CHAIN_OF_THOUGHT_MATH_SOLVER["system_prompt"]
     chain_of_thought_prompt: str = prompts.CHAIN_OF_THOUGHT_MATH_SOLVER["user_prompt"]
+    box_result_prompt: str = prompts.MACM_MATH_SOLVER["AgentStepsExecutionBoxResult"]
 
     def __init__(self):
         super().__init__(self.system_prompt)
@@ -23,7 +24,11 @@ class AgentIndividualMathSolver(MultiTurnLLMAgent):
             "problem": state.math_problem.problem_statement,
         }
         agent_response = self.user_prompt(self.chain_of_thought_prompt, prompt_args)
-        state.final_answer = agent_response
+        box_result = self.user_prompt(self.box_result_prompt)
+
+        state.final_answer = box_result
+        print(f"Final Answer: {state.final_answer}")
+        
         return state
 
 if __name__ == "__main__":  

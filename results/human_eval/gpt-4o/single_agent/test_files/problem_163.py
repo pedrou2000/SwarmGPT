@@ -10,7 +10,11 @@ def generate_integers(a, b):
     generate_integers(10, 14) => []
     """
 
-None
+
+    if a > b:
+        a, b = b, a
+    return [i for i in range(a, b + 1) if i % 2 == 0]
+
 def check(candidate):
 
     # Check some simple cases

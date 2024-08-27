@@ -9,14 +9,17 @@ def rolling_max(numbers: List[int]) -> List[int]:
     """
 
 
-    rolling_max_list = []
-    current_max = float('-inf')
-
+    if not numbers:
+        return []
+    
+    rolling_max_values = []
+    current_max = numbers[0]
+    
     for number in numbers:
         current_max = max(current_max, number)
-        rolling_max_list.append(current_max)
-
-    return rolling_max_list
+        rolling_max_values.append(current_max)
+    
+    return rolling_max_values
 
 
 

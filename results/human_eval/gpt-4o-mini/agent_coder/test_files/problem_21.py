@@ -20,16 +20,12 @@ def rescale_to_unit(numbers: List[float]) -> List[float]:
     min_value = min(numbers)
     max_value = max(numbers)
     
-    # Avoid division by zero if all numbers are the same
-    if max_value == min_value:
-        return [0.0] * len(numbers)
-    
-    result = []
+    new_list = []
     for number in numbers:
         rescaled_value = (number - min_value) / (max_value - min_value)
-        result.append(rescaled_value)
-    
-    return result
+        new_list.append(rescaled_value)
+        
+    return new_list
 
 
 

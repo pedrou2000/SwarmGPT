@@ -14,11 +14,7 @@ def fix_spaces(text):
 
 def fix_spaces(text):
     import re
-    # Replace sequences of more than 2 spaces with '-'
-    text = re.sub(r' {3,}', '-', text)
-    # Replace remaining single spaces with '_'
-    text = text.replace(' ', '_')
-    return text
+    return re.sub(r' {3,}', '-', text.replace(' ', '_'))
 
 def check(candidate):
 

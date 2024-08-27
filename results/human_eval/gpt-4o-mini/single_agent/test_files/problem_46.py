@@ -25,20 +25,14 @@ def fib4(n: int):
         return 2
     elif n == 3:
         return 0
-
-    fib4_values = [0] * (n + 1)
-    fib4_values[0] = 0
-    fib4_values[1] = 0
-    fib4_values[2] = 2
-    fib4_values[3] = 0
-
+    
+    fib = [0] * (n + 1)
+    fib[0], fib[1], fib[2], fib[3] = 0, 0, 2, 0
+    
     for i in range(4, n + 1):
-        fib4_values[i] = (fib4_values[i - 1] + 
-                          fib4_values[i - 2] + 
-                          fib4_values[i - 3] + 
-                          fib4_values[i - 4])
-
-    return fib4_values[n]
+        fib[i] = fib[i - 1] + fib[i - 2] + fib[i - 3] + fib[i - 4]
+    
+    return fib[n]
 
 
 

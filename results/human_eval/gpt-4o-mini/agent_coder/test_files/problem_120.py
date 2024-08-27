@@ -35,16 +35,17 @@ def maximum(arr: List[int], k: int) -> List[int]:
     if k == 0:
         return []
     
-    # Step 1: Sort the array in descending order
+    # Step 2: Sort the array in descending order
     sorted_arr = sorted(arr, reverse=True)
     
-    # Step 2: Take the first k elements
+    # Step 3: Take the first k elements
     max_k_elements = sorted_arr[:k]
     
-    # Step 3: Sort the result in ascending order
-    result = sorted(max_k_elements)
+    # Step 4: Sort these k elements in ascending order
+    max_k_elements_sorted = sorted(max_k_elements)
     
-    return result
+    # Step 5: Return the sorted list
+    return max_k_elements_sorted
 
 def check(candidate):
 

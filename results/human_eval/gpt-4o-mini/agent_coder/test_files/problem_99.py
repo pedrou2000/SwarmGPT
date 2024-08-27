@@ -20,24 +20,20 @@ def closest_integer(value):
 
 
 def closest_integer(value):
-    import math
-    
-    # Convert the input string to a float
+    # Convert the string to a float
     num = float(value)
     
-    # Determine the closest integer
-    if num > 0:
-        if num - math.floor(num) < 0.5:
-            return math.floor(num)
-        else:
-            return math.ceil(num)
-    elif num < 0:
-        if num - math.ceil(num) > -0.5:
-            return math.ceil(num)
-        else:
-            return math.floor(num)
+    # Get the integer part and the decimal part
+    integer_part = int(num)
+    decimal_part = num - integer_part
+    
+    # Check if the number is equidistant from two integers
+    if decimal_part == 0.5:
+        return integer_part + 1  # Round away from zero
+    elif decimal_part == -0.5:
+        return integer_part - 1  # Round away from zero
     else:
-        return 0  # If the value is exactly 0, return 0
+        return round(num)  # Use the built-in rounding for other cases
 
 def check(candidate):
 

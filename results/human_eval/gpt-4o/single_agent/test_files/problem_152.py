@@ -17,7 +17,7 @@ def compare(game,guess):
 
 
 def compare(game, guess):
-    return [abs(g - s) for g, s in zip(game, guess)]
+    return [abs(g - gs) for g, gs in zip(game, guess)]
 
 def check(candidate):
 

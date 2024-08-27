@@ -24,30 +24,36 @@ def valid_date(date):
     if not date:
         return False
     
-    parts = date.split('-')
-    if len(parts) != 3:
+    # Check the format
+    if len(date) != 10 or date[2] != '-' or date[5] != '-':
         return False
     
-    month, day, year = parts
+    month, day, year = date.split('-')
     
+    # Check if month, day, and year are digits
     if not (month.isdigit() and day.isdigit() and year.isdigit()):
         return False
     
     month = int(month)
     day = int(day)
     year = int(year)
-
+    
+    # Check month range
     if month < 1 or month > 12:
         return False
     
-    if month in {1, 3, 5, 7, 8, 10, 12}:
-        return 1 <= day <= 31
-    elif month in {4, 6, 9, 11}:
-        return 1 <= day <= 30
+    # Check day range based on month
+    if month in [1, 3, 5, 7, 8, 10, 12]:
+        if day < 1 or day > 31:
+            return False
+    elif month in [4, 6, 9, 11]:
+        if day < 1 or day > 30:
+            return False
     elif month == 2:
-        return 1 <= day <= 29  # Leap year handling is not included for simplicity
-    else:
-        return False
+        if day < 1 or day > 29:
+            return False
+    
+    return True
 
 def check(candidate):
 

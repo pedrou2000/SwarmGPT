@@ -10,26 +10,26 @@ def sort_numbers(numbers: str) -> str:
     """
 
 
-    # Mapping of words to their corresponding numeric values
-    word_to_number = {
-        'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,
-        'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9
+    num_dict = {
+        'zero': 0,
+        'one': 1,
+        'two': 2,
+        'three': 3,
+        'four': 4,
+        'five': 5,
+        'six': 6,
+        'seven': 7,
+        'eight': 8,
+        'nine': 9
     }
     
-    # Split the input string into words
+    # Split the input string into individual words
     words = numbers.split()
     
-    # Convert words to their numeric values
-    numeric_values = [word_to_number[word] for word in words]
+    # Sort the words based on their corresponding numerical values
+    sorted_words = sorted(words, key=lambda word: num_dict[word])
     
-    # Sort the numeric values
-    sorted_numbers = sorted(numeric_values)
-    
-    # Convert back to words
-    number_to_word = {v: k for k, v in word_to_number.items()}
-    sorted_words = [number_to_word[num] for num in sorted_numbers]
-    
-    # Join the sorted words into a string and return
+    # Join the sorted words back into a single string
     return ' '.join(sorted_words)
 
 

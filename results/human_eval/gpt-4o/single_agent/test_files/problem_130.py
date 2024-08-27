@@ -18,23 +18,21 @@ def tri(n):
     """
 
 
-def tri(n):
-    def tribonacci(num, memo):
-        if num in memo:
-            return memo[num]
-        if num == 1:
-            return 3
-        elif num % 2 == 0:
-            result = 1 + num / 2
-        else:
-            result = tribonacci(num - 1, memo) + tribonacci(num - 2, memo) + tribonacci(num + 1, memo)
-        memo[num] = result
-        return result
+    if n < 0:
+        return []
+    if n == 0:
+        return [1]
 
-    sequence = []
-    memo = {}
-    for i in range(n + 1):
-        sequence.append(int(tribonacci(i, memo)))
+    sequence = [1] * (n + 1)
+
+    for i in range(1, n + 1):
+        if i == 1:
+            sequence[i] = 3
+        elif i % 2 == 0:
+            sequence[i] = 1 + i / 2
+        else:
+            sequence[i] = sequence[i - 1] + sequence[i - 2] + sequence[i + 1]
+
     return sequence
 
 def check(candidate):

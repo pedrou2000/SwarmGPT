@@ -19,19 +19,11 @@ def histogram(test):
     
     from collections import Counter
     
-    # Split the input string into a list of letters
     letters = test.split()
+    count = Counter(letters)
+    max_occurrence = max(count.values())
     
-    # Count the occurrences of each letter
-    letter_counts = Counter(letters)
-    
-    # Find the maximum occurrence count
-    max_count = max(letter_counts.values())
-    
-    # Create a dictionary for letters with the maximum count
-    result = {letter: count for letter, count in letter_counts.items() if count == max_count}
-    
-    return result
+    return {letter: freq for letter, freq in count.items() if freq == max_occurrence}
 
 def check(candidate):
 

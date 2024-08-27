@@ -20,20 +20,27 @@ def bf(planet1, planet2):
 def bf(planet1, planet2):
     planets = ["Mercury", "Venus", "Earth", "Mars", "Jupiter", "Saturn", "Uranus", "Neptune"]
     
+    # Validate input
     if planet1 not in planets or planet2 not in planets:
         return ()
     
+    # Check if both planets are the same
+    if planet1 == planet2:
+        return ()
+    
+    # Get indices
     index1 = planets.index(planet1)
     index2 = planets.index(planet2)
     
-    # Ensure that index1 is less than index2
-    if index1 > index2:
-        index1, index2 = index2, index1
-    
-    # Extract the planets between the two provided planets
-    between_planets = planets[index1 + 1:index2]
-    
-    return tuple(between_planets)
+    # Find the range of planets between the two given planets
+    if index1 < index2:
+        return tuple(planets[index1 + 1:index2])
+    else:
+        return tuple(planets[index2 + 1:index1])
+
+# Example usage:
+# print(bf("Earth", "Mars"))  # Expected output: ('Mars',)
+# print(bf("Mars", "Earth"))  # Expected output: ()
 
 def check(candidate):
 

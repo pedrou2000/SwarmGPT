@@ -17,22 +17,26 @@ def match_parens(lst):
 
 
 def match_parens(lst):
-    count_open_1 = lst[0].count('(')
-    count_close_1 = lst[0].count(')')
-    count_open_2 = lst[1].count('(')
-    count_close_2 = lst[1].count(')')
+    def is_balanced(s):
+        balance = 0
+        for char in s:
+            if char == '(':
+                balance += 1
+            elif char == ')':
+                balance -= 1
+            
+            # If balance goes negative, it's unbalanced right away
+            if balance < 0:
+                return False
+        
+        # Return True if balance is zero (balanced)
+        return balance == 0
     
-    # Check first combination: lst[0] + lst[1]
-    if (count_open_1 + count_open_2 == count_close_1 + count_close_2):
-        if count_open_1 <= count_close_2:
-            return 'Yes'
+    # Retrieve both strings from the list
+    s1, s2 = lst
     
-    # Check second combination: lst[1] + lst[0]
-    if (count_open_2 + count_open_1 == count_close_2 + count_close_1):
-        if count_open_2 <= count_close_1:
-            return 'Yes'
-    
-    return 'No'
+    # Check if either concatenation order is balanced
+    return 'Yes' if is_balanced(s1 + s2) or is_balanced(s2 + s1) else 'No'
 
 def check(candidate):
 

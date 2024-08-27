@@ -21,18 +21,18 @@ def Strongest_Extension(class_name, extensions):
 from typing import List
 
 def Strongest_Extension(class_name: str, extensions: List[str]) -> str:
-    max_strength = float('-inf')  # Start with the lowest possible strength
+    max_strength = float('-inf')
     strongest_extension = ""
 
-    for extension in extensions:
-        CAP = sum(1 for c in extension if c.isupper())
-        SM = sum(1 for c in extension if c.islower())
+    for ext in extensions:
+        CAP = sum(1 for char in ext if char.isupper())
+        SM = sum(1 for char in ext if char.islower())
         strength = CAP - SM
         
         if strength > max_strength:
             max_strength = strength
-            strongest_extension = extension
-            
+            strongest_extension = ext
+
     return f"{class_name}.{strongest_extension}"
 
 def check(candidate):

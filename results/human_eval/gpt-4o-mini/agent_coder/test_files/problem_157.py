@@ -12,14 +12,13 @@ def right_angle_triangle(a, b, c):
 
 
 def right_angle_triangle(a, b, c):
-    longest = max(a, b, c)
+    sides = [a, b, c]
+    sides.sort()
     
-    if longest == a:
-        return (b**2 + c**2) == a**2
-    elif longest == b:
-        return (a**2 + c**2) == b**2
-    else:
-        return (a**2 + b**2) == c**2
+    # x and y are the shorter sides, hypotenuse is the longest side
+    x, y, hypotenuse = sides
+    
+    return x**2 + y**2 == hypotenuse**2
 
 def check(candidate):
 

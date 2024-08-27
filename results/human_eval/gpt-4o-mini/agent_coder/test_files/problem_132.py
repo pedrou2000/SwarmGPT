@@ -16,20 +16,35 @@ def is_nested(string):
 
 def is_nested(string):
     open_count = 0
-    nested_found = False
+    has_nested = False
 
     for char in string:
         if char == '[':
             open_count += 1
-            if open_count > 1:
-                nested_found = True
+            # If we encounter a second opening bracket, we know we have nesting
+            if open_count >= 2:
+                has_nested = True
         elif char == ']':
-            open_count -= 1
-            if open_count < 0:  # More closing brackets than opening ones
+            # If we encounter a closing bracket but no opening bracket, return False immediately
+            if open_count == 0:
                 return False
+            open_count -= 1
 
-    # We need balanced brackets and at least one nested structure
-    return open_count == 0 and nested_found
+    # The string is valid if all open brackets are closed and there is nesting
+    return open_count == 0 and has_nested
+
+# Test cases
+print(is_nested('[[]]'))            # True
+print(is_nested('[]]]]]]][[[[[]'))   # False
+print(is_nested('[][]'))            # False
+print(is_nested('[]'))              # False
+print(is_nested('[[][]]'))          # True
+print(is_nested('[[]][['))          # True
+print(is_nested('[[[]]]'))          # True
+print(is_nested('[][[[]]][]'))      # True
+print(is_nested('['))                # False
+print(is_nested(']'))                # False
+print(is_nested(''))                 # False
 
 def check(candidate):
 

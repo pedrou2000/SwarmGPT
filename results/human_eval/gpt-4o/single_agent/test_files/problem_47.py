@@ -9,13 +9,14 @@ def median(l: list):
     """
 
 
-    l.sort()
-    n = len(l)
+    l_sorted = sorted(l)
+    n = len(l_sorted)
     mid = n // 2
+
     if n % 2 == 0:
-        return (l[mid - 1] + l[mid]) / 2
+        return (l_sorted[mid - 1] + l_sorted[mid]) / 2
     else:
-        return l[mid]
+        return l_sorted[mid]
 
 
 

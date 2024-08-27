@@ -23,15 +23,17 @@ def find_zero(xs: list):
     """
 
 
-    from scipy.optimize import fsolve
-    
-    def equation(x):
+    from scipy.optimize import brentq
+
+    def polynomial_function(x):
         return poly(xs, x)
-    
-    # Using an initial guess of 0 for simplicity
-    solution = fsolve(equation, 0)
-    
-    return solution[0]
+
+    # Using Brent's method to find a root of the polynomial within the interval [-100, 100]
+    root, result = brentq(polynomial_function, -100, 100, full_output=True)
+    if result.converged:
+        return root
+    else:
+        raise ValueError("No zero found in the interval")
 
 
 

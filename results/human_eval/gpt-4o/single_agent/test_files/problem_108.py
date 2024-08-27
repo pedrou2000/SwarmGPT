@@ -13,12 +13,11 @@ def count_nums(arr):
 
 def count_nums(arr):
     def sum_of_digits(n):
-        s = str(n)
-        if s[0] == '-':
-            digits = [-int(s[1])] + [int(d) for d in s[2:]]
-        else:
-            digits = [int(d) for d in s]
-        return sum(digits)
+        abs_n = abs(n)
+        digit_sum = sum(int(digit) for digit in str(abs_n))
+        if n < 0:
+            digit_sum -= 2 * int(str(abs_n)[0])
+        return digit_sum
     
     return sum(1 for num in arr if sum_of_digits(num) > 0)
 

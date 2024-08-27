@@ -19,16 +19,20 @@ def triples_sum_to_zero(l: list):
     """
 
 
-    n = len(l)
-    l.sort()
+    nums = sorted(l)
+    n = len(nums)
     
-    for i in range(n):
+    for i in range(n - 2):
+        if i > 0 and nums[i] == nums[i - 1]:  # skip duplicate elements
+            continue
+        
         left, right = i + 1, n - 1
+        
         while left < right:
-            current_sum = l[i] + l[left] + l[right]
-            if current_sum == 0:
+            total = nums[i] + nums[left] + nums[right]
+            if total == 0:
                 return True
-            elif current_sum < 0:
+            elif total < 0:
                 left += 1
             else:
                 right -= 1

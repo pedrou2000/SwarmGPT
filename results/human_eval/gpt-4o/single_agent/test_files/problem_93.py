@@ -16,13 +16,16 @@ def encode(message):
 
 
 def encode(message):
-    vowels = "aeiouAEIOU"
-    vowel_shift = str.maketrans(
-        "aeiouAEIOU",
-        "cgkqwCGKQW"
-    )
-    encoded_message = message.translate(vowel_shift).swapcase()
-    return encoded_message
+    def swap_case_and_replace_vowel(char):
+        vowels = 'aeiouAEIOU'
+        next_vowel = {'a': 'c', 'e': 'g', 'i': 'k', 'o': 'q', 'u': 'w',
+                      'A': 'C', 'E': 'G', 'I': 'K', 'O': 'Q', 'U': 'W'}
+        if char in vowels:
+            return next_vowel[char]
+        else:
+            return char.swapcase()
+    
+    return ''.join(swap_case_and_replace_vowel(char) for char in message)
 
 def check(candidate):
 

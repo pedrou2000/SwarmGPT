@@ -16,13 +16,17 @@ def count_distinct_characters(string: str) -> int:
     >>> count_distinct_characters('Jerry')
     4
     """
-    # Normalize the string to lower case
-    normalized_string = string.lower()
+    # Normalize the string to lowercase
+    string = string.lower()
     
-    # Use a set to find distinct characters
-    distinct_characters = set(normalized_string)
+    # Create a set to hold distinct characters
+    distinct_characters = set()
     
-    # Return the count of distinct characters
+    # Add each character to the set
+    for char in string:
+        distinct_characters.add(char)
+    
+    # Return the number of distinct characters
     return len(distinct_characters)
 
 

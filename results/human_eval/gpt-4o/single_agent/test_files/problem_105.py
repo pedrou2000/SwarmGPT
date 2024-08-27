@@ -23,7 +23,6 @@ def by_length(arr):
     """
 
 
-def by_length(arr):
     digit_names = ["One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine"]
     filtered_sorted = sorted([x for x in arr if 1 <= x <= 9], reverse=True)
     return [digit_names[x - 1] for x in filtered_sorted]

@@ -38,15 +38,16 @@ def intersection(interval1, interval2):
 
     start1, end1 = interval1
     start2, end2 = interval2
-    
-    intersection_start = max(start1, start2)
-    intersection_end = min(end1, end2)
-    
-    if intersection_start <= intersection_end:
-        intersection_length = intersection_end - intersection_start + 1
+
+    # Find the intersection interval
+    intersect_start = max(start1, start2)
+    intersect_end = min(end1, end2)
+
+    # Check if there is an intersection
+    if intersect_start <= intersect_end:
+        intersection_length = intersect_end - intersect_start
         if is_prime(intersection_length):
             return "YES"
-    
     return "NO"
 
 def check(candidate):

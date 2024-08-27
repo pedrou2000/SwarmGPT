@@ -18,20 +18,21 @@ def f(n):
     Example:
     f(5) == [1, 2, 6, 24, 15]
     """
+    def calculate_factorial(x):
+        if x == 0:
+            return 1
+        factorial = 1
+        for j in range(1, x + 1):
+            factorial *= j
+        return factorial
+    
     result = []
-    
     for i in range(1, n + 1):
-        if i % 2 == 0:
-            # Calculate factorial of i
-            factorial = 1
-            for j in range(1, i + 1):
-                factorial *= j
-            result.append(factorial)
-        else:
-            # Calculate sum of numbers from 1 to i
-            sum_of_numbers = i * (i + 1) // 2
-            result.append(sum_of_numbers)
-    
+        if i % 2 == 0:  # i is even
+            result.append(calculate_factorial(i))
+        else:  # i is odd
+            result.append(i * (i + 1) // 2)  # Sum of first i natural numbers
+
     return result
 
 def check(candidate):

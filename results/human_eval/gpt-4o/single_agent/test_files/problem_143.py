@@ -37,8 +37,8 @@ def words_in_sentence(sentence):
         return True
 
     words = sentence.split()
-    prime_length_words = [word for word in words if is_prime(len(word))]
-    return ' '.join(prime_length_words)
+    result = [word for word in words if is_prime(len(word))]
+    return ' '.join(result)
 
 def check(candidate):
 

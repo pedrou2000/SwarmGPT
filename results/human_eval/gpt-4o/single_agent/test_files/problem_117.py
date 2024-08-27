@@ -14,13 +14,14 @@ def select_words(s, n):
     """
 
 
-def select_words(s, n):
+    vowels = set("aeiouAEIOU")
+    
     def count_consonants(word):
-        vowels = "aeiouAEIOU"
-        return sum(1 for char in word if char not in vowels and char.isalpha())
-
+        return sum(1 for char in word if char.isalpha() and char not in vowels)
+    
     words = s.split()
     result = [word for word in words if count_consonants(word) == n]
+    
     return result
 
 def check(candidate):

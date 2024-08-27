@@ -13,18 +13,23 @@ def decode_shift(s: str):
     """
 
 
-def decode_shift(s: str) -> str:
+def decode_shift(s: str):
+    """
+    takes as input string encoded with encode_shift function. Returns decoded string.
+    """
     decoded_chars = []
     
     for ch in s:
-        if 'a' <= ch <= 'z':
-            original_index = (ord(ch) - ord('a') - 5) % 26
-            original_char = chr(original_index + ord('a'))
-            decoded_chars.append(original_char)
-        else:
-            decoded_chars.append(ch)  # If there are any non-alphabetical characters
+        # Shift back by 5
+        original_pos = ord(ch) - 5
+        
+        # Handle wrapping around the alphabet
+        if original_pos < ord('a'):
+            original_pos += 26
+        
+        decoded_chars.append(chr(original_pos))
     
-    return ''.join(decoded_chars)
+    return "".join(decoded_chars)
 
 
 

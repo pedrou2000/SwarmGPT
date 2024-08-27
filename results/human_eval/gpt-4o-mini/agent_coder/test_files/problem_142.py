@@ -14,19 +14,17 @@ def sum_squares(lst):
     """
 
 
-from typing import List
-
-def sum_squares(lst: List[int]) -> int:
+def sum_squares(lst):
     total_sum = 0
-    
-    for index in range(len(lst)):
-        if index % 3 == 0:
-            total_sum += lst[index] ** 2  # Square the element
-        elif index % 4 == 0:
-            total_sum += lst[index] ** 3  # Cube the element
+
+    for index, value in enumerate(lst):
+        if index % 3 == 0:  # Check if index is a multiple of 3
+            total_sum += value ** 2
+        elif index % 4 == 0:  # Check if index is a multiple of 4 and not 3
+            total_sum += value ** 3
         else:
-            total_sum += lst[index]  # Leave unchanged
-    
+            total_sum += value  # Leave the value unchanged
+
     return total_sum
 
 def check(candidate):

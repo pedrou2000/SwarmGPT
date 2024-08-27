@@ -1,0 +1,343 @@
+{
+    "score": 52.0,
+    "test_counts": {
+        "Correct": 26,
+        "Error": 24
+    },
+    "test_counts_by_type": {
+        "Precalculus": {
+            "Correct": 0,
+            "Error": 3
+        },
+        "Geometry": {
+            "Correct": 1,
+            "Error": 2
+        },
+        "Counting & Probability": {
+            "Correct": 1,
+            "Error": 2
+        },
+        "Intermediate Algebra": {
+            "Correct": 2,
+            "Error": 5
+        },
+        "Algebra": {
+            "Correct": 9,
+            "Error": 4
+        },
+        "Number Theory": {
+            "Correct": 5,
+            "Error": 1
+        },
+        "Prealgebra": {
+            "Correct": 8,
+            "Error": 7
+        }
+    },
+    "erratic_problems": {
+        "Precalculus": [
+            1276,
+            814,
+            924
+        ],
+        "Geometry": [
+            817,
+            594
+        ],
+        "Counting & Probability": [
+            57,
+            575
+        ],
+        "Intermediate Algebra": [
+            2115,
+            1137,
+            150,
+            1779,
+            1020
+        ],
+        "Algebra": [
+            1911,
+            405,
+            2066,
+            661
+        ],
+        "Number Theory": [
+            497
+        ],
+        "Prealgebra": [
+            1405,
+            1634,
+            1909,
+            1418,
+            1727,
+            2057,
+            1937
+        ]
+    },
+    "tests_results": {
+        "Precalculus": {
+            "1276": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{11}",
+                "Real Answer": "\\boxed{\\left[ -\\frac{\\pi}{2}, \\frac{\\pi}{2} \\right]}"
+            },
+            "814": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{1}",
+                "Real Answer": "\\boxed{3 \\sqrt{3}}"
+            },
+            "924": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{-1}",
+                "Real Answer": "\\boxed{\\frac{3}{4}, -\\frac{3}{4}}"
+            }
+        },
+        "Geometry": {
+            "171": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{4}",
+                "Real Answer": "\\boxed{4}"
+            },
+            "817": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{\\frac{28}{1+\\sqrt{2}}}",
+                "Real Answer": "\\boxed{\\frac{14}{3}}"
+            },
+            "594": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{36^\\circ}",
+                "Real Answer": "\\boxed{18^\\circ}"
+            }
+        },
+        "Counting & Probability": {
+            "57": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{11}",
+                "Real Answer": "\\boxed{\\frac{1}{13}}"
+            },
+            "695": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{200}",
+                "Real Answer": "\\boxed{200}"
+            },
+            "575": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{19}",
+                "Real Answer": "\\boxed{15,600}"
+            }
+        },
+        "Intermediate Algebra": {
+            "2115": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{4}",
+                "Real Answer": "\\boxed{203}"
+            },
+            "1137": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{200}",
+                "Real Answer": "\\boxed{8}"
+            },
+            "150": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{111111111}",
+                "Real Answer": "\\boxed{49896}"
+            },
+            "1779": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{16}",
+                "Real Answer": "\\boxed{15}"
+            },
+            "1020": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{11, -3 + 6i}",
+                "Real Answer": "\\boxed{-3 + 6i}"
+            },
+            "1582": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{1}",
+                "Real Answer": "\\boxed{1}"
+            },
+            "1597": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{(10, 3)}",
+                "Real Answer": "\\boxed{(10,3)}"
+            }
+        },
+        "Algebra": {
+            "1911": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{11}",
+                "Real Answer": "\\boxed{575}"
+            },
+            "405": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{11}",
+                "Real Answer": "\\boxed{2}"
+            },
+            "276": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{12}",
+                "Real Answer": "\\boxed{12}"
+            },
+            "455": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{3}",
+                "Real Answer": "\\boxed{3}"
+            },
+            "1707": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{3}",
+                "Real Answer": "\\boxed{3}"
+            },
+            "1213": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{\\frac{1}{5}}",
+                "Real Answer": "\\boxed{\\dfrac{1}{5}}"
+            },
+            "2066": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{\\frac{1}{5}}",
+                "Real Answer": "\\boxed{2x-1}"
+            },
+            "1781": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{-3}",
+                "Real Answer": "\\boxed{-3}"
+            },
+            "661": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{40}",
+                "Real Answer": "\\boxed{36}"
+            },
+            "919": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{7.5}",
+                "Real Answer": "\\boxed{7.5}"
+            },
+            "425": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{-128}",
+                "Real Answer": "\\boxed{-128}"
+            },
+            "2762": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{1}",
+                "Real Answer": "\\boxed{1}"
+            },
+            "636": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{11}",
+                "Real Answer": "\\boxed{11}"
+            }
+        },
+        "Number Theory": {
+            "1218": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{11}",
+                "Real Answer": "\\boxed{11}"
+            },
+            "328": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{6}",
+                "Real Answer": "\\boxed{6}"
+            },
+            "497": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{1}",
+                "Real Answer": "\\boxed{556}"
+            },
+            "590": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{19}",
+                "Real Answer": "\\boxed{19}"
+            },
+            "221": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{11}",
+                "Real Answer": "\\boxed{11}"
+            },
+            "252": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{3}",
+                "Real Answer": "\\boxed{3}"
+            }
+        },
+        "Prealgebra": {
+            "1405": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{11}",
+                "Real Answer": "\\boxed{56}"
+            },
+            "1634": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{11}",
+                "Real Answer": "\\boxed{-5}"
+            },
+            "1909": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{11}",
+                "Real Answer": "\\boxed{33\\sqrt{30}}"
+            },
+            "1591": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{27}",
+                "Real Answer": "\\boxed{27}"
+            },
+            "1418": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{111111111}",
+                "Real Answer": "\\boxed{111, \\! 111, \\! 111}"
+            },
+            "1445": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{40}",
+                "Real Answer": "\\boxed{40}"
+            },
+            "807": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{26}",
+                "Real Answer": "\\boxed{26}"
+            },
+            "965": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{135^\\circ}",
+                "Real Answer": "\\boxed{135}"
+            },
+            "1233": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{10\\%}",
+                "Real Answer": "\\boxed{10}"
+            },
+            "1727": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{90}",
+                "Real Answer": "\\boxed{18}"
+            },
+            "2057": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{7.5}",
+                "Real Answer": "\\boxed{90}"
+            },
+            "1937": {
+                "Correct": false,
+                "Agent Answer": "\\boxed{40^\\circ}",
+                "Real Answer": "\\boxed{30^\\circ}"
+            },
+            "1123": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{563.51}",
+                "Real Answer": "\\boxed{563.51}"
+            },
+            "1328": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{m + 2}",
+                "Real Answer": "\\boxed{m+2}"
+            },
+            "1448": {
+                "Correct": true,
+                "Agent Answer": "\\boxed{\\frac{5}{2}}",
+                "Real Answer": "\\boxed{\\frac{5}{2}}"
+            }
+        }
+    }
+}

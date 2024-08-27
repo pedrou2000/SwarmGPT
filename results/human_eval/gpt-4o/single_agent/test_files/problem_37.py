@@ -11,12 +11,12 @@ def sort_even(l: list):
     """
 
 
-    even_indices_values = [l[i] for i in range(0, len(l), 2)]
-    even_indices_values.sort()
-    sorted_list = l[:]
-    for idx, value in zip(range(0, len(l), 2), even_indices_values):
-        sorted_list[idx] = value
-    return sorted_list
+    even_values = [l[i] for i in range(0, len(l), 2)]
+    even_values_sorted = sorted(even_values)
+    result = l[:]
+    for i, value in zip(range(0, len(l), 2), even_values_sorted):
+        result[i] = value
+    return result
 
 
 

@@ -12,17 +12,16 @@ def split_words(txt):
 
 
 def split_words(txt):
-    if ' ' in txt:
+    if ' ' in txt:  # Check for white space
         return txt.split()  # Split by whitespace
-    elif ',' in txt:
-        return txt.split(',')  # Split by comma
-    else:
-        odd_lowercase_count = 0
+    elif ',' in txt:  # Check for commas
+        return txt.split(',')  # Split by commas
+    else:  # Count odd-ordered lowercase letters
+        count = 0
         for char in txt:
-            if 'a' <= char <= 'z':  # Check if char is a lowercase letter
-                if (ord(char) - ord('a')) % 2 == 0:  # Check if position is odd (0-indexed)
-                    odd_lowercase_count += 1
-        return odd_lowercase_count  # Return the count of odd-positioned lowercase letters
+            if char.islower() and (ord(char) - ord('a')) % 2 == 1:  # Check if character is lowercase and index is odd
+                count += 1
+        return count
 
 def check(candidate):
 

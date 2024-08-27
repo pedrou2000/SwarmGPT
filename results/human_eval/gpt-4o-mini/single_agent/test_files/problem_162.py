@@ -8,12 +8,12 @@ def string_to_md5(text):
     """
 
 
-    import hashlib
-
     if not text:
         return None
-
-    return hashlib.md5(text.encode()).hexdigest()
+    
+    import hashlib
+    md5_hash = hashlib.md5(text.encode()).hexdigest()
+    return md5_hash
 
 def check(candidate):
 

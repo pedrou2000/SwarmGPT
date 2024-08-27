@@ -23,7 +23,7 @@ def largest_smallest_integers(lst):
         elif num > 0:
             if smallest_positive is None or num < smallest_positive:
                 smallest_positive = num
-    
+
     return (largest_negative, smallest_positive)
 
 def check(candidate):

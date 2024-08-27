@@ -14,7 +14,7 @@ def digitSum(s):
     """
 
 
-    return sum(ord(char) for char in s if char.isupper())
+    return sum(ord(c) for c in s if c.isupper())
 
 def check(candidate):
 

@@ -23,40 +23,24 @@ def find_zero(xs: list):
     """
 
 
-import math
-
-def poly(xs: list, x: float):
-    """Evaluates polynomial with coefficients xs at point x."""
-    return sum([coeff * math.pow(x, i) for i, coeff in enumerate(xs)])
-
-def poly_derivative(xs: list, x: float):
-    """Evaluates the derivative of the polynomial at point x."""
-    return sum([i * coeff * math.pow(x, i - 1) for i, coeff in enumerate(xs) if i > 0])
+import numpy as np
 
 def find_zero(xs: list):
-    """Find x such that poly(x) = 0."""
-    # Starting point for the root-finding algorithm
-    x = 0.0
-    tolerance = 1e-7
-    max_iterations = 1000
-    for _ in range(max_iterations):
-        f_x = poly(xs, x)
-        f_prime_x = poly_derivative(xs, x)
-        
-        if abs(f_x) < tolerance:  # If we are close enough to zero
-            return x
-        
-        if f_prime_x == 0:  # Avoid division by zero
-            break
-        
-        x_new = x - f_x / f_prime_x  # Newton-Raphson update
-        if abs(x_new - x) < tolerance:  # Stop if the change is negligible
-            return x_new
-        
-        x = x_new  # Move to the next approximation
-
-    # If we did not find a root within the maximum iterations, return None or raise an error
-    return None
+    """ xs are coefficients of a polynomial.
+    find_zero find x such that poly(x) = 0.
+    find_zero returns only only zero point, even if there are many.
+    Moreover, find_zero only takes list xs having even number of coefficients
+    and largest non zero coefficient as it guarantees
+    a solution.
+    >>> round(find_zero([1, 2]), 2) # f(x) = 1 + 2x
+    -0.5
+    >>> round(find_zero([-6, 11, -6, 1]), 2) # (x - 1) * (x - 2) * (x - 3) = -6 + 11x - 6x^2 + x^3
+    1.0
+    """
+    roots = np.roots(xs)
+    for root in roots:
+        if np.isreal(root):  # Check if the root is real
+            return root.real  # Return the real part of the root
 
 
 

@@ -25,7 +25,7 @@ def rounded_avg(n, m):
     """
     if n > m:
         return -1
-    
+
     total_sum = 0
     count = 0
     

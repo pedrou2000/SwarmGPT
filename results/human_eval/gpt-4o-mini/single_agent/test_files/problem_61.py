@@ -21,9 +21,9 @@ def correct_bracketing(brackets: str):
             balance += 1
         elif char == ')':
             balance -= 1
-        if balance < 0:
+        if balance < 0:  # More closing brackets than opening
             return False
-    return balance == 0
+    return balance == 0  # Check if all opening brackets are closed
 
 
 

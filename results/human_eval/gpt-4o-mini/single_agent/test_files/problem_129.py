@@ -33,34 +33,33 @@ def minPath(grid, k):
 
     from collections import deque
 
-    def minPath(grid, k):
-        N = len(grid)
-        directions = [(0, 1), (1, 0), (0, -1), (-1, 0)]
+    def bfs(start_x, start_y):
+        queue = deque([(start_x, start_y, [grid[start_x][start_y]])])
         min_path = None
+        
+        while queue:
+            x, y, path = queue.popleft()
 
-        def bfs(start_x, start_y):
-            nonlocal min_path
-            queue = deque([(start_x, start_y, [grid[start_x][start_y]])])
-            visited = set((start_x, start_y))
-
-            while queue:
-                x, y, path = queue.popleft()
-
-                if len(path) == k:
-                    if min_path is None or path < min_path:
-                        min_path = path
-                    continue
-
-                for dx, dy in directions:
-                    nx, ny = x + dx, y + dy
-                    if 0 <= nx < N and 0 <= ny < N:
-                        queue.append((nx, ny, path + [grid[nx][ny]]))
-
-        for i in range(N):
-            for j in range(N):
-                bfs(i, j)
+            if len(path) == k:
+                if min_path is None or path < min_path:
+                    min_path = path
+                continue
+            
+            for dx, dy in [(-1, 0), (1, 0), (0, -1), (0, 1)]:
+                nx, ny = x + dx, y + dy
+                if 0 <= nx < len(grid) and 0 <= ny < len(grid[0]):
+                    queue.append((nx, ny, path + [grid[nx][ny]]))
 
         return min_path
+
+    result = None
+    for i in range(len(grid)):
+        for j in range(len(grid[0])):
+            current_path = bfs(i, j)
+            if result is None or current_path < result:
+                result = current_path
+
+    return result
 
 def check(candidate):
 

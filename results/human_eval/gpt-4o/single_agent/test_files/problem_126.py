@@ -18,22 +18,22 @@ def is_sorted(lst):
 
 
 def is_sorted(lst):
-    if not lst:
+    if len(lst) <= 1:
         return True
-    
-    duplicate_count = {}
-    
-    for i in range(len(lst) - 1):
-        if lst[i] > lst[i + 1]:
+
+    for i in range(1, len(lst)):
+        if lst[i] < lst[i - 1]:
             return False
-        if lst[i] == lst[i + 1]:
-            if lst[i] in duplicate_count:
-                duplicate_count[lst[i]] += 1
-                if duplicate_count[lst[i]] > 1:
-                    return False
-            else:
-                duplicate_count[lst[i]] = 1
     
+    counts = {}
+    for num in lst:
+        if num in counts:
+            counts[num] += 1
+            if counts[num] > 2:
+                return False
+        else:
+            counts[num] = 1
+
     return True
 
 def check(candidate):

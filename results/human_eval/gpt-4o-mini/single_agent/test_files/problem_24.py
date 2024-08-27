@@ -10,6 +10,7 @@ def largest_divisor(n: int) -> int:
     for i in range(n // 2, 0, -1):
         if n % i == 0:
             return i
+    return 1  # In case n is 1, the largest divisor smaller than it is 1.
 
 
 

@@ -18,36 +18,21 @@ def is_sorted(lst):
 
 
 def is_sorted(lst):
-    '''
-    Given a list of numbers, return whether or not they are sorted
-    in ascending order. If list has more than 1 duplicate of the same
-    number, return False. Assume no negative numbers and only integers.
+    seen = set()  # Step 1: Initialize a set to track seen numbers
 
-    Examples
-    is_sorted([5]) ➞ True
-    is_sorted([1, 2, 3, 4, 5]) ➞ True
-    is_sorted([1, 3, 2, 4, 5]) ➞ False
-    is_sorted([1, 2, 3, 4, 5, 6]) ➞ True
-    is_sorted([1, 2, 3, 4, 5, 6, 7]) ➞ True
-    is_sorted([1, 3, 2, 4, 5, 6, 7]) ➞ False
-    is_sorted([1, 2, 2, 3, 3, 4]) ➞ True
-    is_sorted([1, 2, 2, 2, 3, 4]) ➞ False
-    '''
-    if len(lst) <= 1:
-        return True
-    
-    last_seen = None
-    
-    for number in lst:
-        if last_seen is not None:
-            if number < last_seen:  # not sorted
-                return False
-            if number == last_seen:  # duplicate found
-                return False
-        
-        last_seen = number
-    
-    return True
+    for i in range(len(lst) - 1):  # Iterate through the list up to the second last element
+        if lst[i] in seen:  # Step 2: Check for duplicates
+            return False
+        if lst[i] > lst[i + 1]:  # Check if the list is sorted
+            return False
+        seen.add(lst[i])  # Add current number to the set
+
+    # Check the last element (if it hasn't been added yet)
+    if lst[-1] in seen:
+        return False
+    seen.add(lst[-1])  # Add the last number to the set
+
+    return True  # If all checks are passed, return True
 
 def check(candidate):
 

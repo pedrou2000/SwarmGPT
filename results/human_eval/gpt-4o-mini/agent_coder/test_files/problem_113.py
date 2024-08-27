@@ -13,12 +13,21 @@ def odd_count(lst):
     """
 
 
-def odd_count(lst):
+from typing import List
+
+def odd_count(lst: List[str]) -> List[str]:
     result = []
-    for string in lst:
-        count_odds = sum(1 for char in string if char in '13579')
-        output_string = f"the number of odd elements {count_odds}n the str{count_odds}ng {count_odds} of the {count_odds}nput."
-        result.append(output_string)
+    
+    for s in lst:
+        odd_count = 0
+        for char in s:
+            if int(char) % 2 != 0:  # Check if the digit is odd
+                odd_count += 1
+        
+        # Create the formatted string using the odd_count
+        formatted_string = f"the number of odd elements {odd_count}n the str{odd_count}ng {odd_count} of the {odd_count}nput."
+        result.append(formatted_string)
+    
     return result
 
 def check(candidate):

@@ -15,14 +15,16 @@ def sum_squares(lst):
     """
 
 
+from typing import List
 import math
 
-def sum_squares(lst):
-    total = 0
+def sum_squares(lst: List[float]) -> int:
+    """Calculate the sum of squares of the ceiling values of the given list of numbers."""
+    total_sum = 0
     for num in lst:
-        ceiling_value = math.ceil(num)
-        total += ceiling_value ** 2
-    return total
+        rounded_num = math.ceil(num)  # Round up the number
+        total_sum += rounded_num ** 2  # Square the rounded number and add to total_sum
+    return total_sum
 
 def check(candidate):
 

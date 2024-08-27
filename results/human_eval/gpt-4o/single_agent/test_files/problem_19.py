@@ -10,15 +10,17 @@ def sort_numbers(numbers: str) -> str:
     """
 
 
-    num_map = {
+    numeral_to_int = {
         'zero': 0, 'one': 1, 'two': 2, 'three': 3, 'four': 4,
         'five': 5, 'six': 6, 'seven': 7, 'eight': 8, 'nine': 9
     }
     
-    words = numbers.split()
-    sorted_words = sorted(words, key=lambda x: num_map[x])
+    int_to_numeral = {v: k for k, v in numeral_to_int.items()}
     
-    return ' '.join(sorted_words)
+    number_list = numbers.split()
+    sorted_numbers = sorted(number_list, key=lambda x: numeral_to_int[x])
+    
+    return ' '.join(sorted_numbers)
 
 
 

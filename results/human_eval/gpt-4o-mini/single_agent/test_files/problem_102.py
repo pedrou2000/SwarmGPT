@@ -13,14 +13,16 @@ def choose_num(x, y):
     if x > y:
         return -1
     
-    # Find the largest even number in the range [x, y]
+    # Adjust x to be the next even number if it's odd
+    if x % 2 != 0:
+        x += 1
+    
+    # Adjust y to be the previous even number if it's odd
     if y % 2 != 0:
-        y -= 1  # if y is odd, decrement to make it even
+        y -= 1
     
-    if y < x:
-        return -1  # If after adjustment y is still less than x, return -1
-    
-    return y  # y is now the largest even number in the range
+    # If the adjusted range is valid, return y; otherwise, return -1
+    return y if x <= y else -1
 
 def check(candidate):
 

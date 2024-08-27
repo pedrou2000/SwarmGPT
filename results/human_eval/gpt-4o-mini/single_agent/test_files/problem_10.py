@@ -20,14 +20,17 @@ def make_palindrome(string: str) -> str:
 
 
     if not string:
-        return ''
+        return string
 
-    # Check for the longest palindromic suffix
+    # Find the longest palindromic suffix
     for i in range(len(string)):
         if is_palindrome(string[i:]):
-            # The prefix that needs to be reversed and added
+            suffix = string[i:]
             prefix = string[:i]
-            return string + prefix[::-1]
+            break
+
+    # Append the reverse of the prefix to the original string
+    return string + prefix[::-1]
 
 
 

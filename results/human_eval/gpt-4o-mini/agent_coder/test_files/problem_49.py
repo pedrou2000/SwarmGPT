@@ -15,7 +15,7 @@ def modp(n: int, p: int):
     """
 
 
-def modp(n: int, p: int):
+def modp(n: int, p: int) -> int:
     """Return 2^n modulo p (be aware of numerics).
     >>> modp(3, 5)
     3
@@ -30,12 +30,9 @@ def modp(n: int, p: int):
     """
     if n == 0:
         return 1
-    if p == 1:
-        return 0
     
     result = 1
     base = 2
-    n = n % (p - 1)  # Using Fermat's Little Theorem for optimization
     
     while n > 0:
         if n % 2 == 1:  # If n is odd

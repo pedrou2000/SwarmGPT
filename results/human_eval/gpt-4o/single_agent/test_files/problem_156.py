@@ -13,26 +13,29 @@ def int_to_mini_roman(number):
 
 
 def int_to_mini_roman(number):
+    if not (1 <= number <= 1000):
+        raise ValueError("Number must be between 1 and 1000")
+
     val = [
         1000, 900, 500, 400,
         100, 90, 50, 40,
         10, 9, 5, 4,
         1
     ]
-    syms = [
+    syb = [
         "M", "CM", "D", "CD",
         "C", "XC", "L", "XL",
         "X", "IX", "V", "IV",
         "I"
     ]
-    roman_num = ''
+    roman_numeral = ''
     i = 0
     while number > 0:
         for _ in range(number // val[i]):
-            roman_num += syms[i]
+            roman_numeral += syb[i]
             number -= val[i]
         i += 1
-    return roman_num.lower()
+    return roman_numeral.lower()
 
 def check(candidate):
 

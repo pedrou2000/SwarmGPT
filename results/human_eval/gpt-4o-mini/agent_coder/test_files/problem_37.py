@@ -20,27 +20,20 @@ def sort_even(l: list):
     >>> sort_even([5, 6, 3, 4])
     [3, 6, 5, 4]
     """
-    even_elements = []
-    
-    # Collect even-indexed elements
-    for i in range(len(l)):
-        if i % 2 == 0:
-            even_elements.append(l[i])
-    
-    # Sort the even-indexed elements
+    # Step 1: Extract even-indexed elements
+    even_elements = [l[i] for i in range(len(l)) if i % 2 == 0]
+
+    # Step 2: Sort even-indexed elements
     even_elements.sort()
-    
-    # Reconstruct the result list
-    result = []
-    even_index = 0
-    
+
+    # Step 3: Reconstruct the list
+    result = l[:]  # Start with a copy of the original list
+    j = 0  # Pointer for even_elements
     for i in range(len(l)):
-        if i % 2 == 0:
-            result.append(even_elements[even_index])
-            even_index += 1
-        else:
-            result.append(l[i])
-    
+        if i % 2 == 0:  # If the index is even
+            result[i] = even_elements[j]
+            j += 1  # Move to the next even element
+
     return result
 
 

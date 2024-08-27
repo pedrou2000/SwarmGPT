@@ -15,30 +15,18 @@ def select_words(s, n):
 
 
 def select_words(s, n):
-    """Given a string s and a natural number n, returns a list of all words from string s
-    that contain exactly n consonants.
-    """
+    """Given a string s and a natural number n, return a list of all words that contain exactly n consonants."""
+    if not s:  # Check for empty input
+        return []
+    
+    words = s.split()  # Split the string into words
     result = []
-    
-    if not s:  # Check if the string is empty
-        return result
-    
-    # Split the string into words
-    words = s.split()
-    
-    # Define a set of vowels for quick lookup
-    vowels = set("aeiouAEIOU")
-    
+    vowels = set("aeiouAEIOU")  # Define vowels for checking
+
     for word in words:
-        count = 0
-        # Count consonants in the word
-        for char in word:
-            if char.isalpha() and char not in vowels:  # Check if it's a consonant
-                count += 1
-        
-        # Check if the count of consonants matches n
-        if count == n:
-            result.append(word)
+        count = sum(1 for char in word if char.isalpha() and char not in vowels)  # Count consonants
+        if count == n:  # Check if the count matches n
+            result.append(word)  # Add word to result if it matches
     
     return result
 

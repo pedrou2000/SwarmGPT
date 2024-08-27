@@ -14,12 +14,11 @@ def exchange(lst1, lst2):
     """
 
 
-    # Check if there are enough even numbers in lst2 to exchange with odd numbers in lst1
-    odd_count = sum(1 for x in lst1 if x % 2 != 0)
-    even_count_in_lst2 = sum(1 for x in lst2 if x % 2 == 0)
-
-    # If we have enough even numbers in lst2 to replace all odd numbers in lst1, return "YES"
-    if odd_count <= even_count_in_lst2:
+def exchange(lst1, lst2):
+    even_needed = sum(1 for x in lst1 if x % 2 != 0)
+    even_available = sum(1 for x in lst2 if x % 2 == 0)
+    
+    if even_available >= even_needed:
         return "YES"
     else:
         return "NO"

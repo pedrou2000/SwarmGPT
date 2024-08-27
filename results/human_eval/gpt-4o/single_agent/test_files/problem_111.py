@@ -18,12 +18,20 @@ def histogram(test):
     
     if not test:
         return {}
-    
+
+    # Split the string into a list of letters
     letters = test.split()
-    count = Counter(letters)
-    max_count = max(count.values())
-    
-    return {letter: freq for letter, freq in count.items() if freq == max_count}
+
+    # Count occurrences of each letter
+    letter_counts = Counter(letters)
+
+    # Find the maximum count
+    max_count = max(letter_counts.values())
+
+    # Create a dictionary with letters that have the maximum count
+    max_count_letters = {letter: count for letter, count in letter_counts.items() if count == max_count}
+
+    return max_count_letters
 
 def check(candidate):
 

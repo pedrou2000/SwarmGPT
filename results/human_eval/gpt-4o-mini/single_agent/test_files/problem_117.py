@@ -15,15 +15,17 @@ def select_words(s, n):
 
 
 def select_words(s, n):
-    def count_consonants(word):
-        consonants = set("bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ")
-        return sum(1 for char in word if char in consonants)
-
     if not s:
         return []
-
+    
+    vowels = set('aeiouAEIOU')
     words = s.split()
-    result = [word for word in words if count_consonants(word) == n]
+    result = []
+    
+    for word in words:
+        consonant_count = sum(1 for char in word if char.isalpha() and char not in vowels)
+        if consonant_count == n:
+            result.append(word)
     
     return result
 
