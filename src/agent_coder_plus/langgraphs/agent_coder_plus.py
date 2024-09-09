@@ -12,12 +12,12 @@ from agent_coder_plus.langgraphs.agent_coder_plus_tests import get_agent_coder_p
 def get_agent_coder_plus_graph():
     graph = StateGraph(AgentCoderPlusState)
 
-    graph.add_node("Test Generator", get_agent_coder_plus_tests_graph().compile())
-    graph.add_node("Coder", get_agent_coder_plus_coder_graph().compile())
+    graph.add_node("Test Designer", get_agent_coder_plus_tests_graph().compile())
+    graph.add_node("Meta Programmer", get_agent_coder_plus_coder_graph().compile())
 
-    graph.set_entry_point("Test Generator")
-    graph.add_edge("Test Generator", "Coder")
-    graph.add_edge("Coder", END)
+    graph.set_entry_point("Test Designer")
+    graph.add_edge("Test Designer", "Meta Programmer")
+    graph.add_edge("Meta Programmer", END)
 
     return graph
 

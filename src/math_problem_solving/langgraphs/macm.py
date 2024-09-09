@@ -16,26 +16,28 @@ from llm_agents.AgentStepsExecutor import AgentStepsExecutor
 def get_macm_graph():
     graph = StateGraph(MACMState)
 
-    graph.add_node("Condition Analizer", AgentConditionAnalyzer())
+    graph.add_node("Objective Generator", AgentConditionAnalyzer())
     graph.add_node("Condition Generator", AgentConditionGenerator())
     graph.add_node("Condition Judge", AgentConditionJudge())
-    graph.add_node("Steps Generator", AgentNumericalStepsGeneration())
+    graph.add_node("Answer Ready Judge", lambda state: state)
+    graph.add_node("Numerical Steps Generator", AgentNumericalStepsGeneration())
     graph.add_node("Steps Executor", AgentStepsExecutor())
 
-    graph.set_entry_point("Condition Analizer")
-    graph.add_edge("Condition Analizer", "Condition Generator")
+    graph.set_entry_point("Objective Generator")
+    graph.add_edge("Objective Generator", "Condition Generator")
     graph.add_edge("Condition Generator", "Condition Judge")
+    graph.add_edge("Condition Judge", "Answer Ready Judge")
 
     graph.add_conditional_edges(
-        "Condition Judge",
+        "Answer Ready Judge",
         AgentAnswerReadyJudge(),
         {
-            "AnswerReady": "Steps Generator",
-            "MaxIterationsReached": "Steps Generator",
+            "AnswerReady": "Numerical Steps Generator",
+            "MaxIterationsReached": "Numerical Steps Generator",
             "AnswerNotReady": "Condition Generator"
         }
     )
-    graph.add_edge("Steps Generator", "Steps Executor")
+    graph.add_edge("Numerical Steps Generator", "Steps Executor")
     graph.add_edge("Steps Executor", END)
 
     return graph

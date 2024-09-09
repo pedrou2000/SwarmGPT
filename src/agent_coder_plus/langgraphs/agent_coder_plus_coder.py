@@ -16,24 +16,24 @@ from data_classes.AgentCoderPlusCoderState import AgentCoderPlusCoderState
 def get_agent_coder_plus_coder_graph():
     graph = StateGraph(AgentCoderPlusCoderState)
 
-    graph.add_node("Coder", AgentCoder())   
+    graph.add_node("Programmer", AgentCoder())   
     graph.add_node("Test Executor", AgentTestExecutor())
-    graph.add_node("Code Refiner", AgentCodeRefiner())
+    graph.add_node("Programmer Refiner", AgentCodeRefiner())
 
-    graph.set_entry_point("Coder")
-    graph.add_edge("Coder", "Test Executor")
+    graph.set_entry_point("Programmer")
+    graph.add_edge("Programmer", "Test Executor")
 
     graph.add_conditional_edges(
         "Test Executor",
-        lambda state:  "CodeReady" if state.tests_passed else ("MaxIterations" if state.current_iterations >= state.max_iterations else "CodeNotReady"),
+        lambda state:  "TestsPassed" if state.tests_passed else ("MaxIterations" if state.current_iterations >= state.max_iterations else "TestsFailed"),
         {
-            "CodeReady": END,
+            "TestsPassed": END,
             "MaxIterations": END,
-            "CodeNotReady": "Code Refiner"
+            "TestsFailed": "Programmer Refiner"
         }
     )
     
-    graph.add_edge("Code Refiner", "Test Executor")
+    graph.add_edge("Programmer Refiner", "Test Executor")
 
     return graph
 

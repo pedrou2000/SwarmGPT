@@ -15,26 +15,26 @@ from agent_coder.llm_agents.AgentCodeRefiner import AgentCodeRefiner
 def get_multi_agent_summarizer_graph():
     graph = StateGraph(AgentCoderState)
 
-    graph.add_node("Test Generator", AgentTestGenerator())
-    graph.add_node("Coder", AgentCoder())   
+    graph.add_node("Test Designer", AgentTestGenerator())
+    graph.add_node("Programmer", AgentCoder())   
     graph.add_node("Test Executor", AgentTestExecutor())
-    graph.add_node("Code Refiner", AgentCodeRefiner())
+    graph.add_node("Programmer Refiner", AgentCodeRefiner())
 
-    graph.set_entry_point("Test Generator")
-    graph.add_edge("Test Generator", "Coder")
-    graph.add_edge("Coder", "Test Executor")
+    graph.set_entry_point("Test Designer")
+    graph.add_edge("Test Designer", "Programmer")
+    graph.add_edge("Programmer", "Test Executor")
 
     graph.add_conditional_edges(
         "Test Executor",
-        lambda state:  "CodeReady" if state.tests_passed else ("MaxIterations" if state.current_iterations >= state.max_iterations else "CodeNotReady"),
+        lambda state:  "TestsPassed" if state.tests_passed else ("MaxIterations" if state.current_iterations >= state.max_iterations else "TestsFailed"),
         {
-            "CodeReady": END,
+            "TestsPassed": END,
             "MaxIterations": END,
-            "CodeNotReady": "Code Refiner"
+            "TestsFailed": "Programmer Refiner"
         }
     )
     
-    graph.add_edge("Code Refiner", "Test Executor")
+    graph.add_edge("Programmer Refiner", "Test Executor")
 
     return graph
 

@@ -1,0 +1,78 @@
+{
+    "score": 50.0,
+    "test_counts": {
+        "Correct": 25,
+        "Error": 25
+    },
+    "test_counts_by_type": {
+        "Prealgebra": {
+            "Correct": 9,
+            "Error": 6
+        },
+        "Geometry": {
+            "Correct": 1,
+            "Error": 2
+        },
+        "Precalculus": {
+            "Correct": 0,
+            "Error": 3
+        },
+        "Counting & Probability": {
+            "Correct": 0,
+            "Error": 3
+        },
+        "Number Theory": {
+            "Correct": 5,
+            "Error": 1
+        },
+        "Algebra": {
+            "Correct": 8,
+            "Error": 5
+        },
+        "Intermediate Algebra": {
+            "Correct": 2,
+            "Error": 5
+        }
+    },
+    "erratic_problems": {
+        "Prealgebra": [
+            1634,
+            1909,
+            1405,
+            1418,
+            807,
+            1937
+        ],
+        "Geometry": [
+            817,
+            594
+        ],
+        "Precalculus": [
+            1276,
+            814,
+            924
+        ],
+        "Counting & Probability": [
+            57,
+            695,
+            575
+        ],
+        "Number Theory": [
+            590
+        ],
+        "Algebra": [
+            1911,
+            405,
+            1781,
+            425,
+            636
+        ],
+        "Intermediate Algebra": [
+            2115,
+            1020,
+            1582,
+            150,
+            1779
+        ]
+    }
+}

@@ -188,8 +188,7 @@ class MathDataLoader():
             "score": 0, 
             "test_counts": {"Correct": 0, "Error": 0}, 
             "test_counts_by_type": {problem_type: {"Correct": 0, "Error": 0} for problem_type in problem_types},
-            "erratic_problems": {problem_type: [] for problem_type in problem_types},
-            "tests_results": {problem_type: {} for problem_type in problem_types}
+            "erratic_problems": {problem_type: [] for problem_type in problem_types}
         }
 
         n_correct = 0
@@ -214,7 +213,6 @@ class MathDataLoader():
                     results["erratic_problems"][math_problem.type].append(math_problem.problem_number)
                     results["test_counts"]["Error"] += 1
                     results["test_counts_by_type"][math_problem.type]["Error"] += 1
-                results["tests_results"][math_problem.type][math_problem.problem_number] = {"Correct": is_correct, "Agent Answer": agent_answer, "Real Answer": real_answer}
 
         results["score"] = round(n_correct/len(math_problems) * 100, 4)
         print(f'Correct: {n_correct}/{len(math_problems)}')

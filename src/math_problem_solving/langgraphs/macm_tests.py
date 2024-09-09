@@ -25,27 +25,27 @@ def tests_router(state: MACMState):
     elif state.current_iterations >= state.max_iterations / 2:
         return "MaxIterations"
     else:
-        return "RefineTests"
+        return "TestsNotReady"
 
 def get_macm_tests_graph():
     graph = StateGraph(MACMState)
 
     graph.add_node("Test Generator", AgentTestGenerator())
-    graph.add_node("Test Checker", AgentTestChecker())
+    graph.add_node("Test Judge", AgentTestChecker())
     graph.add_node("Test Refiner", AgentTestRefiner())
 
     graph.set_entry_point("Test Generator")
-    graph.add_edge("Test Generator", "Test Checker")
+    graph.add_edge("Test Generator", "Test Judge")
     graph.add_conditional_edges(
-        "Test Checker",
+        "Test Judge",
         tests_router,
         {
             "TestsReady": END,
             "MaxIterations": END,
-            "RefineTests": "Test Refiner",
+            "TestsNotReady": "Test Refiner",
         }
     )
-    graph.add_edge("Test Refiner", "Test Checker")
+    graph.add_edge("Test Refiner", "Test Judge")
 
     return graph
 

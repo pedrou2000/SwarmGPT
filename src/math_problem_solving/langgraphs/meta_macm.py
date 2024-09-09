@@ -30,26 +30,26 @@ def router(state: MACMState):
 def get_meta_macm_graph():
     graph = StateGraph(MACMState)
 
-    graph.add_node("Tests Generation", get_macm_tests_graph().compile())
+    graph.add_node("Test Designer", get_macm_tests_graph().compile())
     graph.add_node("MACM", get_macm_graph().compile())
-    graph.add_node("AgentIndividualMathSolver", AgentIndividualMathSolver())
-    graph.add_node("AgentMetaMACMController", AgentMetaMACMController())
+    graph.add_node("Chain of Thought Agent", AgentIndividualMathSolver())
+    graph.add_node("Meta Controller", AgentMetaMACMController())
     graph.add_node("Solution Evaluator", AgentSolutionEvaluator())
 
-    graph.set_entry_point("Tests Generation")
-    graph.add_edge("Tests Generation", "AgentMetaMACMController")
+    graph.set_entry_point("Test Designer")
+    graph.add_edge("Test Designer", "Meta Controller")
     graph.add_conditional_edges(
-        "AgentMetaMACMController",
+        "Meta Controller",
         router,
         {
             "MetaMACMComplete": "Solution Evaluator",
             "MACMContinue": "MACM",
-            "SingleAgentContinue": "AgentIndividualMathSolver"
+            "SingleAgentContinue": "Chain of Thought Agent"
         }
     )
 
-    graph.add_edge("MACM", "AgentMetaMACMController")
-    graph.add_edge("AgentIndividualMathSolver", "AgentMetaMACMController")
+    graph.add_edge("MACM", "Meta Controller")
+    graph.add_edge("Chain of Thought Agent", "Meta Controller")
 
     graph.add_edge("Solution Evaluator", END)
 

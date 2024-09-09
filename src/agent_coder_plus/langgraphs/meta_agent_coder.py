@@ -31,27 +31,27 @@ def router(state):
 def get_meta_agent_coder_graph():
     graph = StateGraph(MetaAgentCoderState)
 
-    graph.add_node("Test Generator", get_agent_coder_plus_tests_graph().compile())
-    graph.add_node("Coder", get_agent_coder_plus_coder_graph().compile())
-    graph.add_node("Single Agent", AgentCoder())
+    graph.add_node("Test Designer", get_agent_coder_plus_tests_graph().compile())
+    graph.add_node("Meta Programmer", get_agent_coder_plus_coder_graph().compile())
+    graph.add_node("Chain of Thought Agent", AgentCoder())
     graph.add_node("Meta Controller", AgentMetaController())
     graph.add_node("Solution Evaluator", AgentSolutionEvaluator())
 
-    graph.set_entry_point("Test Generator")
-    graph.add_edge("Test Generator", "Meta Controller")
+    graph.set_entry_point("Test Designer")
+    graph.add_edge("Test Designer", "Meta Controller")
 
     graph.add_conditional_edges(
         "Meta Controller",
         router,
         {
             "MetaComplete": "Solution Evaluator",
-            "MultiAgentContinue": "Coder",
-            "SingleAgentContinue": "Single Agent"
+            "MultiAgentContinue": "Meta Programmer",
+            "SingleAgentContinue": "Chain of Thought Agent"
         }
     )
 
-    graph.add_edge("Coder", "Meta Controller")
-    graph.add_edge("Single Agent", "Meta Controller")
+    graph.add_edge("Meta Programmer", "Meta Controller")
+    graph.add_edge("Chain of Thought Agent", "Meta Controller")
 
     graph.add_edge("Solution Evaluator", END)
 
