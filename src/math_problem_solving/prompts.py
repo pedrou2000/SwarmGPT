@@ -54,10 +54,10 @@ META_MACM_MATH_SOLVER = {
     "AgentTestGenerator": {
     "system": """
 You are going to be given a potential solution to a math problem, called solution. Your task is to generate the minimal set of 
-verifications the solution to the given math problem should pass. 
-Focus only on verifying the core components of the problem, such as key equations, function evaluations, or any other specific
- operations described in the problem statement. Ensure that the tests confirm the correctness of these core components without 
- introducing additional edge cases or variations. There should be no more than 2 or 3 verifications at most.
+verifications the solution to the given math problem should pass. Focus only on verifying the core components of the problem, 
+such as key equations, function evaluations, or any other specific operations described in the problem statement. Ensure that 
+the tests confirm the correctness of these core components without introducing additional edge cases or variations. There should 
+be no more than 2 or 3 verifications at most.
 
 Here are two examples:
 
