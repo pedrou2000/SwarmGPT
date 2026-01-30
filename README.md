@@ -288,61 +288,69 @@ We envision future LLM systems that can **autonomously**:
 
 ```
 SwarmGPT/
-├── thesis.pdf                    # Full thesis document
-├── src/
-│   ├── agent_coder/              # Original AgentCoder implementation
-│   │   ├── llm_agents/           # Agent implementations
-│   │   ├── data_classes/         # State definitions
-│   │   └── main.ipynb            # Entry point
-│   │
-│   ├── agent_coder_plus/         # AgentCoder+ & MetaAgentCoder+
-│   │   ├── llm_agents/           # Enhanced agent implementations
-│   │   │   ├── AgentCoder.py
-│   │   │   ├── AgentCodeRefiner.py
-│   │   │   ├── AgentTestGenerator.py
-│   │   │   ├── AgentTestChecker.py
-│   │   │   ├── AgentTestRefiner.py
-│   │   │   ├── AgentSolutionEvaluator.py
-│   │   │   └── AgentMetaController.py
-│   │   ├── langgraphs/           # LangGraph orchestration
-│   │   │   ├── agent_coder_plus.py
-│   │   │   ├── agent_coder_plus_tests.py
-│   │   │   ├── agent_coder_plus_coder.py
-│   │   │   └── meta_agent_coder.py
-│   │   ├── data_classes/         # State definitions
-│   │   └── main.ipynb            # Entry point
-│   │
-│   ├── math_problem_solving/     # MACM & MetaMACM implementations
-│   │   ├── llm_agents/           # Math-solving agents
-│   │   ├── langgraphs/           # LangGraph orchestration
-│   │   ├── data_classes/         # State definitions
-│   │   ├── MACM/                 # Original MACM reference
-│   │   └── main.ipynb            # Entry point
-│   │
-│   ├── book_summarizer/          # Book summarization experiments
-│   │   ├── llm_agents/
-│   │   ├── non_llm_agents/
-│   │   └── BooookScore/          # Evaluation framework
-│   │
-│   ├── generic_agents/           # Reusable agent components
-│   │   ├── CodeInterpreterAgent.py
-│   │   └── MultiTurnLLMAgent.py
-│   │
-│   └── langchain_tutorials/      # LangChain/LangGraph learning materials
+├── README.md                        # Project documentation and overview
+├── LICENSE                          # MIT license
+├── thesis.pdf                       # Full MSc thesis document
+├── img/                             # Architecture diagrams (SVG)
+│  ├── 1-MACM.svg                    # MACM framework diagram
+│  ├── 2-AgentCoder.svg              # AgentCoder baseline diagram
+│  ├── 5-AgentCoder_Plus.svg         # AgentCoder+ architecture diagram
+│  └── 7-Meta_Architecture.svg       # Meta-framework architecture diagram
 │
-├── data/
-│   ├── datasets/
-│   │   └── MATH/                 # MATH benchmark dataset
-│   ├── books/                    # Test books for summarization
-│   └── parsed_epubs/             # Processed book content
+├── src/                             # Source code
+│  ├── constants.py                  # Global constants and configuration
+│  ├── utils.py                      # Shared utility functions
+│  ├── human_eval_utils.py           # HumanEval benchmark utilities
+│  │
+│  ├── agent_coder/                  # Original AgentCoder implementation
+│  │  ├── llm_agents/                # Agent implementations
+│  │  ├── data_classes/              # State definitions
+│  │  └── main.ipynb                 # Entry point
+│  │
+│  ├── agent_coder_plus/             # AgentCoder+ & MetaAgentCoder+
+│  │  ├── llm_agents/                # Enhanced agent implementations
+│  │  ├── langgraphs/                # LangGraph orchestration
+│  │  ├── data_classes/              # State definitions
+│  │  └── main.ipynb                 # Entry point
+│  │
+│  ├── math_problem_solving/         # MACM & MetaMACM implementations
+│  │  ├── llm_agents/                # Math-solving agents
+│  │  ├── langgraphs/                # LangGraph orchestration
+│  │  ├── data_classes/              # State definitions
+│  │  ├── MACM/                      # Original MACM reference code
+│  │  └── main.ipynb                 # Entry point
+│  │
+│  ├── book_summarizer/              # Book summarization experiments
+│  │  ├── llm_agents/                # Summarization agents
+│  │  ├── non_llm_agents/            # Non-LLM processing agents
+│  │  ├── data_classes/              # State definitions
+│  │  └── BooookScore/               # Evaluation framework
+│  │
+│  ├── generic_agents/               # Reusable agent components
+│  │  ├── CodeInterpreterAgent.py    # Code execution agent
+│  │  └── MultiTurnLLMAgent.py       # Multi-turn conversation agent
+│  │
+│  └── langchain_tutorials/          # LangChain/LangGraph learning materials
 │
-└── results/
-    ├── human_eval/               # HumanEval benchmark results
-    │   ├── gpt-4o/
-    │   └── gpt-4o-mini/
-    └── math/                     # MATH benchmark results
-        ├── gpt-4o-large_run/
-        └── gpt-4o-mini-large_run/
+├── data/                            # Data and datasets
+│  ├── datasets/MATH/                # MATH benchmark dataset
+│  ├── books/                        # Test books (EPUB format)
+│  ├── parsed_epubs/                 # Processed book content (Markdown)
+│  └── full_content_parsed_epubs/    # Full parsed book content (Pickle)
+│
+├── results/                         # Experimental results
+│  ├── human_eval/                   # HumanEval benchmark results
+│  │  ├── gpt-4o/                    # GPT-4o results
+│  │  └── gpt-4o-mini/               # GPT-4o-mini results
+│  ├── math/                         # MATH benchmark results
+│  │  ├── gpt-4o-large_run/          # GPT-4o full evaluation
+│  │  └── gpt-4o-mini-large_run/     # GPT-4o-mini full evaluation
+│  ├── book_summaries/               # Book summarization outputs
+│  └── booookscore/                  # BooookScore evaluation results
+│
+└── archive/                         # Deprecated/old files
+   ├── book_summarizer.py            # Legacy book summarizer
+   └── gpt_agent.py                  # Legacy agent implementation
 ```
 
 ---
@@ -352,7 +360,7 @@ SwarmGPT/
 ### Prerequisites
 
 - Python 3.10+
-- OpenAI API key with access to GPT-4o models
+- OpenAI API key (with access to GPT-4o models)
 
 ### Setup
 
@@ -361,28 +369,55 @@ SwarmGPT/
 git clone https://github.com/pedrou2000/SwarmGPT.git
 cd SwarmGPT
 
-# Install dependencies
-pip install langchain langgraph openai jupyter
+# Create and activate virtual environment (recommended)
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
 
-# Set your OpenAI API key
-export OPENAI_API_KEY="your-api-key-here"
+# Install dependencies
+pip install langchain langgraph openai datasets python-dotenv \
+            matplotlib numpy plotly jupyter ipython
+
+# Create .env file with your API key
+echo "OPENAI_API_KEY=your-openai-api-key-here" > .env
 ```
 
 ### Running Experiments
 
-#### HumanEval (Coding)
+#### HumanEval Benchmark (Code Generation)
 
 ```bash
 cd src/agent_coder_plus
 jupyter notebook main.ipynb
 ```
 
-#### MATH Benchmark (Mathematics)
+**Available architectures:**
+- Single Agent (Chain of Thought)
+- AgentCoder
+- AgentCoder+
+- MetaAgentCoder+
+
+#### MATH Benchmark (Mathematical Reasoning)
 
 ```bash
 cd src/math_problem_solving
 jupyter notebook main.ipynb
 ```
+
+**Available architectures:**
+- Single Agent (Chain of Thought)
+- MACM
+- Multi-MACM
+- MetaMACM
+
+### Configuration
+
+Edit `src/constants.py` to customize:
+
+| Setting | Description | Options |
+|---------|-------------|---------|
+| `MODEL_VERSION` | LLM model to use | `3` = GPT-4o-mini, `4` = GPT-4o |
+| `TEMPERATURE` | Model temperature | Default: `1` |
+| Output directories | Where results are saved | Various `*_DIR` constants |
 
 ---
 
