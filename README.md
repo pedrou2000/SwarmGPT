@@ -292,65 +292,65 @@ SwarmGPT/
 ├── LICENSE                          # MIT license
 ├── thesis.pdf                       # Full MSc thesis document
 ├── img/                             # Architecture diagrams (SVG)
-│  ├── 1-MACM.svg                    # MACM framework diagram
-│  ├── 2-AgentCoder.svg              # AgentCoder baseline diagram
-│  ├── 5-AgentCoder_Plus.svg         # AgentCoder+ architecture diagram
-│  └── 7-Meta_Architecture.svg       # Meta-framework architecture diagram
+│  ├── 1-MACM.svg                      # MACM framework diagram
+│  ├── 2-AgentCoder.svg                # AgentCoder baseline diagram
+│  ├── 5-AgentCoder_Plus.svg           # AgentCoder+ architecture diagram
+│  └── 7-Meta_Architecture.svg         # Meta-framework architecture diagram
 │
 ├── src/                             # Source code
-│  ├── constants.py                  # Global constants and configuration
-│  ├── utils.py                      # Shared utility functions
-│  ├── human_eval_utils.py           # HumanEval benchmark utilities
+│  ├── constants.py                    # Global constants and configuration
+│  ├── utils.py                        # Shared utility functions
+│  ├── human_eval_utils.py             # HumanEval benchmark utilities
 │  │
-│  ├── agent_coder/                  # Original AgentCoder implementation
-│  │  ├── llm_agents/                # Agent implementations
-│  │  ├── data_classes/              # State definitions
-│  │  └── main.ipynb                 # Entry point
+│  ├── agent_coder/                    # Original AgentCoder implementation
+│  │  ├── llm_agents/                    # Agent implementations
+│  │  ├── data_classes/                  # State definitions
+│  │  └── main.ipynb                     # Entry point
 │  │
-│  ├── agent_coder_plus/             # AgentCoder+ & MetaAgentCoder+
-│  │  ├── llm_agents/                # Enhanced agent implementations
-│  │  ├── langgraphs/                # LangGraph orchestration
-│  │  ├── data_classes/              # State definitions
-│  │  └── main.ipynb                 # Entry point
+│  ├── agent_coder_plus/               # AgentCoder+ & MetaAgentCoder+
+│  │  ├── llm_agents/                    # Enhanced agent implementations
+│  │  ├── langgraphs/                    # LangGraph orchestration
+│  │  ├── data_classes/                  # State definitions
+│  │  └── main.ipynb                     # Entry point
 │  │
-│  ├── math_problem_solving/         # MACM & MetaMACM implementations
-│  │  ├── llm_agents/                # Math-solving agents
-│  │  ├── langgraphs/                # LangGraph orchestration
-│  │  ├── data_classes/              # State definitions
-│  │  ├── MACM/                      # Original MACM reference code
-│  │  └── main.ipynb                 # Entry point
+│  ├── math_problem_solving/           # MACM & MetaMACM implementations
+│  │  ├── llm_agents/                    # Math-solving agents
+│  │  ├── langgraphs/                    # LangGraph orchestration
+│  │  ├── data_classes/                  # State definitions
+│  │  ├── MACM/                          # Original MACM reference code
+│  │  └── main.ipynb                     # Entry point
 │  │
-│  ├── book_summarizer/              # Book summarization experiments
-│  │  ├── llm_agents/                # Summarization agents
-│  │  ├── non_llm_agents/            # Non-LLM processing agents
-│  │  ├── data_classes/              # State definitions
-│  │  └── BooookScore/               # Evaluation framework
+│  ├── book_summarizer/                # Book summarization experiments
+│  │  ├── llm_agents/                    # Summarization agents
+│  │  ├── non_llm_agents/                # Non-LLM processing agents
+│  │  ├── data_classes/                  # State definitions
+│  │  └── BooookScore/                   # Evaluation framework
 │  │
-│  ├── generic_agents/               # Reusable agent components
-│  │  ├── CodeInterpreterAgent.py    # Code execution agent
-│  │  └── MultiTurnLLMAgent.py       # Multi-turn conversation agent
+│  ├── generic_agents/                 # Reusable agent components
+│  │  ├── CodeInterpreterAgent.py        # Code execution agent
+│  │  └── MultiTurnLLMAgent.py           # Multi-turn conversation agent
 │  │
-│  └── langchain_tutorials/          # LangChain/LangGraph learning materials
+│  └── langchain_tutorials/            # LangChain/LangGraph learning materials
 │
 ├── data/                            # Data and datasets
-│  ├── datasets/MATH/                # MATH benchmark dataset
-│  ├── books/                        # Test books (EPUB format)
-│  ├── parsed_epubs/                 # Processed book content (Markdown)
-│  └── full_content_parsed_epubs/    # Full parsed book content (Pickle)
+│  ├── datasets/MATH/                  # MATH benchmark dataset
+│  ├── books/                          # Test books (EPUB format)
+│  ├── parsed_epubs/                   # Processed book content (Markdown)
+│  └── full_content_parsed_epubs/      # Full parsed book content (Pickle)
 │
 ├── results/                         # Experimental results
-│  ├── human_eval/                   # HumanEval benchmark results
-│  │  ├── gpt-4o/                    # GPT-4o results
-│  │  └── gpt-4o-mini/               # GPT-4o-mini results
-│  ├── math/                         # MATH benchmark results
-│  │  ├── gpt-4o-large_run/          # GPT-4o full evaluation
-│  │  └── gpt-4o-mini-large_run/     # GPT-4o-mini full evaluation
-│  ├── book_summaries/               # Book summarization outputs
-│  └── booookscore/                  # BooookScore evaluation results
+│  ├── human_eval/                     # HumanEval benchmark results
+│  │  ├── gpt-4o/                        # GPT-4o results
+│  │  └── gpt-4o-mini/                   # GPT-4o-mini results
+│  ├── math/                           # MATH benchmark results
+│  │  ├── gpt-4o-large_run/              # GPT-4o full evaluation
+│  │  └── gpt-4o-mini-large_run/         # GPT-4o-mini full evaluation
+│  ├── book_summaries/                 # Book summarization outputs
+│  └── booookscore/                    # BooookScore evaluation results
 │
 └── archive/                         # Deprecated/old files
-   ├── book_summarizer.py            # Legacy book summarizer
-   └── gpt_agent.py                  # Legacy agent implementation
+   ├── book_summarizer.py              # Legacy book summarizer
+   └── gpt_agent.py                    # Legacy agent implementation
 ```
 
 ---
