@@ -9,8 +9,7 @@
 
 <p align="center">
   <strong>Author:</strong> Pedro Urbina Rodriguez<br>
-  <strong>Supervisor:</strong> Dr Francesco Belardinelli<br>
-  <strong>Second Marker:</strong> Professor Murray Shanahan<br>
+  <strong>Supervisors:</strong> <a href="https://www.doc.ic.ac.uk/~fbelard/">Dr Francesco Belardinelli</a>, <a href="https://www.doc.ic.ac.uk/~mpsha/">Professor Murray Shanahan</a><br>
   <strong>Submitted:</strong> September 2024<br>
   <strong>Grade:</strong> Distinction<br>
 </p>
@@ -59,12 +58,11 @@ Lastly, we present a vision for the future of multi-agent LLMs, advocating for a
 
 ## Acknowledgments
 
-This research was made possible through the generous support of the **[OpenAI Researcher Access Program](https://openai.com/form/researcher-access-program/)**, which provided $1,000 in computing credits that enabled access to state-of-the-art LLM models. We extend our sincere gratitude to OpenAI for their commitment to supporting academic research—this project would not have been possible without their generous support.
+This research was made possible through the generous support of the **[OpenAI Researcher Access Program](https://openai.com/form/researcher-access-program/)**, which provided $1,000 in computing credits that enabled access to state-of-the-art LLM models. We extend our sincere gratitude to OpenAI for their commitment to supporting academic research.
 
 Special thanks to:
-- **Dr Francesco Belardinelli** for agreeing to supervise this self-proposed project in the nascent research field of Multi-Agent Large Language Models
-- **Professor Murray Shanahan** for insightful discussions that planted the seeds for this research and for collaboration in the evaluation of this thesis
-- Family and friends for their unwavering support throughout this project
+- **[Dr Francesco Belardinelli](https://www.doc.ic.ac.uk/~fbelard/)** for agreeing to supervise this self-proposed project in the nascent research field of Multi-Agent Large Language Models
+- **[Professor Murray Shanahan](https://www.doc.ic.ac.uk/~mpsha/)** for insightful discussions that planted the seeds for this research well before it started and for collaboration in the evaluation of this thesis
 
 ---
 
@@ -97,14 +95,9 @@ While LLMs represent a significant advance in the generality of AI systems, they
 
 The original [AgentCoder](https://arxiv.org/abs/2312.13010) architecture consists of three agents:
 
-```
-┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐
-│  Test Designer  │────▶│   Programmer    │────▶│  Test Executor  │
-│                 │     │                 │◀────│                 │
-│ Generates test  │     │ Generates code  │     │ Runs tests and  │
-│ cases from spec │     │ and refines it  │     │ provides feedback│
-└─────────────────┘     └─────────────────┘     └─────────────────┘
-```
+<p align="center">
+  <img src="img/2-AgentCoder.svg" alt="AgentCoder Architecture" width="700">
+</p>
 
 **Limitation**: Test cases are generated only once. Erroneous tests hinder the code refinement process.
 
@@ -114,33 +107,9 @@ The original [AgentCoder](https://arxiv.org/abs/2312.13010) architecture consist
 
 AgentCoder+ introduces an **iterative test refinement loop** before code generation:
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                          TEST DESIGNER MODULE                           │
-│  ┌───────────────┐     ┌───────────────┐     ┌───────────────┐         │
-│  │Test Generator │────▶│  Test Judge   │────▶│ Test Refiner  │         │
-│  │               │     │               │     │               │         │
-│  │Creates initial│     │Validates test │     │Fixes incorrect│         │
-│  │test cases     │     │correctness    │     │test cases     │         │
-│  └───────────────┘     └───────┬───────┘     └───────┬───────┘         │
-│                                │                     │                  │
-│                                └─────────────────────┘                  │
-│                                    (iterate until approved)             │
-└─────────────────────────────────────────────────────────────────────────┘
-                                        │
-                                        ▼
-┌─────────────────────────────────────────────────────────────────────────┐
-│                         META PROGRAMMER MODULE                          │
-│  ┌───────────────┐     ┌───────────────┐     ┌───────────────┐         │
-│  │  Programmer   │────▶│ Test Executor │────▶│ Code Refiner  │         │
-│  │               │     │               │     │               │         │
-│  │Generates code │     │Runs tests     │     │Improves code  │         │
-│  │from spec      │     │               │     │based on errors│         │
-│  └───────────────┘     └───────────────┘     └───────┬───────┘         │
-│                                                      │                  │
-│                                (iterate until tests pass)               │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<p align="center">
+  <img src="img/5-AgentCoder_Plus.svg" alt="AgentCoder+ Architecture" width="700">
+</p>
 
 **Key Innovation**: The Test Judge assesses test correctness; if errors are detected, the Test Refiner improves them before code generation begins.
 
@@ -149,6 +118,10 @@ AgentCoder+ introduces an **iterative test refinement loop** before code generat
 ### MACM (Baseline for Mathematics)
 
 The [Multi-Agent System for Conditional Mining](https://arxiv.org/abs/2404.04735) (MACM) solves mathematical problems by iteratively building conditions (lemmas) until a solution is reached:
+
+<p align="center">
+  <img src="img/1-MACM.svg" alt="MACM Architecture" width="700">
+</p>
 
 | Agent | Role |
 |-------|------|
@@ -165,43 +138,9 @@ The [Multi-Agent System for Conditional Mining](https://arxiv.org/abs/2404.04735
 
 Our **meta-framework** is designed to enhance any problem-solving framework with verifiable solutions:
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                         TEST GENERATION MODULE                          │
-│                                                                         │
-│    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐               │
-│    │   Test      │───▶│   Test      │───▶│   Test      │               │
-│    │  Generator  │    │   Judge     │    │  Refiner    │               │
-│    └─────────────┘    └──────┬──────┘    └──────┬──────┘               │
-│                              └───────────────────┘                      │
-│                              (iterate until approved)                   │
-└─────────────────────────────────────────────────────────────────────────┘
-                                       │
-                     ┌─────────────────┼─────────────────┐
-                     ▼                 ▼                 ▼
-        ┌────────────────┐  ┌────────────────┐  ┌────────────────┐
-        │ Base Framework │  │ Base Framework │  │ Chain of       │
-        │   (Run 1)      │  │   (Run 2)      │  │ Thought Agent  │
-        │                │  │                │  │   (x3 runs)    │
-        │ MACM or        │  │ MACM or        │  │                │
-        │ AgentCoder+    │  │ AgentCoder+    │  │ Simple CoT     │
-        └───────┬────────┘  └───────┬────────┘  └───────┬────────┘
-                │                   │                   │
-                └───────────────────┼───────────────────┘
-                                    ▼
-                        ┌────────────────────┐
-                        │ Solution Evaluator │
-                        │                    │
-                        │ Runs all solutions │
-                        │ against tests,     │
-                        │ selects best       │
-                        └────────────────────┘
-                                    │
-                                    ▼
-                           ┌──────────────┐
-                           │Final Solution│
-                           └──────────────┘
-```
+<p align="center">
+  <img src="img/7-Meta_Architecture.svg" alt="Meta-Framework Architecture" width="700">
+</p>
 
 **Key Features**:
 - Generates refined tests first
@@ -317,18 +256,18 @@ Combines all above into concrete organizational artifacts:
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
-│                         OrgBoard                                │
-│         (Main organizational artifact)                          │
+│                           OrgBoard                              │
+│                  (Main organizational artifact)                 │
 │                                                                 │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐ │
-│  │   GroupBoard    │  │   GroupBoard    │  │ NormativeBoard  │ │
-│  │   (Department)  │  │   (Department)  │  │                 │ │
-│  │                 │  │                 │  │ Behavioral      │ │
-│  │ ┌─────────────┐ │  │ ┌─────────────┐ │  │ constraints     │ │
-│  │ │SchemaBoard  │ │  │ │SchemaBoard  │ │  │ and rules       │ │
-│  │ │(Goal tree)  │ │  │ │(Goal tree)  │ │  │                 │ │
-│  │ └─────────────┘ │  │ └─────────────┘ │  │                 │ │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘ │
+│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  │
+│  │   GroupBoard    │  │   GroupBoard    │  │ NormativeBoard  │  │
+│  │  (Department)   │  │  (Department)   │  │                 │  │
+│  │                 │  │                 │  │   Behavioral    │  │
+│  │ ┌─────────────┐ │  │ ┌─────────────┐ │  │  constraints    │  │
+│  │ │ SchemaBoard │ │  │ │ SchemaBoard │ │  │   and rules     │  │
+│  │ │ (Goal tree) │ │  │ │ (Goal tree) │ │  │                 │  │
+│  │ └─────────────┘ │  │ └─────────────┘ │  │                 │  │
+│  └─────────────────┘  └─────────────────┘  └─────────────────┘  │
 └─────────────────────────────────────────────────────────────────┘
 ```
 
@@ -473,7 +412,7 @@ If you use this work in your research, please cite:
   month     = {September},
   type      = {MSc Thesis},
   department = {Department of Computing},
-  note      = {MSc Advanced Computing, Distinction}
+  note      = {MSc Advanced Computing}
 }
 ```
 
